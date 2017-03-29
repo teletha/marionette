@@ -158,7 +158,7 @@ public class Window {
             Native.API.enumWindows(id -> {
                 observer.accept(new Window(id));
             });
-            return Disposable.Φ;
+            return Disposable.empty();
         });
     }
 
