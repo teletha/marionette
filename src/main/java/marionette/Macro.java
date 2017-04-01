@@ -571,7 +571,7 @@ public abstract class Macro {
 
             return new Signal<KeyEvent>((observer, disposer) -> {
                 observers.add(observer);
-                return disposer.and(() -> observers.remove(observer));
+                return disposer.add(() -> observers.remove(observer));
             });
         }
 
