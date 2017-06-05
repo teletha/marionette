@@ -12,6 +12,7 @@ package marionette.platform;
 import java.util.function.Consumer;
 
 import kiss.Signal;
+import marionette.Key;
 
 /**
  * @version 2016/10/04 21:11:29
@@ -111,6 +112,14 @@ class UnknownAPI implements Native {
      */
     @Override
     public Signal clipboard() {
+        throw error();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void input(Object windowID, Key key) {
         throw error();
     }
 

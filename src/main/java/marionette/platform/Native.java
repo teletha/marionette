@@ -14,6 +14,7 @@ import static com.sun.jna.Platform.*;
 import java.util.function.Consumer;
 
 import kiss.Signal;
+import marionette.Key;
 
 /**
  * @version 2016/10/04 21:02:26
@@ -138,4 +139,13 @@ public interface Native<ID> {
      * @return
      */
     Signal<String> clipboard();
+
+    /**
+     * <p>
+     * Input key sequence to the specified window.
+     * </p>
+     * 
+     * @param windowID
+     */
+    void input(ID windowID, Key key);
 }

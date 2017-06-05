@@ -30,8 +30,10 @@ import com.sun.jna.platform.win32.User32;
 import com.sun.jna.platform.win32.WinDef.HDC;
 import com.sun.jna.platform.win32.WinDef.HINSTANCE;
 import com.sun.jna.platform.win32.WinDef.HWND;
+import com.sun.jna.platform.win32.WinDef.LPARAM;
 import com.sun.jna.platform.win32.WinDef.POINT;
 import com.sun.jna.platform.win32.WinDef.RECT;
+import com.sun.jna.platform.win32.WinDef.WPARAM;
 import com.sun.jna.platform.win32.WinNT.HANDLE;
 import com.sun.jna.platform.win32.WinReg.HKEY;
 import com.sun.jna.platform.win32.WinUser;
@@ -44,6 +46,7 @@ import kiss.I;
 import kiss.Observer;
 import kiss.Signal;
 import kiss.Variable;
+import marionette.Key;
 import marionette.platform.WindowsAPI.ShellAPI.SHELLEXECUTEINFO;
 
 /**
@@ -213,6 +216,14 @@ class WindowsAPI implements marionette.platform.Native<HWND> {
         char[] text = new char[512];
         int size = consumer.apply(id, text, text.length);
         return new String(text, 0, size);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void input(HWND windowID, Key key) {
+        User.PostMessage(windowID, WinUser.WM_KEYDOWN, new WPARAM(key.virtualCode), new LPARAM(0));
     }
 
     /**

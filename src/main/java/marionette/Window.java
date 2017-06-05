@@ -52,7 +52,13 @@ public class Window {
         Native.API.closeWindow(windowID);
     }
 
+    /**
+     * <p>
+     * ウインドウにキー入力を送ります。（同期）
+     * </p>
+     */
     public void input(Key key) {
+        Native.API.input(windowID, key);
     }
 
     /**
