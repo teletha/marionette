@@ -9,6 +9,8 @@
  */
 public class Project extends bee.api.Project {
 
+    String selenium = "3.6.0";
+
     {
         product("com.github.teletha", "Marionette", "0.1");
 
@@ -16,5 +18,9 @@ public class Project extends bee.api.Project {
         require("com.github.teletha", "filer", "0.5");
         require("net.java.dev.jna", "jna", "4.2.2");
         require("net.java.dev.jna", "jna-platform", "4.2.2");
+
+        require("org.seleniumhq.selenium", "selenium-firefox-driver", selenium);
+        require("org.seleniumhq.selenium", "selenium-chrome-driver", selenium);
+        require("org.seleniumhq.selenium", "selenium-support", selenium);
     }
 }
