@@ -601,6 +601,18 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
 
     /**
      * <p>
+     * Get cookie value by name.
+     * </p>
+     * 
+     * @param name
+     * @return
+     */
+    public final String cookie(String name) {
+        return driver().manage().getCookieNamed(name).getValue();
+    }
+
+    /**
+     * <p>
      * Deselect the target option.
      * </p>
      * 
