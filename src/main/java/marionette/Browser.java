@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -562,6 +563,18 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
             }
         }
         return chain(0);
+    }
+
+    /**
+     * <p>
+     * Configure profile directory.
+     * </p>
+     * 
+     * @param directory
+     * @return
+     */
+    public final Self configProfile(String directory) {
+        return configProfile(Paths.get(directory));
     }
 
     /**
