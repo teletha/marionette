@@ -587,9 +587,13 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      */
     public final Self configProfile(Path directory) {
         if (directory != null) {
-            Filer.createDirectory(directory);
+            try {
+                Files.createDirectories(directory);
 
-            defaults.options.add("user-data-dir=" + directory.toAbsolutePath().toString());
+                defaults.options.add("user-data-dir=" + directory.toAbsolutePath().toString());
+            } catch (IOException e) {
+                throw I.quiet(e);
+            }
         }
         return chain(0);
     }
