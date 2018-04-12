@@ -16,6 +16,7 @@ public class Project extends bee.api.Project {
 
         require("com.github.teletha", "sinobu", "1.0");
         require("com.github.teletha", "filer", "0.5");
+        require("com.github.teletha", "antibug", "0.6").atTest();
         require("net.java.dev.jna", "jna", "4.2.2");
         require("net.java.dev.jna", "jna-platform", "4.2.2");
 
