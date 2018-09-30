@@ -17,6 +17,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -55,7 +56,7 @@ import kiss.WiseFunction;
 import kiss.WiseRunnable;
 
 /**
- * @version 2018/02/08 5:05:35
+ * @version 2018/10/01 2:53:26
  */
 public class Browser<Self extends Browser<Self>> implements Disposable {
 
@@ -68,8 +69,8 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     /** The reusable retry flow controller. */
     private static final Retry retry = new Retry();
 
-    /** The user defined default preference. */
-    private final Preference defaults = new Preference();
+    /** The user defined preference. */
+    BrowserInitialPreference prefs = new BrowserInitialPreference();
 
     /** The driver. */
     private WebDriver driver;
@@ -90,32 +91,38 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     private long operationInterval;
 
     /**
-     * <p>
      * Lazy initialization
-     * </p>
      * 
      * @return
      */
-    private WebDriver driver() {
+    private synchronized WebDriver driver() {
         if (driver == null) {
-            if (defaults.headless) {
-                defaults.options.add("--headless");
+            if (prefs.headless) {
+                prefs.options.add("--headless");
+            }
+
+            if (prefs.secret) {
+                prefs.options.add("--incognito");
+            }
+
+            if (prefs.profileDirectory != null) {
+                prefs.options.add("user-data-dir=" + prefs.profileDirectory.toAbsolutePath().toString());
             }
 
             ChromeOptions options = new ChromeOptions();
-            options.addArguments(defaults.options);
+            options.addArguments(prefs.options);
             driver = new ChromeDriver(options);
             // FirefoxOptions options = new FirefoxOptions();
             // options.addArguments(defaults.options);
             //
             // driver = new FirefoxDriver(options);
 
-            driver.manage().timeouts().pageLoadTimeout(defaults.pageLoadTimeout, MILLISECONDS);
-            operation = new WebDriverWait(driver, defaults.operationTimeout);
+            driver.manage().timeouts().pageLoadTimeout(prefs.pageLoadTimeout, MILLISECONDS);
+            operation = new WebDriverWait(driver, prefs.operationTimeout);
             operationForHuman = new WebDriverWait(driver, Integer.MAX_VALUE, 500);
             searchElement = new WebDriverWait(driver, 60, 500);
-            searchElementExactly = defaults.searchElementExactly;
-            operationInterval = defaults.operationInterval;
+            searchElementExactly = prefs.searchElementExactly;
+            operationInterval = prefs.operationInterval;
         }
         return driver;
     }
@@ -433,186 +440,30 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     }
 
     /**
-     * <p>
-     * Configure as default setting.
-     * </p>
+     * Reset preference.
      * 
      * @return
      */
-    public final Self configDefault() {
-        configSearchElementExactly(defaults.searchElementExactly);
-        configOperationInterval(defaults.operationInterval, MILLISECONDS);
-        configOperationTimeou(defaults.operationTimeout, SECONDS);
-        configPageLoadTimeout(defaults.pageLoadTimeout, MILLISECONDS);
+    public final Self resetPreference() {
+        prefs = new BrowserInitialPreference();
+        preference(I.NoOP.asConsumer());
         return chain(0);
     }
 
     /**
-     * <p>
-     * Configure headless mode.
-     * </p>
+     * Configure preference at runtime.
      * 
-     * @param on
+     * @param preference A preference operator.
      * @return
      */
-    public final Self configHeadless(boolean on) {
-        if (driver == null) {
-            defaults.headless = on;
-        }
-        return chain(0);
-    }
+    public final Self preference(Consumer<BrowserPreference> preference) {
+        if (preference != null) {
+            preference.accept(prefs);
 
-    /**
-     * <p>
-     * Configure adblock mode.
-     * </p>
-     * 
-     * @param on
-     * @return
-     */
-    public final Self configAdblock(boolean on) {
-        if (driver == null) {
-            defaults.adblock = on;
-        }
-        return chain(0);
-    }
-
-    /**
-     * <p>
-     * Configure tor mode.
-     * </p>
-     * 
-     * @param on
-     * @return
-     */
-    public final Self configTor(boolean on) {
-        if (driver == null) {
-            defaults.tor = on;
-        }
-        return chain(0);
-    }
-
-    /**
-     * <p>
-     * Configure secret mode.
-     * </p>
-     * 
-     * @param on
-     * @return
-     */
-    public final Self configSecret(boolean on) {
-        if (driver == null) {
-            defaults.options.add("--incognito");
-        }
-        return chain(0);
-    }
-
-    /**
-     * <p>
-     * Configure element selection mode.
-     * </p>
-     * 
-     * @param on
-     * @return
-     */
-    public final Self configSearchElementExactly(boolean on) {
-        if (driver == null) {
-            defaults.searchElementExactly = on;
-        } else {
-            searchElementExactly = on;
-        }
-        return chain(0);
-    }
-
-    /**
-     * <p>
-     * Configure browser action interval time.
-     * </p>
-     * 
-     * @param time A time duration.
-     * @param unit A time unit.
-     * @return
-     */
-    public final Self configOperationInterval(long time, TimeUnit unit) {
-        if (0 < time && unit != null) {
-            if (driver == null) {
-                defaults.operationInterval = unit.toMillis(time);
-            } else {
-                operationInterval = unit.toMillis(time);
-            }
-        }
-        return chain(0);
-    }
-
-    /**
-     * <p>
-     * Configure timeout when browser loads page.
-     * </p>
-     * 
-     * @param time A time duration.
-     * @param unit A time unit.
-     * @return
-     */
-    public final Self configOperationTimeou(long time, TimeUnit unit) {
-        if (0 < time && unit != null) {
-            if (driver == null) {
-                defaults.operationTimeout = unit.toSeconds(time);
-            } else {
-                operation.withTimeout(time, unit);
-            }
-        }
-        return chain(0);
-    }
-
-    /**
-     * <p>
-     * Configure profile directory.
-     * </p>
-     * 
-     * @param directory
-     * @return
-     */
-    public final Self configProfile(String directory) {
-        return configProfile(Paths.get(directory));
-    }
-
-    /**
-     * <p>
-     * Configure profile directory.
-     * </p>
-     * 
-     * @param directory
-     * @return
-     */
-    public final Self configProfile(Path directory) {
-        if (directory != null) {
-            try {
-                Files.createDirectories(directory);
-
-                defaults.options.add("user-data-dir=" + directory.toAbsolutePath().toString());
-            } catch (IOException e) {
-                throw I.quiet(e);
-            }
-        }
-        return chain(0);
-    }
-
-    /**
-     * <p>
-     * Configure timeout when browser loads page.
-     * </p>
-     * 
-     * @param time A time duration.
-     * @param unit A time unit.
-     * @return
-     */
-    public final Self configPageLoadTimeout(long time, TimeUnit unit) {
-        if (0 < time && unit != null) {
-            if (driver == null) {
-                defaults.pageLoadTimeout = unit.toMillis(time);
-            } else {
-                driver.manage().timeouts().pageLoadTimeout(time, unit);
-            }
+            searchElementExactly = prefs.searchElementExactly;
+            operationInterval = prefs.operationInterval;
+            operation.withTimeout(Duration.ofSeconds(prefs.operationTimeout));
+            driver.manage().timeouts().pageLoadTimeout(prefs.pageLoadTimeout, TimeUnit.MILLISECONDS);
         }
         return chain(0);
     }
@@ -1201,52 +1052,56 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * @return
      */
     public final WiseFunction<Signal<? extends Throwable>, Signal<?>> recoverPageLoadTimeout() {
-        return e -> e.type(TimeoutException.class).take(defaults.retryLimit);
+        return e -> e.type(TimeoutException.class).take(prefs.retryLimit);
     }
 
     private final WiseFunction<Signal<? extends Throwable>, Signal<?>> retryError() {
         return e -> e.type(WebDriverException.class);
     }
 
-    public static <B extends Browser> B operate(Class<B> browser) {
-        return I.make(browser);
+    /**
+     * Builde the operatable {@link Browser}.
+     * 
+     * @return
+     */
+    public static final Browser build() {
+        return build(Browser.class);
     }
 
     /**
-     * @version 2017/06/07 14:18:18
+     * Builde the operatable {@link Browser}.
+     * 
+     * @return
      */
-    private class Preference {
+    public static final Browser build(Consumer<BrowserInitialPreference> preference) {
+        return build(Browser.class, preference);
+    }
 
-        /** The user defined default time (millseconds) for page load timeout. */
-        private long pageLoadTimeout = 45 * 1000;
+    /**
+     * Builde the operatable your {@link Browser}.
+     * 
+     * @param browser Your browser.
+     * @return
+     */
+    public static final <B extends Browser> B build(Class<B> browser) {
+        return build(browser, I.NoOP.asConsumer());
+    }
 
-        /** The user defined default time (seconds) for operation timeout. */
-        private long operationTimeout = 30;
+    /**
+     * Builde the operatable your {@link Browser}.
+     * 
+     * @param browser Your browser.
+     * @param preference A browser setting.
+     * @return
+     */
+    public static final <B extends Browser> B build(Class<B> browser, Consumer<BrowserInitialPreference> preference) {
+        B created = I.make(browser);
 
-        /** The user defined default action interval time (millseconds). */
-        private long operationInterval = 50;
+        if (preference != null) {
+            preference.accept(created.prefs);
+        }
 
-        /** The user defined default mode for element search. */
-        private boolean searchElementExactly = false;
-
-        /** The user defined default retry limit of timeout. */
-        private int retryLimit = 1;
-
-        /** The secret mode. */
-        private boolean secret = false;
-
-        /** The headless mode. */
-        public boolean headless = false;
-
-        /** The adblock mode. */
-        public boolean adblock = true;
-
-        /** The adblock mode. */
-        public boolean tor = false;
-
-        /** The browser options. */
-        private final List<String> options = I
-                .list("--disable-remote-fonts", "--disable-content-prefetch", "--dns-prefetch-disable", "--log-level=3", "--silent");
+        return created;
     }
 
     /**
