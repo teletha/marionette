@@ -7,7 +7,7 @@
  *
  *          https://opensource.org/licenses/MIT
  */
-package marionette;
+package marionette.browser;
 
 import static java.util.concurrent.TimeUnit.*;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
@@ -44,7 +44,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import filer.Filer;
 import kiss.Decoder;
 import kiss.Disposable;
 import kiss.Encoder;
@@ -63,7 +62,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     static {
         I.load(Codec.class, true);
         System.setProperty("java.util.logging.manager", "org.apache.logging.log4j.jul.LogManager");
-        System.setProperty("webdriver.gecko.driver", Filer.locate("geckodriver.exe").toAbsolutePath().toString());
+        System.setProperty("webdriver.gecko.driver", Paths.get("geckodriver.exe").toAbsolutePath().toString());
     }
 
     /** The reusable retry flow controller. */

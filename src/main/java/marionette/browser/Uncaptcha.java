@@ -7,16 +7,16 @@
  *
  *          https://opensource.org/licenses/MIT
  */
-package marionette;
+package marionette.browser;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.imageio.ImageIO;
 
-import filer.Filer;
 import kiss.I;
 
 /**
@@ -135,7 +135,7 @@ public class Uncaptcha {
      * @throws IOException
      */
     public Uncaptcha write(String path) {
-        Path out = Filer.locate(path);
+        Path out = Paths.get(path);
         String name = out.getFileName().toString();
         String extension = name.substring(name.lastIndexOf(".") + 1);
 
@@ -148,7 +148,7 @@ public class Uncaptcha {
     }
 
     public static void main(String[] args) throws IOException {
-        String read = new Uncaptcha(Filer.locate("render.png")).read();
+        String read = new Uncaptcha(Paths.get("render.png")).read();
 
         System.out.println(read);
     }
