@@ -12,7 +12,7 @@ package marionette.platform;
 import java.util.function.Consumer;
 
 import kiss.Signal;
-import marionette.Key;
+import marionette.macro.Key;
 
 /**
  * @version 2016/10/04 21:11:29

@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package marionette;
+package marionette.macro;
 
 import java.awt.Font;
 import java.awt.MenuItem;

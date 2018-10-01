@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package marionette;
+package marionette.macro;
 
 /**
  * @version 2016/10/04 9:41:24

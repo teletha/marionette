@@ -14,7 +14,7 @@ import static com.sun.jna.Platform.*;
 import java.util.function.Consumer;
 
 import kiss.Signal;
-import marionette.Key;
+import marionette.macro.Key;
 
 /**
  * @version 2016/10/04 21:02:26

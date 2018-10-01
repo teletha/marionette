@@ -46,7 +46,7 @@ import kiss.I;
 import kiss.Observer;
 import kiss.Signal;
 import kiss.Variable;
-import marionette.Key;
+import marionette.macro.Key;
 import marionette.platform.WindowsAPI.ShellAPI.SHELLEXECUTEINFO;
 
 /**

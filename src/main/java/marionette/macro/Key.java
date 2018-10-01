@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package marionette;
+package marionette.macro;
 
 import com.sun.jna.Native;
 import com.sun.jna.win32.StdCallLibrary;
