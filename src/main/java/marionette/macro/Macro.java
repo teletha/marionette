@@ -49,14 +49,15 @@ import com.sun.jna.platform.win32.WinUser.KEYBDINPUT;
 import com.sun.jna.platform.win32.WinUser.LowLevelKeyboardProc;
 import com.sun.jna.platform.win32.WinUser.MSG;
 
+import kiss.Extensible;
 import kiss.I;
 import kiss.Observer;
 import kiss.Signal;
 
 /**
- * @version 2016/10/04 3:22:04
+ * @version 2018/11/17 13:44:35
  */
-public abstract class Macro {
+public abstract class Macro implements Extensible {
 
     /** The application font. */
     private static final Font font = new Font("MeiryoKe_UIGothic", Font.PLAIN, 12);
@@ -106,9 +107,6 @@ public abstract class Macro {
 
     /** The keyboard hook. */
     private NativeMouseHook mouseHook = new NativeMouseHook();
-
-    /** The tray icon. */
-    private final TrayIcon tray;
 
     /**
      * 
@@ -400,6 +398,14 @@ public abstract class Macro {
      */
     public static <M extends Macro> void use(Class<M> clazz) {
         Macro macro = I.make(clazz);
+    }
+
+    /**
+     * Launch with all {@link Macro}s.
+     */
+    public static void launch() {
+        I.load(Macro.class, false);
+
     }
 
     /**
