@@ -10,9 +10,19 @@
 package marionette.macro;
 
 /**
- * @version 2018/11/17 12:04:18
+ * @version 2018/11/17 12:04:18a
  */
-public class Guildwars extends Macro {
+public class Guildwars extends AbstractMacro {
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void declare() {
+        when(Key.A).press().to(e -> {
+            System.out.println(e);
+        });
+    }
 
     /**
      * Entry point.
@@ -20,6 +30,8 @@ public class Guildwars extends Macro {
      * @param args
      */
     public static void main(String[] args) {
-        Macro.launch();
+        Macro macro = new Macro("Guildwars");
+        macro.useTrayIcon();
+        macro.use(Guildwars.class);
     }
 }

@@ -34,39 +34,30 @@ import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.platform.win32.Kernel32;
 import com.sun.jna.platform.win32.User32;
-import com.sun.jna.platform.win32.WinDef.DWORD;
-import com.sun.jna.platform.win32.WinDef.LONG;
 import com.sun.jna.platform.win32.WinDef.LPARAM;
 import com.sun.jna.platform.win32.WinDef.LRESULT;
-import com.sun.jna.platform.win32.WinDef.WORD;
 import com.sun.jna.platform.win32.WinDef.WPARAM;
 import com.sun.jna.platform.win32.WinUser;
 import com.sun.jna.platform.win32.WinUser.HHOOK;
 import com.sun.jna.platform.win32.WinUser.HOOKPROC;
-import com.sun.jna.platform.win32.WinUser.INPUT;
 import com.sun.jna.platform.win32.WinUser.KBDLLHOOKSTRUCT;
-import com.sun.jna.platform.win32.WinUser.KEYBDINPUT;
 import com.sun.jna.platform.win32.WinUser.LowLevelKeyboardProc;
 import com.sun.jna.platform.win32.WinUser.MSG;
 
-import kiss.Extensible;
 import kiss.I;
+import kiss.Manageable;
 import kiss.Observer;
 import kiss.Signal;
+import kiss.Singleton;
 
 /**
- * @version 2018/11/17 13:44:35
+ * @version 2018/11/18 9:43:04
  */
-public abstract class Macro implements Extensible {
+@Manageable(lifestyle = Singleton.class)
+public class Macro {
 
     /** The application font. */
     private static final Font font = new Font("MeiryoKe_UIGothic", Font.PLAIN, 12);
-
-    /** The display scale. */
-    private static final long ScaleX = 65536 / User32.INSTANCE.GetSystemMetrics(User32.SM_CXSCREEN);
-
-    /** The display scale. */
-    private static final long ScaleY = 65536 / User32.INSTANCE.GetSystemMetrics(User32.SM_CYSCREEN);
 
     /** Acceptable condition. */
     private static final Predicate ANY = new Predicate() {
@@ -96,8 +87,8 @@ public abstract class Macro implements Extensible {
         }
     };
 
-    /** The macro name. */
-    protected final String name;
+    /** The application name. */
+    private final String name;
 
     /** The window condition. */
     private Predicate<Window> windowCondition = ANY;
@@ -108,22 +99,47 @@ public abstract class Macro implements Extensible {
     /** The keyboard hook. */
     private NativeMouseHook mouseHook = new NativeMouseHook();
 
+    /** The tray icon. */
+    private TrayIcon tray;
+
     /**
+     * Create new macro manager.
      * 
+     * @param applicationName A name of applicaition, not macro.
      */
-    protected Macro() {
+    public Macro(String applicationName) {
+        this.name = applicationName;
+
         keyboardHook.install();
         mouseHook.install();
 
-        try {
-            name = getClass().getSimpleName();
-            tray = new TrayIcon(ImageIO.read(Macro.class.getResource("icon.png")));
-            tray.setImageAutoSize(true);
-            tray.setToolTip(name);
-            tray.setPopupMenu(menu());
-            SystemTray.getSystemTray().add(tray);
-        } catch (Exception e) {
-            throw I.quiet(e);
+    }
+
+    /**
+     * Config application.
+     * 
+     * @return Chainable API.
+     */
+    public synchronized Macro useTrayIcon() {
+        if (tray == null) {
+            try {
+                tray = new TrayIcon(ImageIO.read(Macro.class.getResource("icon.png")));
+                tray.setImageAutoSize(true);
+                tray.setToolTip(name);
+                tray.setPopupMenu(menu());
+                SystemTray.getSystemTray().add(tray);
+            } catch (Exception e) {
+                throw I.quiet(e);
+            }
+        }
+        return this;
+    }
+
+    /**
+     * Use the specified macro.
+     */
+    public <M extends AbstractMacro> void use(Class<M> clazz) {
+        if (clazz != null) {
         }
     }
 
@@ -156,18 +172,6 @@ public abstract class Macro implements Extensible {
         item.setFont(font);
 
         return item;
-    }
-
-    /**
-     * <p>
-     * Declare key related event.
-     * </p>
-     * 
-     * @param key
-     * @return
-     */
-    protected final MacroDSL when(Key key) {
-        return new KeyMacro().key(key);
     }
 
     /**
@@ -206,272 +210,17 @@ public abstract class Macro implements Extensible {
         keyboardHook.uninstall();
         mouseHook.uninstall();
 
-        delay(300);
         System.exit(0);
     }
 
-    /**
-     * <p>
-     * Declare mouse related event.
-     * </p>
-     * 
-     * @param mouse
-     * @return
-     */
-    protected final Signal<KeyEvent> when(Mouse mouse) {
-        return new KeyMacro().register(this.mouseHook.moves);
+    KeyMacro create() {
+        return new KeyMacro();
     }
 
     /**
-     * <p>
-     * Emulate press event.
-     * </p>
-     * 
-     * @param key
-     * @return
+     * @version 2018/11/18 10:54:43
      */
-    protected final Macro press(Key key) {
-        return emulate(key, true, false);
-    }
-
-    /**
-     * <p>
-     * Emulate release event.
-     * </p>
-     * 
-     * @param key
-     * @return
-     */
-    protected final Macro release(Key key) {
-        return emulate(key, false, true);
-    }
-
-    /**
-     * <p>
-     * Emulate press and release event in series.
-     * </p>
-     * 
-     * @param keys
-     * @return
-     */
-    protected final Macro input(Key... keys) {
-        for (Key key : keys) {
-            emulate(key, true, true);
-        }
-        return this;
-    }
-
-    /**
-     * <p>
-     * Emulate press and release event in parallel.
-     * </p>
-     * 
-     * @param keys
-     * @return
-     */
-    protected final Macro inputParallel(Key... keys) {
-        for (int i = 0; i < keys.length; i++) {
-            emulate(keys[i], true, false);
-        }
-
-        for (int i = keys.length - 1; 0 <= i; i--) {
-            emulate(keys[i], false, true);
-        }
-        return this;
-    }
-
-    /**
-     * <p>
-     * Retrieve the active window.
-     * </p>
-     * 
-     * @return
-     */
-    protected final Window window() {
-        return Window.now();
-    }
-
-    /**
-     * <p>
-     * Emulate input event.
-     * </p>
-     * 
-     * @param key
-     * @param press
-     * @param release
-     * @return
-     */
-    private final Macro emulate(Key key, boolean press, boolean release) {
-        if (key.mouse) {
-            INPUT ip = new INPUT();
-            ip.type = new DWORD(INPUT.INPUT_MOUSE);
-            ip.input.setType("mi");
-
-            if (press) {
-                ip.input.mi.dwFlags = new DWORD(key.on | 0x8000); // MOUSEEVENTF_ABSOLUTE
-                User32.INSTANCE.SendInput(new DWORD(1), new INPUT[] {ip}, ip.size());
-            }
-
-            if (release) {
-                ip.input.mi.dwFlags = new DWORD(key.off | 0x8000); // MOUSEEVENTF_ABSOLUTE
-                User32.INSTANCE.SendInput(new DWORD(1), new INPUT[] {ip}, ip.size());
-            }
-        } else {
-            INPUT ip = new INPUT();
-            ip.type = new DWORD(INPUT.INPUT_KEYBOARD);
-            ip.input.setType("ki");
-            ip.input.ki.wVk = new WORD(key.virtualCode);
-            ip.input.ki.wScan = new WORD(key.scanCode);
-
-            if (press) {
-                ip.input.ki.dwFlags = new DWORD(KEYBDINPUT.KEYEVENTF_SCANCODE);
-                User32.INSTANCE.SendInput(new DWORD(1), new INPUT[] {ip}, ip.size());
-            }
-
-            if (release) {
-                ip.input.ki.dwFlags = new DWORD(KEYBDINPUT.KEYEVENTF_KEYUP | KEYBDINPUT.KEYEVENTF_SCANCODE);
-                User32.INSTANCE.SendInput(new DWORD(1), new INPUT[] {ip}, ip.size());
-            }
-        }
-        return this;
-    }
-
-    protected final Macro mouseMoveTo(int x, int y) {
-        INPUT ip = new INPUT();
-        ip.type = new DWORD(INPUT.INPUT_MOUSE);
-        ip.input.setType("mi");
-        ip.input.mi.dx = new LONG(x * ScaleX);
-        ip.input.mi.dy = new LONG(y * ScaleY);
-        ip.input.mi.dwFlags = new DWORD(0x0001 | 0x8000); // MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE
-        User32.INSTANCE.SendInput(new DWORD(1), new INPUT[] {ip}, ip.size());
-        return this;
-    }
-
-    /**
-     * <p>
-     * Stop macro temporary.
-     * </p>
-     * 
-     * @param ms A time to stop.
-     * @return
-     */
-    protected final Macro delay(int ms) {
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException e) {
-            throw I.quiet(e);
-        }
-        return this;
-    }
-
-    /**
-     * <p>
-     * Declare the condition of macro activation.
-     * </p>
-     * 
-     * @param condition
-     */
-    protected final void require(Predicate<Window> condition, Runnable definitions) {
-        Predicate<Window> stored = windowCondition;
-
-        windowCondition = windowCondition.and(condition);
-        definitions.run();
-
-        windowCondition = stored;
-    }
-
-    /**
-     * <p>
-     * Declare the condition of macro activation.
-     * </p>
-     * 
-     * @param condition
-     */
-    protected final void requireTitle(String title, Runnable definitions) {
-        require(window -> window.title().contains(title), definitions);
-    }
-
-    /**
-     * <p>
-     * Use the specified macro.
-     * </p>
-     */
-    public static <M extends Macro> void use(Class<M> clazz) {
-        Macro macro = I.make(clazz);
-    }
-
-    /**
-     * Launch with all {@link Macro}s.
-     */
-    public static void launch() {
-        I.load(Macro.class, false);
-
-    }
-
-    /**
-     * @version 2016/10/02 18:01:25
-     */
-    public interface MacroDSL {
-
-        /**
-         * <p>
-         * Consume the native event.
-         * </p>
-         * 
-         * @return
-         */
-        MacroDSL consume();
-
-        /**
-         * <p>
-         * Declare press event.
-         * </p>
-         * 
-         * @return
-         */
-        Signal<KeyEvent> press();
-
-        /**
-         * <p>
-         * Declare release event.
-         * </p>
-         * 
-         * @return
-         */
-        Signal<KeyEvent> release();
-
-        /**
-         * <p>
-         * Declare key modifier.
-         * </p>
-         * 
-         * @return Chainable DSL.
-         */
-        MacroDSL withAlt();
-
-        /**
-         * <p>
-         * Declare key modifier.
-         * </p>
-         * 
-         * @return Chainable DSL.
-         */
-        MacroDSL withCtrl();
-
-        /**
-         * <p>
-         * Declare key modifier.
-         * </p>
-         * 
-         * @return Chainable DSL.
-         */
-        MacroDSL withShift();
-    }
-
-    /**
-     * @version 2016/10/04 15:57:53
-     */
-    private class KeyMacro implements MacroDSL {
+    public class KeyMacro implements MacroDSL {
 
         /** The window condition. */
         private Predicate<Window> window = windowCondition;
@@ -505,7 +254,7 @@ public abstract class Macro implements Extensible {
          * @param key
          * @return
          */
-        private KeyMacro key(Key key) {
+        public KeyMacro key(Key key) {
             this.key = key;
             condition = condition.and(e -> e == this.key);
 
