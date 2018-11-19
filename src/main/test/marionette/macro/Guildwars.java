@@ -30,8 +30,6 @@ public class Guildwars extends AbstractMacro {
      * @param args
      */
     public static void main(String[] args) {
-        Macro macro = new Macro("Guildwars");
-        macro.useTrayIcon();
-        macro.use(Guildwars.class);
+        Macro.launch().useTrayIcon().use(Guildwars.class);
     }
 }

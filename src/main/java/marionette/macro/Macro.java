@@ -87,8 +87,8 @@ public class Macro {
         }
     };
 
-    /** The application name. */
-    private final String name;
+    /** The active state. */
+    private boolean paused;
 
     /** The window condition. */
     private Predicate<Window> windowCondition = ANY;
@@ -104,15 +104,10 @@ public class Macro {
 
     /**
      * Create new macro manager.
-     * 
-     * @param applicationName A name of applicaition, not macro.
      */
-    public Macro(String applicationName) {
-        this.name = applicationName;
-
+    private Macro() {
         keyboardHook.install();
         mouseHook.install();
-
     }
 
     /**
@@ -125,7 +120,6 @@ public class Macro {
             try {
                 tray = new TrayIcon(ImageIO.read(Macro.class.getResource("icon.png")));
                 tray.setImageAutoSize(true);
-                tray.setToolTip(name);
                 tray.setPopupMenu(menu());
                 SystemTray.getSystemTray().add(tray);
             } catch (Exception e) {
@@ -138,15 +132,22 @@ public class Macro {
     /**
      * Use the specified macro.
      */
-    public <M extends AbstractMacro> void use(Class<M> clazz) {
-        if (clazz != null) {
-        }
+    public <M extends AbstractMacro> Macro use(Class<M> clazz) {
+        return use(I.make(clazz));
     }
 
     /**
-     * <p>
+     * Use the specified macro.
+     */
+    public Macro use(AbstractMacro macro) {
+        if (macro != null) {
+            macro.declare();
+        }
+        return this;
+    }
+
+    /**
      * Create popup menu.
-     * </p>
      */
     private PopupMenu menu() {
         PopupMenu popup = new PopupMenu();
@@ -172,6 +173,29 @@ public class Macro {
         item.setFont(font);
 
         return item;
+    }
+
+    /**
+     * Pause all macro temporary or resume now.
+     * 
+     * @return
+     */
+    public Macro pauseOrResume() {
+        if (paused) {
+            paused = false;
+        } else {
+            paused = true;
+        }
+        return this;
+    }
+
+    /**
+     * Retrieve the active state.
+     * 
+     * @return
+     */
+    public boolean isPaused() {
+        return paused;
     }
 
     /**
@@ -215,6 +239,15 @@ public class Macro {
 
     KeyMacro create() {
         return new KeyMacro();
+    }
+
+    /**
+     * Launch macro application.
+     * 
+     * @return
+     */
+    public static final Macro launch() {
+        return I.make(Macro.class).use(OwnOperation.class);
     }
 
     /**
@@ -346,12 +379,12 @@ public class Macro {
     }
 
     /**
-     * @version 2016/10/04 4:20:39
+     * @version 2018/11/19 9:46:02
      */
-    protected static abstract class NativeHook<T> implements Runnable, HOOKPROC {
+    protected abstract class NativeHook<T> implements Runnable, HOOKPROC {
 
         /** The actual executor. */
-        private static final ExecutorService executor = new ThreadPoolExecutor(4, 256, 30, TimeUnit.SECONDS, new SynchronousQueue(), runnable -> {
+        private final ExecutorService executor = new ThreadPoolExecutor(4, 256, 30, TimeUnit.SECONDS, new SynchronousQueue(), runnable -> {
             Thread thread = new Thread(runnable);
             thread.setName(NativeKeyboardHook.class.getSimpleName());
             thread.setPriority(Thread.MAX_PRIORITY);
@@ -430,32 +463,30 @@ public class Macro {
         }
 
         /**
-         * <p>
          * Handle key event.
-         * </p>
          * 
          * @param key
          */
         protected final boolean handle(T key, List<KeyMacro> macros, KeyEvent event) {
             boolean consumed = false;
 
-            if (!macros.isEmpty()) {
-                Window now = Window.now();
-                boolean alt = with(Key.Alt);
-                boolean ctrl = with(Key.Control);
-                boolean shift = with(Key.Shift);
+            Window now = Window.now();
+            boolean alt = with(Key.Alt);
+            boolean ctrl = with(Key.Control);
+            boolean shift = with(Key.Shift);
 
-                for (KeyMacro macro : macros) {
-                    if (macro.window.test(now) && macro.modifier(alt, ctrl, shift) && macro.condition.test(key)) {
-                        executor.execute(() -> {
-                            for (Observer<? super KeyEvent> observer : macro.observers) {
-                                observer.accept(event);
-                            }
-                        });
+            // built-in state management macro
 
-                        if (macro.consumable) {
-                            consumed = true;
+            for (KeyMacro macro : macros) {
+                if (macro.window.test(now) && macro.modifier(alt, ctrl, shift) && macro.condition.test(key)) {
+                    executor.execute(() -> {
+                        for (Observer<? super KeyEvent> observer : macro.observers) {
+                            observer.accept(event);
                         }
+                    });
+
+                    if (macro.consumable) {
+                        consumed = true;
                     }
                 }
             }
@@ -464,9 +495,9 @@ public class Macro {
     }
 
     /**
-     * @version 2016/10/03 12:31:30
+     * @version 2018/11/19 9:45:39
      */
-    private static class NativeKeyboardHook extends NativeHook implements LowLevelKeyboardProc {
+    private class NativeKeyboardHook extends NativeHook implements LowLevelKeyboardProc {
 
         /**
          * <p>
@@ -476,12 +507,12 @@ public class Macro {
          * </a>
          * </p>
          */
-        private static final int InjectedEvent = 1 << 4;
+        private final int InjectedEvent = 1 << 4;
 
         /** The key mapper. */
-        private static final Key[] keys = new Key[256];
+        private final Key[] keys = new Key[256];
 
-        static {
+        {
             for (Key key : Key.values()) {
                 keys[key.virtualCode] = key;
             }
@@ -531,9 +562,9 @@ public class Macro {
     }
 
     /**
-     * @version 2016/10/03 12:31:30
+     * @version 2018/11/19 9:45:34
      */
-    private static class NativeMouseHook extends NativeHook implements LowLevelMouseProc {
+    private class NativeMouseHook extends NativeHook implements LowLevelMouseProc {
 
         /**
          * <p>
@@ -601,7 +632,7 @@ public class Macro {
     }
 
     /**
-     * @version 2016/10/04 3:49:48
+     * @version 2018/11/19 9:45:45
      */
     private static interface LowLevelMouseProc extends HOOKPROC {
 
@@ -609,7 +640,7 @@ public class Macro {
     }
 
     /**
-     * @version 2016/10/16 10:34:57
+     * @version 2018/11/19 9:45:47
      */
     public static class Point extends Structure implements KeyEvent {
 
@@ -685,7 +716,7 @@ public class Macro {
     }
 
     /**
-     * @version 2016/10/04 14:06:51
+     * @version 2018/11/19 9:45:52
      */
     public static class MSLLHOOKSTRUCT extends Structure {
 
