@@ -13,9 +13,6 @@ import com.sun.jna.Native;
 import com.sun.jna.win32.StdCallLibrary;
 import com.sun.jna.win32.W32APIOptions;
 
-/**
- * @version 2016/10/03 17:00:40
- */
 public enum Key {
 
     MouseLeft(1, 0x0002, 0x0004),
@@ -349,8 +346,7 @@ public enum Key {
     private interface WindowsKeyCodeHelper extends StdCallLibrary {
 
         /** Instance of USER32.DLL for use in accessing native functions. */
-        WindowsKeyCodeHelper INSTANCE = (WindowsKeyCodeHelper) Native
-                .loadLibrary("user32", WindowsKeyCodeHelper.class, W32APIOptions.DEFAULT_OPTIONS);
+        WindowsKeyCodeHelper INSTANCE = Native.loadLibrary("user32", WindowsKeyCodeHelper.class, W32APIOptions.DEFAULT_OPTIONS);
 
         /**
          * Translates (maps) a virtual-key code into a scan code or character value, or translates a

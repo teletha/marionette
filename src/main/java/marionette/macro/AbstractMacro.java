@@ -171,12 +171,12 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
             ip.input.ki.wScan = new WORD(key.scanCode);
 
             if (press) {
-                ip.input.ki.dwFlags = new DWORD(KEYBDINPUT.KEYEVENTF_SCANCODE);
+                ip.input.ki.dwFlags = new DWORD(KEYBDINPUT.KEYEVENTF_SCANCODE | KEYBDINPUT.KEYEVENTF_EXTENDEDKEY);
                 User32.INSTANCE.SendInput(new DWORD(1), new INPUT[] {ip}, ip.size());
             }
 
             if (release) {
-                ip.input.ki.dwFlags = new DWORD(KEYBDINPUT.KEYEVENTF_KEYUP | KEYBDINPUT.KEYEVENTF_SCANCODE);
+                ip.input.ki.dwFlags = new DWORD(KEYBDINPUT.KEYEVENTF_KEYUP | KEYBDINPUT.KEYEVENTF_SCANCODE | KEYBDINPUT.KEYEVENTF_EXTENDEDKEY);
                 User32.INSTANCE.SendInput(new DWORD(1), new INPUT[] {ip}, ip.size());
             }
         }

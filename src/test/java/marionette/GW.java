@@ -12,7 +12,6 @@ package marionette;
 import marionette.macro.AbstractMacro;
 import marionette.macro.Key;
 import marionette.macro.Macro;
-import marionette.macro.Mouse;
 
 /**
  * 
@@ -25,19 +24,19 @@ public class GW extends AbstractMacro {
     @Override
     protected void declare() {
         requireTitle("Guild Wars 2", () -> {
-            when(Key.A).press().to(() -> {
-                System.out.println("OK A in GW2");
-            });
-
-            when(Mouse.Move).to(e -> {
-                System.out.println(e);
+            when(Key.AtMark).press().to(() -> {
+                System.out.println("OK");
+                input(Key.A);
             });
         });
 
-        when(Key.K).press().to(() -> {
-            System.out.println("OK K");
+        when(Key.AtMark).press().to(() -> {
+            System.out.println("OK " + Key.Up.scanCode);
+            input(Key.Up);
+            input(Key.A);
+            input(Key.B);
+            input(Key.N2);
         });
-
     }
 
     /**
