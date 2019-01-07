@@ -41,7 +41,7 @@ public class Macro {
      * Create new macro manager.
      */
     private Macro() {
-        AbstractMacro.initializeNativeHook();
+        GlobalEvents.initializeNativeHook();
     }
 
     /**
@@ -163,7 +163,7 @@ public class Macro {
      * Suspend this macro.
      */
     protected final void suspend() {
-        AbstractMacro.disposeNativeHook();
+        GlobalEvents.disposeNativeHook();
         System.exit(0);
     }
 
