@@ -18,15 +18,6 @@ public interface MacroDSL {
 
     /**
      * <p>
-     * Consume the native event.
-     * </p>
-     * 
-     * @return
-     */
-    MacroDSL consume();
-
-    /**
-     * <p>
      * Declare press event.
      * </p>
      * 
@@ -42,31 +33,4 @@ public interface MacroDSL {
      * @return
      */
     Signal<KeyEvent> release();
-
-    /**
-     * <p>
-     * Declare key modifier.
-     * </p>
-     * 
-     * @return Chainable DSL.
-     */
-    MacroDSL withAlt();
-
-    /**
-     * <p>
-     * Declare key modifier.
-     * </p>
-     * 
-     * @return Chainable DSL.
-     */
-    MacroDSL withCtrl();
-
-    /**
-     * <p>
-     * Declare key modifier.
-     * </p>
-     * 
-     * @return Chainable DSL.
-     */
-    MacroDSL withShift();
 }

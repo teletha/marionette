@@ -9,10 +9,9 @@
  */
 package marionette.macro;
 
-import static com.sun.jna.platform.win32.WinUser.KEYBDINPUT.KEYEVENTF_EXTENDEDKEY;
-import static com.sun.jna.platform.win32.WinUser.KEYBDINPUT.KEYEVENTF_KEYUP;
-import static com.sun.jna.platform.win32.WinUser.KEYBDINPUT.KEYEVENTF_SCANCODE;
+import static com.sun.jna.platform.win32.WinUser.KEYBDINPUT.*;
 
+import java.util.Set;
 import java.util.function.Predicate;
 
 import com.sun.jna.platform.win32.User32;
@@ -56,8 +55,8 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
      * @param key
      * @return
      */
-    protected final MacroDSL when(Key key) {
-        return new KeyMacro(key, windowCondition);
+    protected final MacroDSL when(Key key, MacroOption... options) {
+        return new KeyMacro(key, windowCondition, Set.of(options));
     }
 
     /**
@@ -68,8 +67,8 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
      * @param mouse
      * @return
      */
-    protected final Signal<KeyEvent> when(Mouse mouse) {
-        return new KeyMacro(windowCondition).register(mouse);
+    protected final Signal<KeyEvent> when(Mouse mouse, MacroOption... options) {
+        return new KeyMacro(windowCondition, Set.of(options)).register(mouse);
     }
 
     /**

@@ -12,6 +12,7 @@ package marionette.macro;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.SynchronousQueue;
@@ -73,20 +74,20 @@ class GlobalEvents {
         /** The acceptable event type. */
         private final Predicate condition;
 
-        /** The event should be consumed or not. */
-        private boolean consumable;
-
         /** The associated key. */
         private Key key;
 
-        /** The modifier state. */
-        private boolean alt;
+        /** The event should be consumed or not. */
+        private final boolean consumable;
 
         /** The modifier state. */
-        private boolean ctrl;
+        private final boolean alt;
 
         /** The modifier state. */
-        private boolean shift;
+        private final boolean ctrl;
+
+        /** The modifier state. */
+        private final boolean shift;
 
         /** The observers. */
         private final List<Observer<? super KeyEvent>> observers = new CopyOnWriteArrayList();
@@ -95,54 +96,26 @@ class GlobalEvents {
          * @param key
          * @param windowConditon
          */
-        KeyMacro(Key key, Predicate<Window> windowConditon) {
+        KeyMacro(Key key, Predicate<Window> windowConditon, Set<MacroOption> options) {
             this.key = key;
             this.windowConditon = windowConditon;
             this.condition = e -> e == this.key;
+            this.alt = options.contains(MacroOption.WithAlt);
+            this.ctrl = options.contains(MacroOption.WithCtrl);
+            this.shift = options.contains(MacroOption.WithShift);
+            this.consumable = options.contains(MacroOption.IgnoreEvent);
         }
 
         /**
          * @param windowConditon
          */
-        KeyMacro(Predicate<Window> windowConditon) {
+        KeyMacro(Predicate<Window> windowConditon, Set<MacroOption> options) {
             this.windowConditon = windowConditon;
             this.condition = I.accept();
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public MacroDSL consume() {
-            consumable = true;
-            return this;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public MacroDSL withAlt() {
-            alt = true;
-            return this;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public MacroDSL withCtrl() {
-            ctrl = true;
-            return this;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public MacroDSL withShift() {
-            shift = true;
-            return this;
+            this.alt = options.contains(MacroOption.WithAlt);
+            this.ctrl = options.contains(MacroOption.WithCtrl);
+            this.shift = options.contains(MacroOption.WithShift);
+            this.consumable = options.contains(MacroOption.IgnoreEvent);
         }
 
         /**
