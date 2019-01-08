@@ -9,8 +9,6 @@
  */
 package marionette;
 
-import static marionette.macro.MacroOption.*;
-
 import marionette.macro.AbstractMacro;
 import marionette.macro.Key;
 import marionette.macro.Macro;
@@ -33,8 +31,8 @@ public class GW extends AbstractMacro {
             });
         });
 
-        when(Mouse.Wheel, IgnoreEvent).to(() -> {
-            System.out.println("OK " + Key.Up.scanCode);
+        when(Mouse.Wheel).to(e -> {
+            System.out.println("OK " + e);
         });
 
         whenPress(Key.AtMark).to(() -> {

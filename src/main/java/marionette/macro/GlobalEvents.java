@@ -19,8 +19,10 @@ import java.util.concurrent.TimeUnit;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+import com.sun.jna.platform.win32.BaseTSD.ULONG_PTR;
 import com.sun.jna.platform.win32.Kernel32;
 import com.sun.jna.platform.win32.User32;
+import com.sun.jna.platform.win32.WinDef.DWORD;
 import com.sun.jna.platform.win32.WinDef.LPARAM;
 import com.sun.jna.platform.win32.WinDef.LRESULT;
 import com.sun.jna.platform.win32.WinDef.WPARAM;
@@ -296,6 +298,7 @@ class GlobalEvents {
                     break;
 
                 case 522: // WM_MOUSEWHEEL
+                    info.pt.delta = info.mouseData.getHigh().doubleValue();
                     consumed = handle(Key.MouseMiddle, MacroDefinition.mouseWheel, info.pt);
                     break;
                 }
@@ -323,6 +326,8 @@ class GlobalEvents {
         public NativeLong y;
 
         private long time;
+
+        private double delta;
 
         /**
          * {@inheritDoc}
@@ -360,6 +365,14 @@ class GlobalEvents {
          * {@inheritDoc}
          */
         @Override
+        public double delta() {
+            return delta;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
         public int hashCode() {
             final int prime = 31;
             int result = super.hashCode();
@@ -385,24 +398,57 @@ class GlobalEvents {
          */
         @Override
         public String toString() {
-            return "Point [x=" + x + ", y=" + y + ", time=" + time + "]";
+            return "Point [x=" + x + ", y=" + y + ", time=" + time + ", delta=" + delta + "]";
         }
     }
 
     /**
-     * @version 2018/11/19 9:45:52
+     * <p>
+     * Contains information about a low-level mouse input event.
+     * </p>
+     * 
+     * @see https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagmsllhookstruct
      */
     public static class MSLLHOOKSTRUCT extends Structure {
 
+        /**
+         * The x- and y-coordinates of the cursor, in per-monitor-aware screen coordinates.
+         */
         public Point pt;
 
-        public int mouseData;
+        /**
+         * <p>
+         * If the message is WM_MOUSEWHEEL, the high-order word of this member is the wheel delta.
+         * The low-order word is reserved. A positive value indicates that the wheel was rotated
+         * forward, away from the user; a negative value indicates that the wheel was rotated
+         * backward, toward the user. One wheel click is defined as WHEEL_DELTA, which is 120.
+         * </p>
+         * <p>
+         * If the message is WM_XBUTTONDOWN, WM_XBUTTONUP, WM_XBUTTONDBLCLK, WM_NCXBUTTONDOWN,
+         * WM_NCXBUTTONUP, or WM_NCXBUTTONDBLCLK, the high-order word specifies which X button was
+         * pressed or released, and the low-order word is reserved. This value can be one or more of
+         * the following values. Otherwise, mouseData is not used.
+         * </p>
+         */
+        public DWORD mouseData;
 
+        /**
+         * The event-injected flags. An application can use the following values to test the flags.
+         * Testing LLMHF_INJECTED (bit 0) will tell you whether the event was injected. If it was,
+         * then testing LLMHF_LOWER_IL_INJECTED (bit 1) will tell you whether or not the event was
+         * injected from a process running at lower integrity level.
+         */
         public int flags;
 
-        public int time;
+        /**
+         * The time stamp for this message.
+         */
+        public long time;
 
-        public int dwExtraInfo;
+        /**
+         * Additional information associated with the message.
+         */
+        public ULONG_PTR dwExtraInfo;
 
         /**
          * {@inheritDoc}

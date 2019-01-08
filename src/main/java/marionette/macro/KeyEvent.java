@@ -43,6 +43,13 @@ public interface KeyEvent {
      */
     long time();
 
+    /**
+     * Compute the mouse wheel delta.
+     * 
+     * @return
+     */
+    double delta();
+
     default Location location() {
         return Location.of(x(), y());
     }
@@ -78,6 +85,14 @@ public interface KeyEvent {
             @Override
             public long time() {
                 return time;
+            }
+
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public double delta() {
+                return 0;
             }
         };
     }
