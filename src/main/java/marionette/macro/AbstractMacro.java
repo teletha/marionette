@@ -9,6 +9,10 @@
  */
 package marionette.macro;
 
+import static com.sun.jna.platform.win32.WinUser.KEYBDINPUT.KEYEVENTF_EXTENDEDKEY;
+import static com.sun.jna.platform.win32.WinUser.KEYBDINPUT.KEYEVENTF_KEYUP;
+import static com.sun.jna.platform.win32.WinUser.KEYBDINPUT.KEYEVENTF_SCANCODE;
+
 import java.util.function.Predicate;
 
 import com.sun.jna.platform.win32.User32;
@@ -16,7 +20,6 @@ import com.sun.jna.platform.win32.WinDef.DWORD;
 import com.sun.jna.platform.win32.WinDef.LONG;
 import com.sun.jna.platform.win32.WinDef.WORD;
 import com.sun.jna.platform.win32.WinUser.INPUT;
-import com.sun.jna.platform.win32.WinUser.KEYBDINPUT;
 
 import kiss.Extensible;
 import kiss.I;
@@ -171,12 +174,12 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
             ip.input.ki.wScan = new WORD(key.scanCode);
 
             if (press) {
-                ip.input.ki.dwFlags = new DWORD(KEYBDINPUT.KEYEVENTF_SCANCODE | KEYBDINPUT.KEYEVENTF_EXTENDEDKEY);
+                ip.input.ki.dwFlags = new DWORD(KEYEVENTF_SCANCODE | (key.extend ? KEYEVENTF_EXTENDEDKEY : 0));
                 User32.INSTANCE.SendInput(new DWORD(1), new INPUT[] {ip}, ip.size());
             }
 
             if (release) {
-                ip.input.ki.dwFlags = new DWORD(KEYBDINPUT.KEYEVENTF_KEYUP | KEYBDINPUT.KEYEVENTF_SCANCODE | KEYBDINPUT.KEYEVENTF_EXTENDEDKEY);
+                ip.input.ki.dwFlags = new DWORD(KEYEVENTF_KEYUP | KEYEVENTF_SCANCODE | (key.extend ? KEYEVENTF_EXTENDEDKEY : 0));
                 User32.INSTANCE.SendInput(new DWORD(1), new INPUT[] {ip}, ip.size());
             }
         }

@@ -15,15 +15,15 @@ import com.sun.jna.win32.W32APIOptions;
 
 public enum Key {
 
-    MouseLeft(1, 0x0002, 0x0004),
+    MouseLeft(1, 0x0002, 0x0004, false),
 
-    MouseRight(2, 0x0008, 0x0010),
+    MouseRight(2, 0x0008, 0x0010, false),
 
-    MouseMiddle(4, 0x0020, 0x0040),
+    MouseMiddle(4, 0x0020, 0x0040, false),
 
-    MouseX1(5, 0x0080, 0x0100),
+    MouseX1(5, 0x0080, 0x0100, false),
 
-    MouseX2(6, 0x0080, 0x0100),
+    MouseX2(6, 0x0080, 0x0100, false),
 
     BackSpace(8),
 
@@ -65,27 +65,27 @@ public enum Key {
 
     Space(32),
 
-    PageUp(33),
+    PageUp(33, true),
 
-    PageDown(34),
+    PageDown(34, true),
 
-    End(35),
+    End(35, true),
 
-    Home(36),
+    Home(36, true),
 
-    Left(37),
+    Left(37, true),
 
-    Up(38),
+    Up(38, true),
 
-    Right(39),
+    Right(39, true),
 
-    Down(40),
+    Down(40, true),
 
-    PrintScreen(44),
+    PrintScreen(44, true),
 
-    Insert(45),
+    Insert(45, true),
 
-    Delete(46),
+    Delete(46, true),
 
     N0(48),
 
@@ -159,9 +159,9 @@ public enum Key {
 
     Z(90),
 
-    WinLeft(91),
+    WinLeft(91, true),
 
-    WinRigth(92),
+    WinRigth(92, true),
 
     Apps(93),
 
@@ -227,7 +227,7 @@ public enum Key {
 
     F16(127),
 
-    NumLock(144),
+    NumLock(144, true),
 
     ScrollLock(145),
 
@@ -303,6 +303,9 @@ public enum Key {
     /** The native scan code. */
     public final int scanCode;
 
+    /** The extended key flag. */
+    public final boolean extend;
+
     /** Mouse related event. */
     final boolean mouse;
 
@@ -320,7 +323,18 @@ public enum Key {
      * @param code
      */
     private Key(int virtualCode) {
-        this(virtualCode, 0, 0);
+        this(virtualCode, 0, 0, false);
+    }
+
+    /**
+     * <p>
+     * Native key.
+     * </p>
+     * 
+     * @param code
+     */
+    private Key(int virtualCode, boolean extended) {
+        this(virtualCode, 0, 0, extended);
     }
 
     /**
@@ -332,12 +346,13 @@ public enum Key {
      * @param on
      * @param off
      */
-    private Key(int virtualCode, int on, int off) {
+    private Key(int virtualCode, int on, int off, boolean extended) {
         this.virtualCode = virtualCode;
         this.scanCode = WindowsKeyCodeHelper.INSTANCE.MapVirtualKey(virtualCode, 0);
         this.on = on;
         this.off = off;
         this.mouse = on != 0 && off != 0;
+        this.extend = extended;
     }
 
     /**
