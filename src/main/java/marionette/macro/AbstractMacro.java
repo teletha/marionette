@@ -72,6 +72,60 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
 
     /**
      * <p>
+     * Declare key related event.
+     * </p>
+     * 
+     * @param key
+     * @return
+     */
+    protected final Signal<String> whenGesture(Key key, MacroOption... options) {
+        int[] last = new int[2];
+        StringBuilder directions = new StringBuilder();
+
+        return when(Mouse.Move).skipUntil(whenPress(key, options)).takeUntil(whenRelease(key, options)).effectOnce(e -> {
+            // save start position
+            last[0] = e.x();
+            last[1] = e.y();
+
+            // reset
+            directions.delete(0, directions.length());
+        }).map(e -> {
+            int x = e.x();
+            int y = e.y();
+            int distanceX = Math.abs(last[0] - x);
+            int distanceY = Math.abs(last[1] - y);
+
+            // minimal movement where the gesture is recognized
+            int min = 10;
+            if (distanceX < min && distanceY < min) {
+                return directions.toString();
+            }
+
+            // determine current direction
+            String direction;
+            if (distanceX > distanceY) {
+                direction = x < last[0] ? "L" : "R";
+            } else {
+                direction = y < last[1] ? "U" : "D";
+            }
+
+            // compare to last direction
+            String lastDirection = directions.length() == 0 ? "" : directions.substring(directions.length() - 1);
+            if (!direction.equals(lastDirection)) {
+                directions.append(direction);
+            }
+
+            // save current position
+            last[0] = x;
+            last[1] = y;
+
+            return directions.toString();
+        }).last().repeat();
+
+    }
+
+    /**
+     * <p>
      * Declare mouse related event.
      * </p>
      * 

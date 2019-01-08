@@ -9,15 +9,16 @@
  */
 package marionette;
 
+import static marionette.macro.MacroOption.*;
+
 import marionette.macro.AbstractMacro;
 import marionette.macro.Key;
 import marionette.macro.Macro;
-import marionette.macro.Mouse;
 
 /**
  * 
  */
-public class GW extends AbstractMacro {
+public class GW extends AbstractMacro<GW> {
 
     /**
      * {@inheritDoc}
@@ -25,19 +26,54 @@ public class GW extends AbstractMacro {
     @Override
     protected void declare() {
         requireTitle("Guild Wars 2", () -> {
-            whenPress(Key.AtMark).to(() -> {
-                System.out.println("OK");
-                input(Key.A);
+            whenPress(Key.MouseRight, IgnoreEvent).to(() -> {
+            });
+
+            whenRelease(Key.MouseRight, IgnoreEvent).to(() -> {
+                input(Key.MouseRight);
+            });
+
+            whenPress(Key.Shift).to(e -> {
+                input(Key.AtMark);
+                System.out.println("AAA");
+            });
+
+            whenRelease(Key.Shift).to(e -> {
+                input(Key.AtMark);
+                System.out.println("BBB");
             });
         });
 
-        when(Mouse.Wheel).to(e -> {
-            System.out.println("OK " + e);
-        });
+        whenGesture(Key.MouseRight).to(e -> {
+            switch (e) {
+            case "U":
+                press(Key.Up);
+                release(Key.Down);
+                release(Key.Left);
+                release(Key.Right);
+                break;
 
-        whenPress(Key.AtMark).to(() -> {
-            System.out.println("OK");
-            input(Key.A);
+            case "D":
+                release(Key.Up);
+                press(Key.Down);
+                release(Key.Left);
+                release(Key.Right);
+                break;
+
+            case "L":
+                release(Key.Up);
+                release(Key.Down);
+                press(Key.Left);
+                release(Key.Right);
+                break;
+
+            case "R":
+                release(Key.Up);
+                release(Key.Down);
+                release(Key.Left);
+                press(Key.Right);
+                break;
+            }
         });
     }
 
