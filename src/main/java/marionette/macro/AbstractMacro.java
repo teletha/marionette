@@ -23,7 +23,6 @@ import com.sun.jna.platform.win32.WinUser.INPUT;
 import kiss.Extensible;
 import kiss.I;
 import kiss.Signal;
-import marionette.macro.GlobalEvents.KeyMacro;
 
 public abstract class AbstractMacro<Self extends AbstractMacro> implements Extensible {
 
@@ -56,7 +55,7 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
      * @return
      */
     protected final Signal<KeyEvent> whenPress(Key key, MacroOption... options) {
-        return new KeyMacro(key, windowCondition, Set.of(options)).register(true);
+        return new MacroDefinition(key, true, windowCondition, Set.of(options)).events.expose;
     }
 
     /**
@@ -68,7 +67,7 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
      * @return
      */
     protected final Signal<KeyEvent> whenRelease(Key key, MacroOption... options) {
-        return new KeyMacro(key, windowCondition, Set.of(options)).register(false);
+        return new MacroDefinition(key, false, windowCondition, Set.of(options)).events.expose;
     }
 
     /**
@@ -80,7 +79,7 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
      * @return
      */
     protected final Signal<KeyEvent> when(Mouse mouse, MacroOption... options) {
-        return new KeyMacro(windowCondition, Set.of(options)).register(mouse);
+        return new MacroDefinition(mouse, windowCondition, Set.of(options)).events.expose;
     }
 
     /**

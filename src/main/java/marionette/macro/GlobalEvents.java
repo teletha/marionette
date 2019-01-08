@@ -9,16 +9,12 @@
  */
 package marionette.macro;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Predicate;
 
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
@@ -35,10 +31,6 @@ import com.sun.jna.platform.win32.WinUser.KBDLLHOOKSTRUCT;
 import com.sun.jna.platform.win32.WinUser.LowLevelKeyboardProc;
 import com.sun.jna.platform.win32.WinUser.MSG;
 
-import kiss.I;
-import kiss.Observer;
-import kiss.Signal;
-
 class GlobalEvents {
 
     /** The keyboard hook. */
@@ -46,18 +38,6 @@ class GlobalEvents {
 
     /** The keyboard hook. */
     private static NativeMouseHook mouseHook = new NativeMouseHook();
-
-    /** The event listeners. */
-    private static final List<KeyMacro> presses = new ArrayList();
-
-    /** The event listeners. */
-    private static final List<KeyMacro> releases = new ArrayList();
-
-    /** The event listeners. */
-    private static final List<KeyMacro> mouseMove = new ArrayList();
-
-    /** The event listeners. */
-    private static final List<KeyMacro> mouseWheel = new ArrayList();
 
     /**
      * Start native hook.
@@ -73,113 +53,6 @@ class GlobalEvents {
     static void disposeNativeHook() {
         keyboardHook.uninstall();
         mouseHook.uninstall();
-    }
-
-    /**
-     * 
-     */
-    static class KeyMacro {
-
-        /** The window condition. */
-        private final Predicate<Window> windowConditon;
-
-        /** The acceptable event type. */
-        private final Predicate condition;
-
-        /** The associated key. */
-        private Key key;
-
-        /** The event should be consumed or not. */
-        private final boolean consumable;
-
-        /** The modifier state. */
-        private final boolean alt;
-
-        /** The modifier state. */
-        private final boolean ctrl;
-
-        /** The modifier state. */
-        private final boolean shift;
-
-        /** The observers. */
-        private final List<Observer<? super KeyEvent>> observers = new CopyOnWriteArrayList();
-
-        /**
-         * @param key
-         * @param windowConditon
-         */
-        KeyMacro(Key key, Predicate<Window> windowConditon, Set<MacroOption> options) {
-            this.key = key;
-            this.windowConditon = windowConditon;
-            this.condition = e -> e == this.key;
-            this.alt = options.contains(MacroOption.WithAlt);
-            this.ctrl = options.contains(MacroOption.WithCtrl);
-            this.shift = options.contains(MacroOption.WithShift);
-            this.consumable = options.contains(MacroOption.IgnoreEvent);
-        }
-
-        /**
-         * @param windowConditon
-         */
-        KeyMacro(Predicate<Window> windowConditon, Set<MacroOption> options) {
-            this.windowConditon = windowConditon;
-            this.condition = I.accept();
-            this.alt = options.contains(MacroOption.WithAlt);
-            this.ctrl = options.contains(MacroOption.WithCtrl);
-            this.shift = options.contains(MacroOption.WithShift);
-            this.consumable = options.contains(MacroOption.IgnoreEvent);
-        }
-
-        /**
-         * <p>
-         * Register this macro.
-         * </p>
-         * 
-         * @param macros
-         * @return
-         */
-        private Signal<KeyEvent> register(List<KeyMacro> macros) {
-            macros.add(this);
-
-            return new Signal<KeyEvent>((observer, disposer) -> {
-                observers.add(observer);
-                return disposer.add(() -> observers.remove(observer));
-            });
-        }
-
-        Signal<KeyEvent> register(boolean press) {
-            if (press) {
-                return register(presses);
-            } else {
-                return register(releases);
-            }
-        }
-
-        Signal<KeyEvent> register(Mouse mouse) {
-            switch (mouse) {
-            case Move:
-                return register(mouseMove);
-
-            case Wheel:
-                return register(mouseWheel);
-            }
-
-            throw new Error();
-        }
-
-        /**
-         * <p>
-         * Test modifier state.
-         * </p>
-         * 
-         * @param alt The modifier state.
-         * @param ctrl The modifier state.
-         * @param shift The modifier state.
-         * @return
-         */
-        private boolean modifier(boolean alt, boolean ctrl, boolean shift) {
-            return this.alt == alt && this.ctrl == ctrl && this.shift == shift;
-        }
     }
 
     /**
@@ -265,7 +138,7 @@ class GlobalEvents {
          * 
          * @param key
          */
-        protected final boolean handle(T key, List<KeyMacro> macros, KeyEvent event) {
+        protected final boolean handle(T key, List<MacroDefinition> macros, KeyEvent event) {
             boolean consumed = false;
 
             Window now = Window.now();
@@ -275,12 +148,10 @@ class GlobalEvents {
 
             // built-in state management macro
 
-            for (KeyMacro macro : macros) {
+            for (MacroDefinition macro : macros) {
                 if (macro.windowConditon.test(now) && macro.modifier(alt, ctrl, shift) && macro.condition.test(key)) {
                     executor.execute(() -> {
-                        for (Observer<? super KeyEvent> observer : macro.observers) {
-                            observer.accept(event);
-                        }
+                        macro.events.accept(event);
                     });
 
                     if (macro.consumable) {
@@ -343,14 +214,14 @@ class GlobalEvents {
                 case WinUser.WM_SYSKEYDOWN:
                     if (downLatest != key) {
                         downLatest = key;
-                        consumed = handle(key, presses, KeyEvent.of(key));
+                        consumed = handle(key, MacroDefinition.presses, KeyEvent.of(key));
                     }
                     break;
 
                 case WinUser.WM_KEYUP:
                 case WinUser.WM_SYSKEYUP:
                     downLatest = null;
-                    consumed = handle(key, releases, KeyEvent.of(key));
+                    consumed = handle(key, MacroDefinition.releases, KeyEvent.of(key));
                     break;
                 }
             }
@@ -397,35 +268,35 @@ class GlobalEvents {
 
                 switch (wParam.intValue()) {
                 case 512: // WM_MOUSEMOVE
-                    consumed = handle(Key.MouseMiddle, mouseMove, info.pt);
+                    consumed = handle(Key.MouseMiddle, MacroDefinition.mouseMove, info.pt);
                     break;
 
                 case 513: // WM_LBUTTONDOWN
-                    consumed = handle(Key.MouseLeft, presses, info.pt);
+                    consumed = handle(Key.MouseLeft, MacroDefinition.presses, info.pt);
                     break;
 
                 case 514: // WM_LBUTTONUP
-                    consumed = handle(Key.MouseLeft, releases, info.pt);
+                    consumed = handle(Key.MouseLeft, MacroDefinition.releases, info.pt);
                     break;
 
                 case 516: // WM_RBUTTONDOWN
-                    consumed = handle(Key.MouseRight, presses, info.pt);
+                    consumed = handle(Key.MouseRight, MacroDefinition.presses, info.pt);
                     break;
 
                 case 517: // WM_RBUTTONUP
-                    consumed = handle(Key.MouseRight, releases, info.pt);
+                    consumed = handle(Key.MouseRight, MacroDefinition.releases, info.pt);
                     break;
 
                 case 519: // WM_MBUTTONDOWN
-                    consumed = handle(Key.MouseMiddle, presses, info.pt);
+                    consumed = handle(Key.MouseMiddle, MacroDefinition.presses, info.pt);
                     break;
 
                 case 520: // WM_MBUTTONDOWN
-                    consumed = handle(Key.MouseMiddle, releases, info.pt);
+                    consumed = handle(Key.MouseMiddle, MacroDefinition.releases, info.pt);
                     break;
 
                 case 522: // WM_MOUSEWHEEL
-                    consumed = handle(Key.MouseMiddle, mouseWheel, info.pt);
+                    consumed = handle(Key.MouseMiddle, MacroDefinition.mouseWheel, info.pt);
                     break;
                 }
             }

@@ -1,0 +1,122 @@
+/*
+ * Copyright (C) 2018 Nameless Production Committee
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *          http://opensource.org/licenses/mit-license.php
+ */
+package marionette.macro;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
+
+import kiss.I;
+import kiss.Signaling;
+
+class MacroDefinition {
+
+    /** The event listeners. */
+    static final List<MacroDefinition> presses = new ArrayList();
+
+    /** The event listeners. */
+    static final List<MacroDefinition> releases = new ArrayList();
+
+    /** The event listeners. */
+    static final List<MacroDefinition> mouseMove = new ArrayList();
+
+    /** The event listeners. */
+    static final List<MacroDefinition> mouseWheel = new ArrayList();
+
+    /** The window condition. */
+    final Predicate<Window> windowConditon;
+
+    /** The acceptable event type. */
+    final Predicate condition;
+
+    /** The event should be consumed or not. */
+    final boolean consumable;
+
+    /** The modifier state. */
+    private final boolean alt;
+
+    /** The modifier state. */
+    private final boolean ctrl;
+
+    /** The modifier state. */
+    private final boolean shift;
+
+    final Signaling<KeyEvent> events = new Signaling();
+
+    /**
+     * Macro definition for key.
+     * 
+     * @param key
+     * @param press
+     * @param windowConditon
+     * @param options
+     */
+    MacroDefinition(Key key, boolean press, Predicate<Window> windowConditon, Set<MacroOption> options) {
+        this(e -> e == key, windowConditon, options);
+
+        if (press) {
+            presses.add(this);
+        } else {
+            releases.add(this);
+        }
+    }
+
+    /**
+     * Macro definition for mouse.
+     * 
+     * @param mouse
+     * @param windowConditon
+     * @param options
+     */
+    MacroDefinition(Mouse mouse, Predicate<Window> windowConditon, Set<MacroOption> options) {
+        this(I.accept(), windowConditon, options);
+
+        switch (mouse) {
+        case Move:
+            mouseMove.add(this);
+            break;
+
+        case Wheel:
+            mouseWheel.add(this);
+            break;
+        }
+    }
+
+    /**
+     * Macro definition.
+     * 
+     * @param condition
+     * @param windowCondition
+     * @param options
+     */
+    private MacroDefinition(Predicate condition, Predicate<Window> windowCondition, Set<MacroOption> options) {
+        this.condition = condition;
+        this.windowConditon = windowCondition;
+        this.alt = options.contains(MacroOption.WithAlt);
+        this.ctrl = options.contains(MacroOption.WithCtrl);
+        this.shift = options.contains(MacroOption.WithShift);
+        this.consumable = options.contains(MacroOption.IgnoreEvent);
+    }
+
+    /**
+     * <p>
+     * Test modifier state.
+     * </p>
+     * 
+     * @param alt The modifier state.
+     * @param ctrl The modifier state.
+     * @param shift The modifier state.
+     * @return
+     */
+    boolean modifier(boolean alt, boolean ctrl, boolean shift) {
+        return this.alt == alt && this.ctrl == ctrl && this.shift == shift;
+    }
+}
