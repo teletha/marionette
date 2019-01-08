@@ -31,6 +31,6 @@ public class OwnOperation extends AbstractMacro {
      */
     @Override
     protected void declare() {
-        when(Key.Pause).press().to(macro::pauseOrResume);
+        whenPress(Key.Pause).to(macro::pauseOrResume);
     }
 }

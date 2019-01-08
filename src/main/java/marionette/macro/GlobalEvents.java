@@ -47,6 +47,18 @@ class GlobalEvents {
     /** The keyboard hook. */
     private static NativeMouseHook mouseHook = new NativeMouseHook();
 
+    /** The event listeners. */
+    private static final List<KeyMacro> presses = new ArrayList();
+
+    /** The event listeners. */
+    private static final List<KeyMacro> releases = new ArrayList();
+
+    /** The event listeners. */
+    private static final List<KeyMacro> mouseMove = new ArrayList();
+
+    /** The event listeners. */
+    private static final List<KeyMacro> mouseWheel = new ArrayList();
+
     /**
      * Start native hook.
      */
@@ -66,7 +78,7 @@ class GlobalEvents {
     /**
      * 
      */
-    static class KeyMacro implements MacroDSL {
+    static class KeyMacro {
 
         /** The window condition. */
         private final Predicate<Window> windowConditon;
@@ -119,22 +131,6 @@ class GlobalEvents {
         }
 
         /**
-         * {@inheritDoc}
-         */
-        @Override
-        public Signal<KeyEvent> press() {
-            return register((key.mouse ? mouseHook : keyboardHook).presses);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public Signal<KeyEvent> release() {
-            return register((key.mouse ? mouseHook : keyboardHook).releases);
-        }
-
-        /**
          * <p>
          * Register this macro.
          * </p>
@@ -151,13 +147,21 @@ class GlobalEvents {
             });
         }
 
+        Signal<KeyEvent> register(boolean press) {
+            if (press) {
+                return register(presses);
+            } else {
+                return register(releases);
+            }
+        }
+
         Signal<KeyEvent> register(Mouse mouse) {
             switch (mouse) {
             case Move:
-                return register(mouseHook.mouseMove);
+                return register(mouseMove);
 
             case Wheel:
-                return register(mouseHook.mouseWheel);
+                return register(mouseWheel);
             }
 
             throw new Error();
@@ -191,18 +195,6 @@ class GlobalEvents {
             thread.setDaemon(false);
             return thread;
         });
-
-        /** The event listeners. */
-        protected final List<KeyMacro> presses = new ArrayList();
-
-        /** The event listeners. */
-        protected final List<KeyMacro> releases = new ArrayList();
-
-        /** The event listeners. */
-        protected final List<KeyMacro> mouseMove = new ArrayList();
-
-        /** The event listeners. */
-        protected final List<KeyMacro> mouseWheel = new ArrayList();
 
         /** The native hook. */
         protected HHOOK hook;
@@ -383,9 +375,6 @@ class GlobalEvents {
          * </p>
          */
         private static final int InjectedEvent = 1;
-
-        /** The event listeners. */
-        private final List<KeyMacro> moves = new ArrayList();
 
         /**
          * {@inheritDoc}

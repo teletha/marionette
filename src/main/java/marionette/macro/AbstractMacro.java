@@ -55,8 +55,20 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
      * @param key
      * @return
      */
-    protected final MacroDSL when(Key key, MacroOption... options) {
-        return new KeyMacro(key, windowCondition, Set.of(options));
+    protected final Signal<KeyEvent> whenPress(Key key, MacroOption... options) {
+        return new KeyMacro(key, windowCondition, Set.of(options)).register(true);
+    }
+
+    /**
+     * <p>
+     * Declare key related event.
+     * </p>
+     * 
+     * @param key
+     * @return
+     */
+    protected final Signal<KeyEvent> whenRelease(Key key, MacroOption... options) {
+        return new KeyMacro(key, windowCondition, Set.of(options)).register(false);
     }
 
     /**

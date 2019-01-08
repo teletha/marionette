@@ -27,7 +27,7 @@ public class GW extends AbstractMacro {
     @Override
     protected void declare() {
         requireTitle("Guild Wars 2", () -> {
-            when(Key.AtMark).press().to(() -> {
+            whenPress(Key.AtMark).to(() -> {
                 System.out.println("OK");
                 input(Key.A);
             });
@@ -35,6 +35,11 @@ public class GW extends AbstractMacro {
 
         when(Mouse.Wheel, IgnoreEvent).to(() -> {
             System.out.println("OK " + Key.Up.scanCode);
+        });
+
+        whenPress(Key.AtMark).to(() -> {
+            System.out.println("OK");
+            input(Key.A);
         });
     }
 
