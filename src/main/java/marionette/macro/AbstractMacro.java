@@ -9,7 +9,9 @@
  */
 package marionette.macro;
 
-import static com.sun.jna.platform.win32.WinUser.KEYBDINPUT.*;
+import static com.sun.jna.platform.win32.WinUser.KEYBDINPUT.KEYEVENTF_EXTENDEDKEY;
+import static com.sun.jna.platform.win32.WinUser.KEYBDINPUT.KEYEVENTF_KEYUP;
+import static com.sun.jna.platform.win32.WinUser.KEYBDINPUT.KEYEVENTF_SCANCODE;
 
 import java.util.Set;
 import java.util.function.Predicate;
@@ -45,6 +47,16 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
      * Declare your macros.
      */
     protected abstract void declare();
+
+    /**
+     * Declare modifier key.
+     * 
+     * @param key
+     * @return
+     */
+    protected final Signal<Boolean> with(Key key) {
+        return whenPress(key).mapTo(true).merge(whenRelease(key).mapTo(false));
+    }
 
     /**
      * <p>

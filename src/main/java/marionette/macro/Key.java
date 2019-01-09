@@ -9,6 +9,8 @@
  */
 package marionette.macro;
 
+import java.util.function.Predicate;
+
 import com.sun.jna.Native;
 import com.sun.jna.win32.StdCallLibrary;
 import com.sun.jna.win32.W32APIOptions;
@@ -353,6 +355,27 @@ public enum Key {
         this.off = off;
         this.mouse = on != 0 && off != 0;
         this.extend = extended;
+    }
+
+    /**
+     * Generate key matcher.
+     * 
+     * @return
+     */
+    public Predicate<Key> matcher() {
+        switch (this) {
+        case Shift:
+            return e -> e == ShiftLeft || e == ShiftRight;
+
+        case Control:
+            return e -> e == ControlLeft || e == ControlRight;
+
+        case Alt:
+            return e -> e == AltLeft || e == AltRight;
+
+        default:
+            return e -> e == this;
+        }
     }
 
     /**

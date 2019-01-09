@@ -40,15 +40,6 @@ class MacroDefinition {
     /** The event should be consumed or not. */
     final boolean consumable;
 
-    /** The modifier state. */
-    private final boolean alt;
-
-    /** The modifier state. */
-    private final boolean ctrl;
-
-    /** The modifier state. */
-    private final boolean shift;
-
     final Signaling<KeyEvent> events = new Signaling();
 
     /**
@@ -60,7 +51,7 @@ class MacroDefinition {
      * @param options
      */
     MacroDefinition(Key key, boolean press, Predicate<Window> windowConditon, Set<MacroOption> options) {
-        this(e -> e == key, windowConditon, options);
+        this(key.matcher(), windowConditon, options);
 
         if (press) {
             presses.add(this);
@@ -100,23 +91,6 @@ class MacroDefinition {
     private MacroDefinition(Predicate condition, Predicate<Window> windowCondition, Set<MacroOption> options) {
         this.condition = condition;
         this.windowConditon = windowCondition;
-        this.alt = options.contains(MacroOption.WithAlt);
-        this.ctrl = options.contains(MacroOption.WithCtrl);
-        this.shift = options.contains(MacroOption.WithShift);
         this.consumable = options.contains(MacroOption.IgnoreEvent);
-    }
-
-    /**
-     * <p>
-     * Test modifier state.
-     * </p>
-     * 
-     * @param alt The modifier state.
-     * @param ctrl The modifier state.
-     * @param shift The modifier state.
-     * @return
-     */
-    boolean modifier(boolean alt, boolean ctrl, boolean shift) {
-        return this.alt == alt && this.ctrl == ctrl && this.shift == shift;
     }
 }

@@ -9,8 +9,6 @@
  */
 package marionette;
 
-import static marionette.macro.MacroOption.*;
-
 import marionette.macro.AbstractMacro;
 import marionette.macro.Key;
 import marionette.macro.Macro;
@@ -25,56 +23,63 @@ public class GW extends AbstractMacro<GW> {
      */
     @Override
     protected void declare() {
-        requireTitle("Guild Wars 2", () -> {
-            whenPress(Key.MouseRight, IgnoreEvent).to(() -> {
-            });
+        // requireTitle("Guild Wars 2", () -> {
+        // whenPress(Key.MouseRight, IgnoreEvent).to(() -> {
+        // });
+        //
+        // whenRelease(Key.MouseRight, IgnoreEvent).to(() -> {
+        // input(Key.MouseRight);
+        // });
+        //
+        // whenPress(Key.Shift).to(e -> {
+        // input(Key.AtMark);
+        // System.out.println("AAA");
+        // });
+        //
+        // whenRelease(Key.Shift).to(e -> {
+        // input(Key.AtMark);
+        // System.out.println("BBB");
+        // });
+        // });
 
-            whenRelease(Key.MouseRight, IgnoreEvent).to(() -> {
-                input(Key.MouseRight);
-            });
+        whenPress(Key.Shift).to(e -> {
+            System.out.println("AAA");
+            input(Key.AtMark);
 
-            whenPress(Key.Shift).to(e -> {
-                input(Key.AtMark);
-                System.out.println("AAA");
-            });
-
-            whenRelease(Key.Shift).to(e -> {
-                input(Key.AtMark);
-                System.out.println("BBB");
-            });
         });
 
-        whenGesture(Key.MouseRight).to(e -> {
-            switch (e) {
-            case "U":
-                press(Key.Up);
-                release(Key.Down);
-                release(Key.Left);
-                release(Key.Right);
-                break;
-
-            case "D":
-                release(Key.Up);
-                press(Key.Down);
-                release(Key.Left);
-                release(Key.Right);
-                break;
-
-            case "L":
-                release(Key.Up);
-                release(Key.Down);
-                press(Key.Left);
-                release(Key.Right);
-                break;
-
-            case "R":
-                release(Key.Up);
-                release(Key.Down);
-                release(Key.Left);
-                press(Key.Right);
-                break;
-            }
-        });
+        //
+        // whenGesture(Key.MouseRight).to(e -> {
+        // switch (e) {
+        // case "U":
+        // press(Key.Up);
+        // release(Key.Down);
+        // release(Key.Left);
+        // release(Key.Right);
+        // break;
+        //
+        // case "D":
+        // release(Key.Up);
+        // press(Key.Down);
+        // release(Key.Left);
+        // release(Key.Right);
+        // break;
+        //
+        // case "L":
+        // release(Key.Up);
+        // release(Key.Down);
+        // press(Key.Left);
+        // release(Key.Right);
+        // break;
+        //
+        // case "R":
+        // release(Key.Up);
+        // release(Key.Down);
+        // release(Key.Left);
+        // press(Key.Right);
+        // break;
+        // }
+        // });
     }
 
     /**

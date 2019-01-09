@@ -10,5 +10,5 @@
 package marionette.macro;
 
 public enum MacroOption {
-    WithShift, WithCtrl, WithAlt, IgnoreEvent
+    IgnoreEvent
 }

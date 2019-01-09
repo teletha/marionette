@@ -124,34 +124,18 @@ class GlobalEvents {
         }
 
         /**
-         * <p>
-         * Helper method to retrieve the key state.
-         * </p>
-         * 
-         * @param key
-         * @return
-         */
-        private boolean with(Key key) {
-            return (User32.INSTANCE.GetAsyncKeyState(key.virtualCode) & 0x8000) != 0;
-        }
-
-        /**
          * Handle key event.
          * 
          * @param key
          */
         protected final boolean handle(T key, List<MacroDefinition> macros, KeyEvent event) {
             boolean consumed = false;
-
             Window now = Window.now();
-            boolean alt = with(Key.Alt);
-            boolean ctrl = with(Key.Control);
-            boolean shift = with(Key.Shift);
 
             // built-in state management macro
 
             for (MacroDefinition macro : macros) {
-                if (macro.windowConditon.test(now) && macro.modifier(alt, ctrl, shift) && macro.condition.test(key)) {
+                if (macro.windowConditon.test(now) && macro.condition.test(key)) {
                     executor.execute(() -> {
                         macro.events.accept(event);
                     });

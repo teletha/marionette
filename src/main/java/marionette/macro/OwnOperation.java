@@ -9,8 +9,6 @@
  */
 package marionette.macro;
 
-import static marionette.macro.MacroOption.*;
-
 /**
  * @version 2018/11/19 9:21:28
  */
@@ -34,6 +32,5 @@ public class OwnOperation extends AbstractMacro {
     @Override
     protected void declare() {
         whenPress(Key.Pause).to(macro::pauseOrResume);
-        whenPress(Key.Pause, WithCtrl).to(macro::restart);
     }
 }
