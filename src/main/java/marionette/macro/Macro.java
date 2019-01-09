@@ -173,6 +173,6 @@ public class Macro {
      * @return
      */
     public static final Macro launch() {
-        return I.make(Macro.class).use(OwnOperation.class);
+        return I.make(Macro.class);
     }
 }
