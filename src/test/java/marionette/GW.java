@@ -9,79 +9,90 @@
  */
 package marionette;
 
+import kiss.Signal;
 import marionette.macro.AbstractMacro;
 import marionette.macro.Key;
 import marionette.macro.Macro;
+import marionette.macro.Mouse;
 
-/**
- * 
- */
 public class GW extends AbstractMacro<GW> {
+
+    /** The current movemnt state. */
+    private State state = State.None;
 
     /**
      * {@inheritDoc}
      */
     @Override
     protected void declare() {
-        // requireTitle("Guild Wars 2", () -> {
-        // whenPress(Key.MouseRight, IgnoreEvent).to(() -> {
-        // });
-        //
-        // whenRelease(Key.MouseRight, IgnoreEvent).to(() -> {
-        // input(Key.MouseRight);
-        // });
-        //
-        // whenPress(Key.Shift).to(e -> {
-        // input(Key.AtMark);
-        // System.out.println("AAA");
-        // });
-        //
-        // whenRelease(Key.Shift).to(e -> {
-        // input(Key.AtMark);
-        // System.out.println("BBB");
-        // });
-        // });
+        requireTitle("Guild Wars 2", () -> {
+            // dodge
+            whenPress(Key.MouseMiddle).to(() -> {
+                input(state.key);
+                input(state.key);
+                if (state != State.None) press(state.key);
+            });
 
-        whenPress(Key.A).to(e -> {
-            if (Key.Shift.isPressed()) {
-                System.out.println("Shifted");
-            } else {
-                System.out.println("Normal");
-            }
+            // movement
+            whenFastGesture(Key.MouseRight).to(e -> {
+                state = e;
+
+                // reset move to all directions
+                release(Key.Up);
+                release(Key.Down);
+                release(Key.Right);
+                release(Key.Left);
+
+                // move to the current direction
+                if (e != State.None) press(e.key);
+            });
         });
+    }
 
-        //
-        // whenGesture(Key.MouseRight).to(e -> {
-        // switch (e) {
-        // case "U":
-        // press(Key.Up);
-        // release(Key.Down);
-        // release(Key.Left);
-        // release(Key.Right);
-        // break;
-        //
-        // case "D":
-        // release(Key.Up);
-        // press(Key.Down);
-        // release(Key.Left);
-        // release(Key.Right);
-        // break;
-        //
-        // case "L":
-        // release(Key.Up);
-        // release(Key.Down);
-        // press(Key.Left);
-        // release(Key.Right);
-        // break;
-        //
-        // case "R":
-        // release(Key.Up);
-        // release(Key.Down);
-        // release(Key.Left);
-        // press(Key.Right);
-        // break;
-        // }
-        // });
+    /**
+     * <p>
+     * Declare key related event.
+     * </p>
+     * 
+     * @param key
+     * @return
+     */
+    private final Signal<State> whenFastGesture(Key key) {
+        int[] last = new int[2];
+        State[] lastDirection = new State[1];
+
+        return when(Mouse.Move).skipUntil(whenPress(key)).takeUntil(whenRelease(key)).effectOnce(e -> {
+            // save start position
+            last[0] = e.x();
+            last[1] = e.y();
+            lastDirection[0] = null;
+        }).map(e -> {
+            int x = e.x();
+            int y = e.y();
+            int distanceX = Math.abs(last[0] - x);
+            int distanceY = Math.abs(last[1] - y);
+
+            // minimal movement where the gesture is recognized
+            int min = 7;
+            if (distanceX < min && distanceY < min) {
+                return lastDirection[0];
+            }
+
+            // determine current direction
+            State direction;
+            if (distanceX > distanceY) {
+                direction = x < last[0] ? State.Left : State.Right;
+            } else {
+                direction = y < last[1] ? State.Up : State.Down;
+            }
+
+            // save current position
+            last[0] = x;
+            last[1] = y;
+            lastDirection[0] = direction;
+
+            return direction;
+        }).diff().or(State.None).repeat();
     }
 
     /**
@@ -89,5 +100,21 @@ public class GW extends AbstractMacro<GW> {
      */
     public static void main(String[] args) {
         Macro.launch().useTrayIcon().use(GW.class);
+    }
+
+    /**
+     * 
+     */
+    private enum State {
+        Up(Key.Up), Down(Key.Down), Left(Key.Left), Right(Key.Right), None(Key.Down);
+
+        private Key key;
+
+        /**
+         * @param key
+         */
+        private State(Key key) {
+            this.key = key;
+        }
     }
 }

@@ -9,9 +9,7 @@
  */
 package marionette.macro;
 
-import static com.sun.jna.platform.win32.WinUser.KEYBDINPUT.KEYEVENTF_EXTENDEDKEY;
-import static com.sun.jna.platform.win32.WinUser.KEYBDINPUT.KEYEVENTF_KEYUP;
-import static com.sun.jna.platform.win32.WinUser.KEYBDINPUT.KEYEVENTF_SCANCODE;
+import static com.sun.jna.platform.win32.WinUser.KEYBDINPUT.*;
 
 import java.util.Set;
 import java.util.function.Predicate;
@@ -135,7 +133,6 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
 
             return directions.toString();
         }).last().repeat();
-
     }
 
     /**

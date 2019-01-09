@@ -191,7 +191,6 @@ class GlobalEvents {
         public LRESULT callback(int nCode, WPARAM wParam, KBDLLHOOKSTRUCT info) {
             boolean consumed = false;
             boolean userInput = (info.flags & InjectedEvent) == 0;
-
             if (0 <= nCode && userInput) {
                 Key key = keys[info.vkCode];
 
@@ -247,8 +246,7 @@ class GlobalEvents {
         @Override
         public LRESULT callback(int nCode, WPARAM wParam, MSLLHOOKSTRUCT info) {
             boolean consumed = false;
-            boolean userInput = (info.flags & InjectedEvent) == 0;
-
+            boolean userInput = (info.flags & InjectedEvent) == 0 || wParam.intValue() == 519 || wParam.intValue() == 520;
             if (0 <= nCode && userInput) {
                 info.pt.time = info.time;
 
@@ -277,7 +275,7 @@ class GlobalEvents {
                     consumed = handle(Key.MouseMiddle, MacroDefinition.presses, info.pt);
                     break;
 
-                case 520: // WM_MBUTTONDOWN
+                case 520: // WM_MBUTTONUP
                     consumed = handle(Key.MouseMiddle, MacroDefinition.releases, info.pt);
                     break;
 
