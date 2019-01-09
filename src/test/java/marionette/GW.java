@@ -42,10 +42,12 @@ public class GW extends AbstractMacro<GW> {
         // });
         // });
 
-        whenPress(Key.Shift).to(e -> {
-            System.out.println("AAA");
-            input(Key.AtMark);
-
+        whenPress(Key.A).to(e -> {
+            if (Key.Shift.isPressed()) {
+                System.out.println("Shifted");
+            } else {
+                System.out.println("Normal");
+            }
         });
 
         //

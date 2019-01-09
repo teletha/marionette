@@ -12,6 +12,7 @@ package marionette.macro;
 import java.util.function.Predicate;
 
 import com.sun.jna.Native;
+import com.sun.jna.platform.win32.User32;
 import com.sun.jna.win32.StdCallLibrary;
 import com.sun.jna.win32.W32APIOptions;
 
@@ -379,12 +380,21 @@ public enum Key {
     }
 
     /**
-     * @version 2016/10/03 9:28:46
+     * Check the key state.
+     * 
+     * @return A result.
+     */
+    public boolean isPressed() {
+        return (User32.INSTANCE.GetAsyncKeyState(virtualCode) & 0x8000) != 0;
+    }
+
+    /**
+     * 
      */
     private interface WindowsKeyCodeHelper extends StdCallLibrary {
 
         /** Instance of USER32.DLL for use in accessing native functions. */
-        WindowsKeyCodeHelper INSTANCE = Native.loadLibrary("user32", WindowsKeyCodeHelper.class, W32APIOptions.DEFAULT_OPTIONS);
+        WindowsKeyCodeHelper INSTANCE = Native.load("user32", WindowsKeyCodeHelper.class, W32APIOptions.DEFAULT_OPTIONS);
 
         /**
          * Translates (maps) a virtual-key code into a scan code or character value, or translates a
