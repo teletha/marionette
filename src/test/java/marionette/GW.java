@@ -28,6 +28,7 @@ public class GW extends AbstractMacro<GW> {
         requireTitle("Guild Wars 2", () -> {
             // dodge
             whenPress(Key.MouseMiddle).to(() -> {
+                input(Key.H);
                 input(state.key);
                 input(state.key);
                 if (state != State.None) press(state.key);
@@ -38,15 +39,22 @@ public class GW extends AbstractMacro<GW> {
                 state = e;
 
                 // reset move to all directions
-                release(Key.Up);
+                input(Key.Up);
                 release(Key.Down);
                 release(Key.Right);
                 release(Key.Left);
 
                 // move to the current direction
-                if (e != State.None) press(e.key);
+                if (e != State.None) {
+                    if (e == State.Up) {
+                        input(Key.Delete);
+                    } else {
+                        press(e.key);
+                    }
+                }
             });
         });
+
     }
 
     /**
