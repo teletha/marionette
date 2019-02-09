@@ -23,6 +23,7 @@ import com.sun.jna.platform.win32.WinUser.INPUT;
 import kiss.Extensible;
 import kiss.I;
 import kiss.Signal;
+import marionette.platform.Location;
 
 public abstract class AbstractMacro<Self extends AbstractMacro> implements Extensible {
 
@@ -314,5 +315,12 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
      */
     protected final void requireTitle(String title, Runnable definitions) {
         require(window -> window.title().contains(title), definitions);
+    }
+
+    protected final void debugByMouse() {
+        whenPress(Key.MouseMiddle).to(() -> {
+            Location mousePosition = window().mousePosition();
+            System.out.println("Mouse Position : " + mousePosition + "   Color : " + window().color(mousePosition));
+        });
     }
 }
