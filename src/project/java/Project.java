@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Marionette Development Team
+ * Copyright (C) 2019 Marionette Development Team
  *
  * Licensed under the MIT License (the "License");
  * you may not use this file except in compliance with the License.
