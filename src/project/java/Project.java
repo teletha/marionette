@@ -12,7 +12,7 @@ public class Project extends bee.api.Project {
     String selenium = "3.14.0";
 
     {
-        product("com.github.teletha", "Marionette", "0.2");
+        product("com.github.teletha", "marionette", "0.2");
 
         require("com.github.teletha", "sinobu", "[1.2,)");
         require("com.github.teletha", "antibug", "0.6").atTest();
@@ -22,5 +22,7 @@ public class Project extends bee.api.Project {
         require("org.seleniumhq.selenium", "selenium-firefox-driver", selenium);
         require("org.seleniumhq.selenium", "selenium-chrome-driver", selenium);
         require("org.seleniumhq.selenium", "selenium-support", selenium);
+
+        versionControlSystem("https://github.com/teletha/marionette");
     }
 }
