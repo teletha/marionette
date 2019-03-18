@@ -61,7 +61,7 @@ import kiss.WiseRunnable;
 public class Browser<Self extends Browser<Self>> implements Disposable {
 
     static {
-        I.load(Codec.class, true);
+        I.load(Codec.class);
         System.setProperty("java.util.logging.manager", "org.apache.logging.log4j.jul.LogManager");
         System.setProperty("webdriver.gecko.driver", Paths.get("geckodriver.exe").toAbsolutePath().toString());
     }
