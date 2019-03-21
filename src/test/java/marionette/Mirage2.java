@@ -14,7 +14,7 @@ import marionette.macro.Macro;
 /**
  * 
  */
-public class Mirage extends Mesmer {
+public class Mirage2 extends Mesmer {
 
     /**
      * {@inheritDoc}
@@ -34,6 +34,6 @@ public class Mirage extends Mesmer {
      * Entry point.
      */
     public static void main(String[] args) {
-        Macro.launch().useTrayIcon().use(Mirage.class);
+        Macro.launch().useTrayIcon().use(Mirage2.class);
     }
 }
