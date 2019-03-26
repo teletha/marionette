@@ -446,7 +446,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      */
     public final Self resetPreference() {
         prefs = new BrowserInitialPreference();
-        preference(I.NoOP.asConsumer());
+        preference(I.NoOP.append());
         return chain(0);
     }
 
@@ -1084,7 +1084,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * @return
      */
     public static final <B extends Browser> B build(Class<B> browser) {
-        return build(browser, I.NoOP.asConsumer());
+        return build(browser, I.NoOP.append());
     }
 
     /**
