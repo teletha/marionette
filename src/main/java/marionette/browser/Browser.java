@@ -9,19 +9,14 @@
  */
 package marionette.browser;
 
-import static java.util.concurrent.TimeUnit.*;
-import static org.openqa.selenium.support.ui.ExpectedConditions.*;
-
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.StringJoiner;
@@ -117,7 +112,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
             //
             // driver = new FirefoxDriver(options);
 
-            driver.manage().timeouts().pageLoadTimeout(prefs.pageLoadTimeout, MILLISECONDS);
+            driver.manage().timeouts().pageLoadTimeout(prefs.pageLoadTimeout, TimeUnit.MILLISECONDS);
             operation = new WebDriverWait(driver, prefs.operationTimeout);
             operationForHuman = new WebDriverWait(driver, Integer.MAX_VALUE, 500);
             searchElement = new WebDriverWait(driver, 60, 500);
@@ -165,7 +160,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * @return
      */
     public final Self action(WiseRunnable operation) {
-        I.run(operation, e -> e.type(Retry.class));
+        I.signal("").effect(operation).retry(Retry.class).to();
         return chain(0);
     }
 
@@ -228,7 +223,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * @return Chainable API.
      */
     public final Self awaitElementDisappear(By selector) {
-        operation.until(invisibilityOfElementLocated(selector));
+        operation.until(ExpectedConditions.invisibilityOfElementLocated(selector));
 
         return chain(0);
     }
@@ -340,7 +335,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
             String text = imageOp.apply(new Uncaptcha(new URL(e.getAttribute("src")))).read();
 
             input(inputSelector, textOp.apply(text));
-        }, retryError());
+        });
     }
 
     /**
@@ -385,7 +380,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     public final Self click(By elementSelector) {
         return each(elementSelector, e -> {
             e.click();
-        }, retryError());
+        });
     }
 
     /**
@@ -400,7 +395,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     public final Self click(WebElement element) {
         return each(I.list(element), e -> {
             e.click();
-        }, retryError());
+        });
     }
 
     /**
@@ -422,7 +417,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     public Browser clear(String selector) {
         By cssSelector = By.cssSelector(selector);
 
-        operation.until(visibilityOfElementLocated(cssSelector));
+        operation.until(ExpectedConditions.visibilityOfElementLocated(cssSelector));
         driver().findElement(cssSelector).clear();
 
         return chain();
@@ -507,7 +502,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
             if (e.isSelected() == true) {
                 operation.until(ExpectedConditions.elementToBeClickable(e)).click();
             }
-        }, retryError());
+        });
     }
 
     /**
@@ -530,8 +525,8 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * @param processor A element processor.
      * @return Chainable API.
      */
-    public final Self each(String selector, WiseConsumer<WebElement> processor, WiseFunction<Signal<? extends Throwable>, Signal<?>> retry) {
-        return each(By.cssSelector(selector), processor, retry);
+    public final Self each(String selector, WiseConsumer<WebElement> processor) {
+        return each(By.cssSelector(selector), processor);
     }
 
     /**
@@ -543,9 +538,9 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * @param processor A element processor.
      * @return Chainable API.
      */
-    public final Self each(By elementSelector, WiseConsumer<WebElement> processor, WiseFunction<Signal<? extends Throwable>, Signal<?>> retry) {
+    public final Self each(By elementSelector, WiseConsumer<WebElement> processor) {
         checkExactly(elementSelector);
-        return each(driver().findElements(elementSelector), processor, retry);
+        return each(driver().findElements(elementSelector), processor);
     }
 
     /**
@@ -557,10 +552,10 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * @param processor A element processor.
      * @return Chainable API.
      */
-    public final Self each(Iterable<WebElement> elements, WiseConsumer<WebElement> processor, WiseFunction<Signal<? extends Throwable>, Signal<?>> retry) {
+    public final Self each(Iterable<WebElement> elements, WiseConsumer<WebElement> processor) {
         for (WebElement element : elements) {
             try {
-                I.run(() -> processor.accept(element), retry);
+                processor.accept(element);
             } catch (StaleElementReferenceException e) {
                 // ignore
             }
@@ -601,31 +596,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * @return {@link Signal} stream.
      */
     public final Signal<WebElement> find(By elementSelector) {
-        List<WebElement> list = new ArrayList();
-
-        I.run(() -> {
-            list.addAll(driver().findElements(elementSelector));
-        }, retryError());
-
-        return I.signal(list);
-    }
-
-    /**
-     * <p>
-     * Find elements by selector and process them.
-     * </p>
-     * 
-     * @param elementSelector A element selector.
-     * @return {@link Signal} stream.
-     */
-    public final List<WebElement> finds(String elementSelector, WiseFunction<Signal<? extends Throwable>, Signal<?>> retry) {
-        List<WebElement> list = new ArrayList();
-
-        I.run(() -> {
-            list.addAll(driver().findElements(By.cssSelector(elementSelector)));
-        }, retry);
-
-        return list;
+        return I.signal(driver()).flatIterable(d -> d.findElements(elementSelector)).retryWhen(retryError());
     }
 
     /**
@@ -659,7 +630,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
             }
             e.clear();
             e.sendKeys(String.valueOf(input));
-        }, retryError());
+        });
     }
 
     /**
@@ -671,8 +642,8 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * @param input A text to input.
      * @return Chainable API.
      */
-    public final Self inputSlowly(String selector, Object input, WiseFunction<Signal<? extends Throwable>, Signal<?>> retry) {
-        return inputSlowly(By.cssSelector(selector), input, retry);
+    public final Self inputSlowly(String selector, Object input) {
+        return inputSlowly(By.cssSelector(selector), input);
     }
 
     /**
@@ -684,7 +655,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * @param input A text to input.
      * @return Chainable API.
      */
-    public final Self inputSlowly(By elementSelector, Object input, WiseFunction<Signal<? extends Throwable>, Signal<?>> retry) {
+    public final Self inputSlowly(By elementSelector, Object input) {
         return each(elementSelector, e -> {
             try {
                 e.click();
@@ -697,9 +668,9 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
 
             for (int i = 0; i < v.length(); i++) {
                 e.sendKeys(String.valueOf(v.charAt(i)));
-                await(500, MILLISECONDS);
+                await(500, TimeUnit.MILLISECONDS);
             }
-        }, retry);
+        });
     }
 
     /**
@@ -824,7 +795,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * </p>
      */
     public final Self reload() {
-        I.run(driver().navigate()::refresh, recoverPageLoadTimeout());
+        I.signal(driver()).effect(d -> d.navigate().refresh()).retryWhen(recoverPageLoadTimeout()).to();
 
         return chain();
     }
@@ -935,7 +906,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
             if (e.isSelected() == false) {
                 operation.until(ExpectedConditions.elementToBeClickable(e)).click();
             }
-        }, retryError());
+        });
     }
 
     /**
@@ -964,7 +935,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
         return each(selector, e -> {
             Select select = new Select(e);
             select.selectByIndex(index);
-        }, retryError());
+        });
     }
 
     /**
@@ -1052,11 +1023,11 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * @return
      */
     public final WiseFunction<Signal<? extends Throwable>, Signal<?>> recoverPageLoadTimeout() {
-        return e -> e.type(TimeoutException.class).take(prefs.retryLimit);
+        return fail -> fail.takeWhile(TimeoutException.class::isInstance).take(prefs.retryLimit);
     }
 
     private final WiseFunction<Signal<? extends Throwable>, Signal<?>> retryError() {
-        return e -> e.type(WebDriverException.class);
+        return fail -> fail.takeWhile(WebDriverException.class::isInstance);
     }
 
     /**
