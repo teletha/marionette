@@ -1055,7 +1055,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * @return
      */
     public static final <B extends Browser> B build(Class<B> browser) {
-        return build(browser, I.NoOP.append());
+        return build(browser, (Consumer<BrowserInitialPreference>) I.NoOP.append());
     }
 
     /**
