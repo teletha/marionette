@@ -40,6 +40,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.sun.net.httpserver.Authenticator.Retry;
+
 import kiss.Decoder;
 import kiss.Disposable;
 import kiss.Encoder;
@@ -441,7 +443,8 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      */
     public final Self resetPreference() {
         prefs = new BrowserInitialPreference();
-        preference(I.NoOP.widen());
+        preference(e -> {
+        });
         return chain(0);
     }
 
@@ -1055,7 +1058,8 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * @return
      */
     public static final <B extends Browser> B build(Class<B> browser) {
-        return build(browser, (Consumer<BrowserInitialPreference>) I.NoOP.widen());
+        return build(browser, (Consumer<BrowserInitialPreference>) e -> {
+        });
     }
 
     /**
