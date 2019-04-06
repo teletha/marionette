@@ -40,8 +40,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.sun.net.httpserver.Authenticator.Retry;
-
 import kiss.Decoder;
 import kiss.Disposable;
 import kiss.Encoder;
@@ -1025,11 +1023,11 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * 
      * @return
      */
-    public final WiseFunction<Signal<? extends Throwable>, Signal<?>> recoverPageLoadTimeout() {
+    public final <E extends Throwable> WiseFunction<Signal<E>, Signal<?>> recoverPageLoadTimeout() {
         return fail -> fail.takeWhile(TimeoutException.class::isInstance).take(prefs.retryLimit);
     }
 
-    private final WiseFunction<Signal<? extends Throwable>, Signal<?>> retryError() {
+    private final <E extends Throwable> WiseFunction<Signal<E>, Signal<?>> retryError() {
         return fail -> fail.takeWhile(WebDriverException.class::isInstance);
     }
 
