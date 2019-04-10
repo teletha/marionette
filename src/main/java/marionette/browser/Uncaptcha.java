@@ -172,6 +172,7 @@ public class Uncaptcha {
 
         private final int color;
 
+        @SuppressWarnings("unused")
         private final int alpha;
 
         private final int red;

@@ -455,7 +455,7 @@ class WindowsAPI implements marionette.platform.Native<HWND> {
                 }
 
                 return () -> {
-                    if (observers.remove(observers) && observers.isEmpty()) {
+                    if (observers.remove(observer) && observers.isEmpty()) {
                         switcher.cancel(false);
                     }
                 };

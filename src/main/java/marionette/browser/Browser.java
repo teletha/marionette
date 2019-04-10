@@ -1087,6 +1087,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     /**
      * @version 2018/02/08 5:00:21
      */
+    @SuppressWarnings("serial")
     private static class Cookies extends HashMap<String, Cookie> {
     }
 
