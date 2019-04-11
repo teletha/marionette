@@ -78,6 +78,9 @@ class MacroDefinition {
         case Wheel:
             mouseWheel.add(this);
             break;
+
+        default:
+            break;
         }
     }
 
