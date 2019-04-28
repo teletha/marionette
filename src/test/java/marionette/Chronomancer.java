@@ -9,9 +9,6 @@
  */
 package marionette;
 
-import java.util.concurrent.TimeUnit;
-
-import kiss.I;
 import marionette.macro.Macro;
 
 /**
@@ -26,10 +23,8 @@ public class Chronomancer extends Mesmer {
     protected void professionSpesific() {
         debugByMouse();
 
-        I.signal(0, 300, TimeUnit.MILLISECONDS).to(() -> {
-            if (hasClone3()) {
-                useShtterSkill();
-            }
+        whenUseSkill1().merge(whenUseSkill2(), whenUseSkill3(), whenUseSkill4(), whenUseSkill5()).take(this::hasClone3).to(() -> {
+            useShtterSkill();
         });
     }
 

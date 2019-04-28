@@ -19,7 +19,7 @@ public abstract class Mesmer extends GW {
      * 
      * @return
      */
-    protected boolean hasClone1() {
+    protected boolean hasClone3() {
         return window().color(786, 1059).is(16744447);
     }
 
@@ -37,7 +37,7 @@ public abstract class Mesmer extends GW {
      * 
      * @return
      */
-    protected boolean hasClone3() {
+    protected boolean hasClone1() {
         return window().color(720, 1060).is(16744191);
     }
 

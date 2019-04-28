@@ -23,10 +23,14 @@ public class Mirage2 extends Mesmer {
     protected void professionSpesific() {
         debugByMouse();
 
-        whenUseSkill4().merge(whenUseSkill2()).to(e -> {
-            if (hasClone2()) {
-                useShtterSkill();
-            }
+        // whenUseSkill4().merge(whenUseSkill2()).to(e -> {
+        // if (hasClone2()) {
+        // useShtterSkill();
+        // }
+        // });
+
+        whenUseSkill1().merge(whenUseSkill2(), whenUseSkill3(), whenUseSkill4(), whenUseSkill5()).take(this::hasClone3).to(() -> {
+            useShtterSkill();
         });
     }
 
