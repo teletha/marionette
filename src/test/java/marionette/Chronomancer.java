@@ -9,6 +9,7 @@
  */
 package marionette;
 
+import marionette.macro.Key;
 import marionette.macro.Macro;
 
 /**
@@ -25,6 +26,22 @@ public class Chronomancer extends Mesmer {
 
         whenUseSkill1().merge(whenUseSkill2(), whenUseSkill3(), whenUseSkill4(), whenUseSkill5()).take(this::hasClone3).to(() -> {
             useShtterSkill();
+        });
+
+        whenPress(Key.G).to(() -> {
+            useProfessionSkill5();
+            await();
+
+            useProfessionSkill4();
+            await();
+            useProfessionSkill3();
+            await();
+            useProfessionSkill2();
+            await();
+            useProfessionSkill1();
+            await();
+            useUtilitySkill1();
+
         });
     }
 

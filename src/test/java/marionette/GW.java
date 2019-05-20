@@ -9,6 +9,7 @@
  */
 package marionette;
 
+import kiss.I;
 import kiss.Signal;
 import marionette.macro.AbstractMacro;
 import marionette.macro.Key;
@@ -39,8 +40,7 @@ public abstract class GW extends AbstractMacro<GW> {
                     input(Key.H);
                 }
 
-                input(state.key);
-                input(state.key);
+                performDodge();
 
                 // I.schedule(1500, MILLISECONDS, true, () -> {
                 // if (canActivateProfessionSkill1()) {
@@ -133,6 +133,96 @@ public abstract class GW extends AbstractMacro<GW> {
     /**
      * Use skill.
      */
+    protected final void useWeaponSkill1() {
+        press(Key.Alt);
+        input(Key.NumPad1);
+        release(Key.Alt);
+    }
+
+    /**
+     * Use skill.
+     */
+    protected final void useWeaponSkill2() {
+        press(Key.Alt);
+        input(Key.NumPad2);
+        release(Key.Alt);
+    }
+
+    /**
+     * Use skill.
+     */
+    protected final void useWeaponSkill3() {
+        press(Key.Alt);
+        input(Key.NumPad3);
+        release(Key.Alt);
+    }
+
+    /**
+     * Use skill.
+     */
+    protected final void useWeaponSkill4() {
+        press(Key.Alt);
+        input(Key.NumPad4);
+        release(Key.Alt);
+    }
+
+    /**
+     * Use skill.
+     */
+    protected final void useWeaponSkill5() {
+        press(Key.Alt);
+        input(Key.NumPad5);
+        release(Key.Alt);
+    }
+
+    /**
+     * Use skill.
+     */
+    protected final void useHealingSkill() {
+        press(Key.Alt);
+        input(Key.NumPad6);
+        release(Key.Alt);
+    }
+
+    /**
+     * Use skill.
+     */
+    protected final void useUtilitySkill1() {
+        press(Key.Alt);
+        input(Key.NumPad7);
+        release(Key.Alt);
+    }
+
+    /**
+     * Use skill.
+     */
+    protected final void useUtilitySkill2() {
+        press(Key.Alt);
+        input(Key.NumPad8);
+        release(Key.Alt);
+    }
+
+    /**
+     * Use skill.
+     */
+    protected final void useUtilitySkill3() {
+        press(Key.Alt);
+        input(Key.NumPad9);
+        release(Key.Alt);
+    }
+
+    /**
+     * Use skill.
+     */
+    protected final void useEliteSkill() {
+        press(Key.Alt);
+        input(Key.NumPad0);
+        release(Key.Alt);
+    }
+
+    /**
+     * Use skill.
+     */
     protected final void useProfessionSkill1() {
         press(Key.Alt);
         input(Key.Insert);
@@ -175,6 +265,43 @@ public abstract class GW extends AbstractMacro<GW> {
         release(Key.Alt);
     }
 
+    /**
+     * Perform Attack.
+     */
+    protected void performAttack() {
+        useWeaponSkill1();
+    }
+
+    /**
+     * Perform dodge.
+     */
+    protected void performDodge() {
+        input(state.key);
+        input(state.key);
+    }
+
+    /**
+     * Wait by time.
+     * 
+     * @param ms
+     */
+    protected final void await() {
+        await(550);
+    }
+
+    /**
+     * Wait by time.
+     * 
+     * @param ms
+     */
+    protected final void await(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            throw I.quiet(e);
+        }
+    }
+
     protected abstract void professionSpesific();
 
     protected boolean canActivateProfessionSkill1() {
@@ -187,6 +314,42 @@ public abstract class GW extends AbstractMacro<GW> {
 
     protected boolean canActivateProfessionSkill3() {
         return !window().color(775, 1085).is(0);
+    }
+
+    protected boolean canActivateProfessionSkill4() {
+        return !window().color(819, 1085).is(0);
+    }
+
+    protected boolean canActivateWeaponSkill2() {
+        return !window().color(716, 1131).is(0);
+    }
+
+    protected boolean canActivateWeaponSkill3() {
+        return !window().color(769, 1131).is(0);
+    }
+
+    protected boolean canActivateWeaponSkill4() {
+        return !window().color(825, 1131).is(0);
+    }
+
+    protected boolean canActivateWeaponSkill5() {
+        return !window().color(881, 1131).is(0);
+    }
+
+    protected boolean canActivateUtilitySkill1() {
+        return !window().color(1089, 1131).is(0);
+    }
+
+    protected boolean canActivateUtilitySkill2() {
+        return !window().color(1141, 1131).is(0);
+    }
+
+    protected boolean canActivateUtilitySkill3() {
+        return !window().color(1197, 1131).is(0);
+    }
+
+    protected boolean hasFullEnergy() {
+        return window().color(1007, 1109).is(569343);
     }
 
     protected boolean canAvoid() {
