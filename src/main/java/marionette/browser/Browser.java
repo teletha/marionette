@@ -40,6 +40,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
+
 import kiss.Decoder;
 import kiss.Disposable;
 import kiss.Encoder;
@@ -770,10 +773,25 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * @return
      */
     public final Self post(String cssSelector) {
-        find(By.cssSelector(cssSelector)).take(1).to(e -> {
-            script("jQuery.post('%s', jQuery('%s').serialize());", e.getAttribute("action"), cssSelector);
-        });
+        WebElement form = driver().findElement(By.cssSelector(cssSelector));
+        script("jQuery.post('%s', jQuery('%s').serialize());", form.getAttribute("action"), cssSelector);
         return chain();
+    }
+
+    private void enablejQuery() {
+        JavascriptExecutor js = (JavascriptExecutor) driver();
+
+        if (js.executeScript("return !!window.jQuery;") == Boolean.FALSE) {
+            System.out.println("load jquery");
+            try {
+                URL jqueryUrl = Resources.getResource("marionette/browser/jquery.js");
+                String jqueryText = Resources.toString(jqueryUrl, Charsets.UTF_8);
+                js.executeScript(jqueryText);
+                System.out.println("ok");
+            } catch (IOException e) {
+                throw I.quiet(e);
+            }
+        }
     }
 
     /**
@@ -787,6 +805,19 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      */
     public final Self script(String script, Object... values) {
         ((JavascriptExecutor) driver()).executeScript(String.format(script, values));
+        return chain();
+    }
+
+    /**
+     * Remove the target attribute from the specified element.
+     * 
+     * @param selector
+     * @param name
+     * @return
+     */
+    public final Self removeAttribute(String selector, String name) {
+        script("document.querySelector('%s').removeAttribute('%s');", selector, name);
+
         return chain();
     }
 
