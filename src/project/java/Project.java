@@ -19,6 +19,7 @@ public class Project extends bee.api.Project {
         require("com.github.teletha", "antibug").atTest();
         require("net.java.dev.jna", "jna", "5.5.0");
         require("net.java.dev.jna", "jna-platform", "5.5.0");
+        require("io.github.classgraph", "classgraph");
 
         require("org.seleniumhq.selenium", "selenium-firefox-driver", selenium);
         require("org.seleniumhq.selenium", "selenium-chrome-driver", selenium);

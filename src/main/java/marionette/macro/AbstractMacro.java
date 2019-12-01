@@ -45,9 +45,18 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
     }
 
     /**
+     * Get the name of this macro.
+     * 
+     * @return
+     */
+    public String name() {
+        return getClass().getSimpleName();
+    }
+
+    /**
      * Declare your macros.
      */
-    protected abstract void declare();
+    public abstract void declare();
 
     /**
      * Declare modifier key.
@@ -322,5 +331,13 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
             Location mousePosition = window().mousePosition();
             System.out.println("Mouse Position : " + mousePosition + "   Color : " + window().color(mousePosition));
         });
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return name();
     }
 }

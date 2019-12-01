@@ -26,7 +26,7 @@ public abstract class GW extends AbstractMacro<GW> {
      * {@inheritDoc}
      */
     @Override
-    protected void declare() {
+    public void declare() {
         require(window -> window.title().equals("Guild Wars 2"), () -> {
             professionSpesific();
 
