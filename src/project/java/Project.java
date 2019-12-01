@@ -9,13 +9,14 @@
  */
 public class Project extends bee.api.Project {
 
-    String selenium = "3.141.59";
+    String selenium = "4.0.0-alpha-3";
 
     {
-        product("com.github.teletha", "marionette", "0.2");
+        product("com.github.teletha", "marionette", "0.4");
 
-        require("com.github.teletha", "sinobu", "LATEST");
-        require("com.github.teletha", "antibug", "LATEST").atTest();
+        require("com.github.teletha", "sinobu");
+        require("com.github.teletha", "viewtify");
+        require("com.github.teletha", "antibug").atTest();
         require("net.java.dev.jna", "jna", "5.2.0");
         require("net.java.dev.jna", "jna-platform", "5.2.0");
 
