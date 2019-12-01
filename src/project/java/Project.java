@@ -21,7 +21,6 @@ public class Project extends bee.api.Project {
         require("net.java.dev.jna", "jna-platform", "5.5.0");
         require("io.github.classgraph", "classgraph");
 
-        require("org.seleniumhq.selenium", "selenium-firefox-driver", selenium);
         require("org.seleniumhq.selenium", "selenium-chrome-driver", selenium);
         require("org.seleniumhq.selenium", "selenium-support", selenium);
 

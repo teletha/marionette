@@ -147,12 +147,6 @@ public class Uncaptcha {
         return this;
     }
 
-    public static void main(String[] args) throws IOException {
-        String read = new Uncaptcha(Paths.get("render.png")).read();
-
-        System.out.println(read);
-    }
-
     /**
      * @version 2017/02/27 10:57:36
      */
