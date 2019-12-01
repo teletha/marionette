@@ -36,8 +36,6 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
     /** The window condition. */
     Predicate<Window> windowCondition = I.accept();
 
-    protected final Macro macro = I.make(Macro.class);
-
     /**
      * 
      */

@@ -9,8 +9,6 @@
  */
 package marionette;
 
-import marionette.macro.Macro;
-
 /**
  * 
  */
@@ -32,12 +30,5 @@ public class Mirage2 extends Mesmer {
         whenUseSkill1().merge(whenUseSkill2(), whenUseSkill3(), whenUseSkill4(), whenUseSkill5()).take(this::hasClone3).to(() -> {
             useShtterSkill();
         });
-    }
-
-    /**
-     * Entry point.
-     */
-    public static void main(String[] args) {
-        Macro.launch().useTrayIcon().use(Mirage2.class);
     }
 }

@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package marionette;
+package marionette.macro;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,17 +16,17 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.classgraph.ClassGraph;
-import io.github.classgraph.ClassInfo;
-import io.github.classgraph.ScanResult;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.DirectoryChooser;
+
+import io.github.classgraph.ClassGraph;
+import io.github.classgraph.ClassInfo;
+import io.github.classgraph.ScanResult;
 import kiss.I;
 import kiss.Manageable;
 import kiss.Singleton;
 import kiss.Storable;
-import marionette.macro.AbstractMacro;
 import viewtify.ActivationPolicy;
 import viewtify.Theme;
 import viewtify.Viewtify;
@@ -126,11 +126,14 @@ public class EasyMacro extends View {
      * @param args
      */
     public static void main(String[] args) {
+        GlobalEvents.initializeNativeHook();
+
         Viewtify.application()
                 .use(ActivationPolicy.Latest)
                 .use(Theme.Dark)
                 .size(70, 150)
                 .icon("marionette/macro/icon.png")
+                .onTerminating(GlobalEvents::disposeNativeHook)
                 .activate(EasyMacro.class);
     }
 }

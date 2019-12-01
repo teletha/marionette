@@ -14,7 +14,6 @@ import kiss.Signal;
 import marionette.macro.AbstractMacro;
 import marionette.macro.Key;
 import marionette.macro.KeyEvent;
-import marionette.macro.Macro;
 import marionette.macro.Mouse;
 
 public abstract class GW extends AbstractMacro<GW> {
@@ -616,13 +615,6 @@ public abstract class GW extends AbstractMacro<GW> {
 
             return direction;
         }).diff().or(State.None).repeat();
-    }
-
-    /**
-     * Entry point.
-     */
-    public static void main(String[] args) {
-        Macro.launch().useTrayIcon().use(GW.class);
     }
 
     /**

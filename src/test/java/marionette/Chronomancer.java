@@ -10,7 +10,6 @@
 package marionette;
 
 import marionette.macro.Key;
-import marionette.macro.Macro;
 
 /**
  * 
@@ -73,12 +72,5 @@ public class Chronomancer extends Mesmer {
     @Override
     protected boolean hasClone3() {
         return window().color(813, 1058).is(16744447);
-    }
-
-    /**
-     * Entry point.
-     */
-    public static void main(String[] args) {
-        Macro.launch().useTrayIcon().use(Chronomancer.class);
     }
 }

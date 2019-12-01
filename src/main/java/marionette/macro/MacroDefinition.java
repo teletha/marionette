@@ -9,9 +9,9 @@
  */
 package marionette.macro;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Predicate;
 
 import kiss.I;
@@ -20,16 +20,16 @@ import kiss.Signaling;
 class MacroDefinition {
 
     /** The event listeners. */
-    static final List<MacroDefinition> presses = new ArrayList();
+    static final List<MacroDefinition> presses = new CopyOnWriteArrayList();
 
     /** The event listeners. */
-    static final List<MacroDefinition> releases = new ArrayList();
+    static final List<MacroDefinition> releases = new CopyOnWriteArrayList();
 
     /** The event listeners. */
-    static final List<MacroDefinition> mouseMove = new ArrayList();
+    static final List<MacroDefinition> mouseMove = new CopyOnWriteArrayList();
 
     /** The event listeners. */
-    static final List<MacroDefinition> mouseWheel = new ArrayList();
+    static final List<MacroDefinition> mouseWheel = new CopyOnWriteArrayList();
 
     /** The window condition. */
     final Predicate<Window> windowConditon;

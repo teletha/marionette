@@ -9,11 +9,10 @@
  */
 package marionette;
 
-import static marionette.macro.MacroOption.*;
+import static marionette.macro.MacroOption.IgnoreEvent;
 
 import marionette.macro.AbstractMacro;
 import marionette.macro.Key;
-import marionette.macro.Macro;
 
 public class Eclipse extends AbstractMacro<Eclipse> {
 
@@ -38,12 +37,5 @@ public class Eclipse extends AbstractMacro<Eclipse> {
                 press(key);
             }
         });
-    }
-
-    /**
-     * Entry point.
-     */
-    public static void main(String[] args) {
-        Macro.launch().useTrayIcon().use(Eclipse.class);
     }
 }

@@ -22,6 +22,7 @@ import com.sun.jna.Structure;
 import com.sun.jna.platform.win32.BaseTSD.ULONG_PTR;
 import com.sun.jna.platform.win32.Kernel32;
 import com.sun.jna.platform.win32.User32;
+import com.sun.jna.platform.win32.WinDef;
 import com.sun.jna.platform.win32.WinDef.DWORD;
 import com.sun.jna.platform.win32.WinDef.LPARAM;
 import com.sun.jna.platform.win32.WinDef.LRESULT;
@@ -31,7 +32,6 @@ import com.sun.jna.platform.win32.WinUser.HHOOK;
 import com.sun.jna.platform.win32.WinUser.HOOKPROC;
 import com.sun.jna.platform.win32.WinUser.KBDLLHOOKSTRUCT;
 import com.sun.jna.platform.win32.WinUser.LowLevelKeyboardProc;
-import com.sun.jna.platform.win32.WinUser.MSG;
 
 class GlobalEvents {
 
@@ -58,26 +58,25 @@ class GlobalEvents {
     }
 
     /**
-     * @version 2018/11/19 9:46:02
+     * 
      */
     protected static abstract class NativeHook<T> implements Runnable, HOOKPROC {
 
         /** The actual executor. */
         private final ExecutorService executor = new ThreadPoolExecutor(4, 256, 30, TimeUnit.SECONDS, new SynchronousQueue(), runnable -> {
             Thread thread = new Thread(runnable);
-            thread.setName(NativeKeyboardHook.class.getSimpleName());
-            thread.setPriority(Thread.MAX_PRIORITY);
-            thread.setDaemon(false);
+            thread.setName(NativeHook.class.getSimpleName());
+            thread.setDaemon(true);
             return thread;
         });
 
         /** The native hook. */
         protected HHOOK hook;
 
+        private int threadId;
+
         /**
-         * <p>
          * Install service.
-         * </p>
          */
         void install() {
             executor.execute(this);
@@ -85,13 +84,11 @@ class GlobalEvents {
         }
 
         /**
-         * <p>
          * Uninstall service.
-         * </p>
          */
         void uninstall() {
-            executor.shutdown();
-            User32.INSTANCE.UnhookWindowsHookEx(hook);
+            User32.INSTANCE.PostThreadMessage(threadId, WinUser.WM_QUIT, new WinDef.WPARAM(), new WinDef.LPARAM());
+            executor.shutdownNow();
         }
 
         /**
@@ -108,19 +105,11 @@ class GlobalEvents {
          */
         @Override
         public final void run() {
+            threadId = Kernel32.INSTANCE.GetCurrentThreadId();
             hook = User32.INSTANCE.SetWindowsHookEx(hookType(), this, Kernel32.INSTANCE.GetModuleHandle(null), 0);
 
-            int result;
-            MSG message = new MSG();
-
-            while ((result = User32.INSTANCE.GetMessage(message, null, 0, 0)) != 0) {
-                if (result == -1) {
-                    break;
-                } else {
-                    User32.INSTANCE.TranslateMessage(message);
-                    User32.INSTANCE.DispatchMessage(message);
-                }
-            }
+            User32.INSTANCE.GetMessage(new WinUser.MSG(), new WinDef.HWND(Pointer.NULL), 0, 0);
+            User32.INSTANCE.UnhookWindowsHookEx(hook);
         }
 
         /**

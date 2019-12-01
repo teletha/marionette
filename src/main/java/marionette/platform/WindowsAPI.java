@@ -422,7 +422,7 @@ class WindowsAPI implements marionette.platform.Native<HWND> {
     }
 
     /**
-     * @version 2016/10/12 9:47:45
+     * 
      */
     private static class Clipboard implements Runnable {
 
@@ -430,8 +430,7 @@ class WindowsAPI implements marionette.platform.Native<HWND> {
         private static final ExecutorService executor = Executors.newSingleThreadExecutor(runnable -> {
             Thread thread = new Thread(runnable);
             thread.setName(Clipboard.class.getSimpleName());
-            thread.setPriority(Thread.MAX_PRIORITY);
-            thread.setDaemon(false);
+            thread.setDaemon(true);
             return thread;
         });
 

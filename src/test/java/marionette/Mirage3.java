@@ -9,8 +9,6 @@
  */
 package marionette;
 
-import marionette.macro.Macro;
-
 /**
  * 
  */
@@ -54,12 +52,5 @@ public class Mirage3 extends Mesmer {
             super.performDodge();
             useShtterSkill();
         }
-    }
-
-    /**
-     * Entry point.
-     */
-    public static void main(String[] args) {
-        Macro.launch().useTrayIcon().use(Mirage3.class);
     }
 }
