@@ -23,6 +23,7 @@ import com.sun.jna.platform.win32.WinUser.INPUT;
 import kiss.Extensible;
 import kiss.I;
 import kiss.Signal;
+import kiss.Variable;
 import marionette.platform.Location;
 
 public abstract class AbstractMacro<Self extends AbstractMacro> implements Extensible {
@@ -32,6 +33,9 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
 
     /** The display scale. */
     private static final long ScaleY = 65536 / User32.INSTANCE.GetSystemMetrics(User32.SM_CYSCREEN);
+
+    /** The activation state. */
+    public Variable<Boolean> enable = Variable.of(false);
 
     /** The window condition. */
     Predicate<Window> windowCondition = I.accept();
@@ -75,7 +79,7 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
      * @return
      */
     protected final Signal<KeyEvent> whenPress(Key key, MacroOption... options) {
-        return new MacroDefinition(key, true, windowCondition, Set.of(options)).events.expose;
+        return new MacroDefinition(key, true, windowCondition, enable, Set.of(options)).events.expose;
     }
 
     /**
@@ -87,7 +91,7 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
      * @return
      */
     protected final Signal<KeyEvent> whenRelease(Key key, MacroOption... options) {
-        return new MacroDefinition(key, false, windowCondition, Set.of(options)).events.expose;
+        return new MacroDefinition(key, false, windowCondition, enable, Set.of(options)).events.expose;
     }
 
     /**
@@ -152,7 +156,7 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
      * @return
      */
     protected final Signal<KeyEvent> when(Mouse mouse, MacroOption... options) {
-        return new MacroDefinition(mouse, windowCondition, Set.of(options)).events.expose;
+        return new MacroDefinition(mouse, windowCondition, enable, Set.of(options)).events.expose;
     }
 
     /**

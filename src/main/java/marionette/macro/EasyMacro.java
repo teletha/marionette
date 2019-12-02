@@ -14,7 +14,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +33,7 @@ import viewtify.ActivationPolicy;
 import viewtify.Theme;
 import viewtify.Viewtify;
 import viewtify.ui.UI;
+import viewtify.ui.UICheckBox;
 import viewtify.ui.UIListView;
 import viewtify.ui.View;
 
@@ -58,7 +61,9 @@ public class EasyMacro extends View {
 
         directories.loadMacro();
 
-        list.values(directories.macros);
+        list.items(directories.macros).context(c -> {
+            c.menu().text("Restart").whenUserClick(Viewtify::reactivate);
+        }).renderUI(e -> make(UICheckBox.class).text(e.name()).model(e.enable));
     }
 
     private File selectDirectory() {
@@ -71,6 +76,8 @@ public class EasyMacro extends View {
     private static class MacroManager implements Storable {
 
         public List<File> directories = new ArrayList();
+
+        public Map<Class, Boolean> enables = new HashMap();
 
         private URLClassLoader loader;
 

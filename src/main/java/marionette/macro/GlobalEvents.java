@@ -9,6 +9,8 @@
  */
 package marionette.macro;
 
+import static java.lang.Boolean.TRUE;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -124,7 +126,7 @@ class GlobalEvents {
             // built-in state management macro
 
             for (MacroDefinition macro : macros) {
-                if (macro.windowConditon.test(now) && macro.condition.test(key)) {
+                if (macro.enable.is(TRUE) && macro.windowConditon.test(now) && macro.condition.test(key)) {
                     executor.execute(() -> {
                         macro.events.accept(event);
                     });

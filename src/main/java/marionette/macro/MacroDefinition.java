@@ -16,6 +16,7 @@ import java.util.function.Predicate;
 
 import kiss.I;
 import kiss.Signaling;
+import kiss.Variable;
 
 class MacroDefinition {
 
@@ -40,6 +41,9 @@ class MacroDefinition {
     /** The event should be consumed or not. */
     final boolean consumable;
 
+    /** The acrivation state. */
+    final Variable<Boolean> enable;
+
     final Signaling<KeyEvent> events = new Signaling();
 
     /**
@@ -50,8 +54,8 @@ class MacroDefinition {
      * @param windowConditon
      * @param options
      */
-    MacroDefinition(Key key, boolean press, Predicate<Window> windowConditon, Set<MacroOption> options) {
-        this(key.matcher(), windowConditon, options);
+    MacroDefinition(Key key, boolean press, Predicate<Window> windowConditon, Variable<Boolean> enable, Set<MacroOption> options) {
+        this(key.matcher(), windowConditon, enable, options);
 
         if (press) {
             presses.add(this);
@@ -67,8 +71,8 @@ class MacroDefinition {
      * @param windowConditon
      * @param options
      */
-    MacroDefinition(Mouse mouse, Predicate<Window> windowConditon, Set<MacroOption> options) {
-        this(I.accept(), windowConditon, options);
+    MacroDefinition(Mouse mouse, Predicate<Window> windowConditon, Variable<Boolean> enable, Set<MacroOption> options) {
+        this(I.accept(), windowConditon, enable, options);
 
         switch (mouse) {
         case Move:
@@ -91,9 +95,10 @@ class MacroDefinition {
      * @param windowCondition
      * @param options
      */
-    private MacroDefinition(Predicate condition, Predicate<Window> windowCondition, Set<MacroOption> options) {
+    private MacroDefinition(Predicate condition, Predicate<Window> windowCondition, Variable<Boolean> enable, Set<MacroOption> options) {
         this.condition = condition;
         this.windowConditon = windowCondition;
+        this.enable = enable;
         this.consumable = options.contains(MacroOption.IgnoreEvent);
     }
 }
