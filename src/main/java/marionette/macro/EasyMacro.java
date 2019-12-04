@@ -36,6 +36,7 @@ import viewtify.ui.UI;
 import viewtify.ui.UICheckBox;
 import viewtify.ui.UIListView;
 import viewtify.ui.View;
+import viewtify.ui.helper.User;
 
 public class EasyMacro extends View {
 
@@ -62,14 +63,14 @@ public class EasyMacro extends View {
         directories.loadMacro();
 
         list.items(directories.macros).context(c -> {
-            c.menu().text("Restart").whenUserClick(Viewtify::reactivate);
+            c.menu().text("Restart").when(User.LeftClick, Viewtify::reactivate);
         }).renderByUI(e -> make(UICheckBox.class).text(e.name()).model(e.enable));
     }
 
     private File selectDirectory() {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("マクロを定義したクラスが存在するパッケージのルートディレクトリを選択して下さい");
-        return directoryChooser.showDialog(root().ui().sceneProperty().get().getWindow());
+        return directoryChooser.showDialog(findRootView().ui().sceneProperty().get().getWindow());
     }
 
     @Manageable(lifestyle = Singleton.class)
