@@ -22,10 +22,10 @@ public class Eclipse extends AbstractMacro<Eclipse> {
     @Override
     public void declare() {
         require(window -> window.title().contains("Eclipse"), () -> {
-            shortcut(Key.O, Key.Up);
-            shortcut(Key.K, Key.Left);
-            shortcut(Key.L, Key.Down);
-            shortcut(Key.SemiColon, Key.Right);
+            shortcut(Key.P, Key.Up);
+            shortcut(Key.L, Key.Left);
+            shortcut(Key.SemiColon, Key.Down);
+            shortcut(Key.Colon, Key.Right);
         });
     }
 
