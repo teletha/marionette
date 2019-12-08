@@ -26,7 +26,7 @@ import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfo;
 import io.github.classgraph.ScanResult;
 import kiss.I;
-import kiss.Manageable;
+import kiss.Managed;
 import kiss.Singleton;
 import kiss.Storable;
 import viewtify.ActivationPolicy;
@@ -73,7 +73,7 @@ public class EasyMacro extends View {
         return directoryChooser.showDialog(findRootView().ui().sceneProperty().get().getWindow());
     }
 
-    @Manageable(lifestyle = Singleton.class)
+    @Managed(value = Singleton.class)
     private static class MacroManager implements Storable {
 
         public List<File> directories = new ArrayList();
