@@ -10,9 +10,6 @@
 package marionette.macro;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,9 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.DirectoryChooser;
 
-import io.github.classgraph.ClassGraph;
-import io.github.classgraph.ClassInfo;
-import io.github.classgraph.ScanResult;
+import kiss.Disposable;
 import kiss.I;
 import kiss.Managed;
 import kiss.Singleton;
@@ -80,7 +75,7 @@ public class EasyMacro extends View {
 
         public Map<Class, Boolean> enables = new HashMap();
 
-        private URLClassLoader loader;
+        private Disposable loader;
 
         private ObservableList<AbstractMacro> macros = FXCollections.observableArrayList();
 
@@ -98,32 +93,15 @@ public class EasyMacro extends View {
          */
         private void loadMacro() {
             if (loader != null) {
-                try {
-                    for (AbstractMacro macro : macros) {
-                    }
-                    macros.clear();
-                    loader.close();
-                } catch (IOException e) {
-                    throw I.quiet(e);
-                }
+                macros.clear();
+                loader.dispose();
             }
-            loader = new URLClassLoader(I.signal(directories).map(path -> path.toURI().toURL()).toList().toArray(URL[]::new));
 
-            // scan
-            ScanResult result = new ClassGraph().enableAllInfo().addClassLoader(loader).scan();
+            loader = I.signal(directories).map(path -> path.toURI().toURL()).to(I::load);
 
-            for (ClassInfo info : result.getSubclasses(AbstractMacro.class.getName())) {
-                if (!info.isAbstract()) {
-                    try {
-                        Class<AbstractMacro> clazz = (Class<AbstractMacro>) Class.forName(info.getName(), true, loader);
-                        AbstractMacro macro = I.make(clazz);
-                        macro.declare();
-
-                        macros.add(macro);
-                    } catch (ClassNotFoundException e) {
-                        throw I.quiet(e);
-                    }
-                }
+            for (AbstractMacro macro : I.find(AbstractMacro.class)) {
+                macro.declare();
+                macros.add(macro);
             }
         }
     }
