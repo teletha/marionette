@@ -27,7 +27,7 @@ import kiss.Storable;
 import viewtify.ActivationPolicy;
 import viewtify.Theme;
 import viewtify.Viewtify;
-import viewtify.ui.UI;
+import viewtify.ui.ViewDSL;
 import viewtify.ui.UICheckBox;
 import viewtify.ui.UIListView;
 import viewtify.ui.View;
@@ -39,7 +39,7 @@ public class EasyMacro extends View {
 
     private UIListView<AbstractMacro> list;
 
-    class view extends UI {
+    class view extends ViewDSL {
         {
             $(list);
         }
