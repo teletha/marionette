@@ -18,7 +18,6 @@ import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.DirectoryChooser;
-
 import kiss.Disposable;
 import kiss.I;
 import kiss.Managed;
@@ -27,10 +26,10 @@ import kiss.Storable;
 import viewtify.ActivationPolicy;
 import viewtify.Theme;
 import viewtify.Viewtify;
-import viewtify.ui.ViewDSL;
 import viewtify.ui.UICheckBox;
 import viewtify.ui.UIListView;
 import viewtify.ui.View;
+import viewtify.ui.ViewDSL;
 import viewtify.ui.helper.User;
 
 public class EasyMacro extends View {
@@ -59,7 +58,7 @@ public class EasyMacro extends View {
 
         list.items(directories.macros).context(c -> {
             c.menu().text("Restart").when(User.LeftClick, Viewtify::reactivate);
-        }).renderByUI(() -> make(UICheckBox.class), (check, e) -> check.text(e.name()).sync(e.enable));
+        }).renderByUI(() -> new UICheckBox(this), (check, e) -> check.text(e.name()).sync(e.enable));
     }
 
     private File selectDirectory() {
