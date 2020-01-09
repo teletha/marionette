@@ -32,6 +32,7 @@ import com.sun.jna.platform.win32.WinDef.RECT;
 import com.sun.jna.platform.win32.WinDef.WPARAM;
 import com.sun.jna.platform.win32.WinUser;
 import com.sun.jna.platform.win32.WinUser.MSG;
+import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.win32.StdCallLibrary;
 import com.sun.jna.win32.W32APIOptions;
 
@@ -112,6 +113,16 @@ class WindowsAPI implements marionette.platform.Native<HWND> {
     @Override
     public String getWindowTitle(HWND windowID) {
         return text(windowID, User::GetWindowText);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getWindowProcessId(HWND windowID) {
+        IntByReference pid = new IntByReference();
+        User.GetWindowThreadProcessId(windowID, pid);
+        return pid.getValue();
     }
 
     /**

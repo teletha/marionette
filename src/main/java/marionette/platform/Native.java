@@ -9,7 +9,7 @@
  */
 package marionette.platform;
 
-import static com.sun.jna.Platform.*;
+import static com.sun.jna.Platform.isWindows;
 
 import java.util.function.Consumer;
 
@@ -81,6 +81,15 @@ public interface Native<ID> {
      * @return
      */
     String getWindowTitle(ID windowID);
+
+    /**
+     * <p>
+     * Retrieve the specified window's process id.
+     * </p>
+     * 
+     * @param windowID
+     */
+    int getWindowProcessId(ID windowID);
 
     /**
      * <p>

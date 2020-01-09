@@ -9,9 +9,11 @@
  */
 package marionette.macro;
 
+import java.io.IOException;
 import java.nio.file.Path;
 
 import kiss.Disposable;
+import kiss.I;
 import kiss.Signal;
 import marionette.platform.Color;
 import marionette.platform.Location;
@@ -50,6 +52,23 @@ public class Window {
      */
     public void close() {
         Native.API.closeWindow(windowID);
+    }
+
+    /**
+     * <p>
+     * ウインドウを閉じます。（同期）
+     * </p>
+     */
+    public void restart() {
+        ProcessHandle.of(Native.API.getWindowProcessId(windowID)).flatMap(process -> process.info().command()).ifPresent(command -> {
+            close();
+
+            try {
+                new ProcessBuilder(command).start();
+            } catch (IOException e) {
+                throw I.quiet(e);
+            }
+        });
     }
 
     /**

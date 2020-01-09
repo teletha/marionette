@@ -71,6 +71,14 @@ class UnknownAPI implements Native {
      * {@inheritDoc}
      */
     @Override
+    public int getWindowProcessId(Object windowID) {
+        throw error();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void closeWindow(Object windowID) {
         throw error();
     }

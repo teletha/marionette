@@ -24,6 +24,7 @@ import kiss.Extensible;
 import kiss.I;
 import kiss.Signal;
 import kiss.Variable;
+import kiss.Ⅱ;
 import marionette.platform.Location;
 
 public abstract class AbstractMacro<Self extends AbstractMacro> implements Extensible {
@@ -106,7 +107,11 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
         int[] last = new int[2];
         StringBuilder directions = new StringBuilder();
 
-        return when(Mouse.Move).skipUntil(whenPress(key, options)).takeUntil(whenRelease(key, options)).effectOnce(e -> {
+        Signal<KeyEvent> start = whenPress(key, options);
+        Signal<KeyEvent> capture = when(Mouse.Move).skipUntil(start);
+        Signal<KeyEvent> stop = whenRelease(key, options).skipUntil(start);
+
+        return capture.effectOnce(e -> {
             // save start position
             last[0] = e.x();
             last[1] = e.y();
@@ -144,7 +149,7 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
             last[1] = y;
 
             return directions.toString();
-        }).last().repeat();
+        }).combineLatest(stop).map(Ⅱ::ⅰ).first().repeat();
     }
 
     /**
@@ -194,6 +199,61 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
     protected final Self input(Key... keys) {
         for (Key key : keys) {
             emulate(key, true, true);
+        }
+        return (Self) this;
+    }
+
+    /**
+     * <p>
+     * Emulate press and release event in series.
+     * </p>
+     * 
+     * @param keys
+     * @return
+     */
+    protected final Self input(Key key, Runnable subsequence) {
+        return input(new Key[] {key}, subsequence);
+    }
+
+    /**
+     * <p>
+     * Emulate press and release event in series.
+     * </p>
+     * 
+     * @param keys
+     * @return
+     */
+    protected final Self input(Key key1, Key key2, Runnable subsequence) {
+        return input(new Key[] {key1, key2}, subsequence);
+    }
+
+    /**
+     * <p>
+     * Emulate press and release event in series.
+     * </p>
+     * 
+     * @param keys
+     * @return
+     */
+    protected final Self input(Key key1, Key key2, Key key3, Runnable subsequence) {
+        return input(new Key[] {key1, key2, key3}, subsequence);
+    }
+
+    /**
+     * <p>
+     * Emulate press and release event in series.
+     * </p>
+     * 
+     * @param keys
+     * @return
+     */
+    protected final Self input(Key[] keys, Runnable subsequence) {
+        for (Key key : keys) {
+            press(key);
+        }
+        subsequence.run();
+        for (Key key : keys) {
+            release(key);
         }
         return (Self) this;
     }
