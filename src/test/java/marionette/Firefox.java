@@ -20,7 +20,7 @@ public class Firefox extends AbstractMacro<Firefox> {
      */
     @Override
     public void declare() {
-        require(window -> window.title().contains("Firefox"), () -> {
+        require(window -> window.processName().equals("firefox.exe"), () -> {
             whenGesture(Key.MouseRight).to(this::gesture);
         });
     }

@@ -9,6 +9,7 @@
  */
 package marionette.macro;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -47,6 +48,30 @@ public class Window {
 
     /**
      * <p>
+     * プロセスを返します。
+     * </p>
+     * 
+     * @return
+     */
+    public ProcessHandle.Info process() {
+        return ProcessHandle.of(Native.API.getWindowProcessId(windowID)).map(process -> process.info()).orElseThrow();
+    }
+
+    /**
+     * <p>
+     * プロセス名を返します。
+     * </p>
+     * 
+     * @return
+     */
+    public String processName() {
+        String command = process().command().orElseThrow();
+        int index = command.lastIndexOf(File.separatorChar);
+        return index == -1 ? command : command.substring(index + 1);
+    }
+
+    /**
+     * <p>
      * ウインドウを閉じます。（同期）
      * </p>
      */
@@ -60,7 +85,7 @@ public class Window {
      * </p>
      */
     public void restart() {
-        ProcessHandle.of(Native.API.getWindowProcessId(windowID)).flatMap(process -> process.info().command()).ifPresent(command -> {
+        process().command().ifPresent(command -> {
             close();
 
             try {
