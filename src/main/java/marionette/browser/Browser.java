@@ -731,7 +731,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * @return Chainable API.
      */
     public final Self load(Optional<String> uri) {
-        return load(Variable.of(uri));
+        return load(Variable.of(uri.orElse(null)));
     }
 
     /**
