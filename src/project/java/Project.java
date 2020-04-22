@@ -9,7 +9,7 @@
  */
 public class Project extends bee.api.Project {
 
-    String selenium = "4.0.0-alpha-3";
+    String selenium = "4.0.0-alpha-5";
 
     {
         product("com.github.teletha", "marionette", "0.4");

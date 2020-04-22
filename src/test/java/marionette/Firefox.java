@@ -20,8 +20,15 @@ public class Firefox extends AbstractMacro<Firefox> {
      */
     @Override
     public void declare() {
-        require(window -> window.processName().equals("firefox.exe"), () -> {
-            whenGesture(Key.MouseRight).to(this::gesture);
+        whenPress(Key.MouseRight).to(() -> {
+            System.out.println("OK");
+            delay(200);
+            input(Key.D);
+            delay(200);
+            input(Key.Tab);
+            delay(200);
+            input(Key.Return);
+            delay(200);
         });
     }
 

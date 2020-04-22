@@ -9,8 +9,6 @@
  */
 package marionette;
 
-import marionette.macro.Key;
-
 /**
  * 
  */
@@ -21,27 +19,34 @@ public class Chronomancer extends Mesmer {
      */
     @Override
     protected void professionSpesific() {
-        debugByMouse();
-
         whenUseSkill1().merge(whenUseSkill2(), whenUseSkill3(), whenUseSkill4(), whenUseSkill5()).take(this::hasClone3).to(() -> {
             useShtterSkill();
         });
 
-        whenPress(Key.G).to(() -> {
-            useProfessionSkill5();
-            await();
-
-            useProfessionSkill4();
-            await();
-            useProfessionSkill3();
-            await();
-            useProfessionSkill2();
-            await();
-            useProfessionSkill1();
-            await();
-            useUtilitySkill1();
-
+        whenUseSkill1().to(e -> {
+            if (canActivateWeaponSkill3()) {
+                useWeaponSkill3();
+                await(2250);
+            } else if (canActivateWeaponSkill5()) {
+                useWeaponSkill5();
+                await();
+            }
+            useWeaponSkill1();
         });
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void performDodge() {
+        if (canActivateWeaponSkill2()) {
+            useWeaponSkill2();
+        } else if (canActivateWeaponSkill4()) {
+            useWeaponSkill4();
+        } else {
+            super.performDodge();
+        }
     }
 
     /**
@@ -51,7 +56,7 @@ public class Chronomancer extends Mesmer {
      */
     @Override
     protected boolean hasClone1() {
-        return window().color(748, 1062).is(16547836);
+        return !window().color(719, 1059).is(2893860);
     }
 
     /**
@@ -61,7 +66,7 @@ public class Chronomancer extends Mesmer {
      */
     @Override
     protected boolean hasClone2() {
-        return window().color(781, 1059).is(16744447);
+        return !window().color(754, 1061).is(2893860);
     }
 
     /**
@@ -71,6 +76,6 @@ public class Chronomancer extends Mesmer {
      */
     @Override
     protected boolean hasClone3() {
-        return window().color(813, 1058).is(16744447);
+        return !window().color(786, 1061).is(2893859);
     }
 }
