@@ -110,10 +110,11 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
             ChromeOptions options = new ChromeOptions();
             options.addArguments(prefs.options);
             driver = new ChromeDriver(options);
+
             driver.manage().timeouts().pageLoadTimeout(prefs.pageLoadTimeout, TimeUnit.MILLISECONDS);
-            operation = new WebDriverWait(driver, Duration.ofSeconds(prefs.operationTimeout));
-            operationForHuman = new WebDriverWait(driver, Duration.ofSeconds(Integer.MAX_VALUE), Duration.ofMillis(500));
-            searchElement = new WebDriverWait(driver, Duration.ofSeconds(60), Duration.ofMillis(500));
+            operation = new WebDriverWait(driver, prefs.operationTimeout);
+            operationForHuman = new WebDriverWait(driver, Integer.MAX_VALUE, 500);
+            searchElement = new WebDriverWait(driver, 60, 500);
             searchElementExactly = prefs.searchElementExactly;
             operationInterval = prefs.operationInterval;
         }
