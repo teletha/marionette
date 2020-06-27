@@ -58,7 +58,7 @@ public class EasyMacro extends View {
         directories.loadMacro();
 
         list.items(directories.macros).context(c -> {
-            c.menu().text("Restart").when(User.LeftClick, Viewtify::reactivate);
+            c.menu().text("Restart").when(User.LeftClick, () -> Viewtify.application().reactivate());
         }).renderByUI(() -> new UICheckBox(this), (check, e) -> check.text(e.name()).sync(e.enable));
     }
 
