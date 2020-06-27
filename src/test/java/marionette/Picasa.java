@@ -1,0 +1,33 @@
+/*
+ * Copyright (C) 2019 Marionette Development Team
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *          https://opensource.org/licenses/MIT
+ */
+package marionette;
+
+import marionette.macro.AbstractMacro;
+import marionette.macro.Key;
+import marionette.macro.MacroOption;
+
+public class Picasa extends AbstractMacro<Picasa> {
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void declare() {
+        require(window -> window.title().contains("Picasa"), () -> {
+            whenPress(Key.N0, MacroOption.IgnoreEvent).to(e -> {
+                input(Key.AltLeft);
+                input(Key.O);
+                input(Key.D);
+                input(Key.Tab);
+                input(Key.Return);
+            });
+        });
+    }
+}
