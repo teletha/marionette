@@ -848,7 +848,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      */
     public final Self storeCookie(Path file) {
         try {
-            Cookies cookies = I.signal(driver().manage().getCookies()).to(Cookies.class, (m, c) -> m.put(c.getName(), c));
+            Cookies cookies = I.signal(driver().manage().getCookies()).to(new Cookies(), (m, c) -> m.put(c.getName(), c));
             I.write(cookies, Files.newBufferedWriter(file));
         } catch (IOException e) {
             throw I.quiet(e);
