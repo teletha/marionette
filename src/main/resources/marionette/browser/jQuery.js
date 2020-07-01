@@ -1,15 +1,11 @@
-/*!
- * jQuery JavaScript Library v3.4.1
- * https://jquery.com/
+/*
+ * Copyright (C) 2020 marionette Development Team
  *
- * Includes Sizzle.js
- * https://sizzlejs.com/
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * Copyright JS Foundation and other contributors
- * Released under the MIT license
- * https://jquery.org/license
- *
- * Date: 2019-05-01T21:04Z
+ *          https://opensource.org/licenses/MIT
  */
 ( function( global, factory ) {
 

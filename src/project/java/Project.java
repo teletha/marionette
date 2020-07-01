@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Marionette Development Team
+ * Copyright (C) 2020 marionette Development Team
  *
  * Licensed under the MIT License (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@ public class Project extends bee.api.Project {
     String selenium = "3.141.59";
 
     {
-        product("com.github.teletha", "marionette", "0.4");
+        product("com.github.teletha", "marionette", "1.0.0");
 
         require("com.github.teletha", "sinobu");
         require("com.github.teletha", "viewtify");
