@@ -865,7 +865,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     public final Self restoreCookie(Path file) {
         if (Files.exists(file)) {
             try {
-                Cookies cookies = I.json(Files.newBufferedReader(file)).to(new Cookies());
+                Cookies cookies = I.json(Files.newBufferedReader(file)).as(new Cookies());
 
                 for (Cookie cookie : cookies.values()) {
                     driver().manage().addCookie(cookie);
