@@ -34,6 +34,18 @@ public class GW1 extends AbstractMacro<GW1> {
                 delay(1500);
                 input(Key.AtMark);
             });
+
+            whenPress(Key.Q).to(() -> {
+                input(Key.NumPad1, Key.J);
+                delay(100);
+                input(Key.G);
+            });
+
+            whenPress(Key.N4).to(() -> {
+                input(Key.NumPad1, Key.J);
+                delay(100);
+                input(Key.G);
+            });
         });
     }
 }
