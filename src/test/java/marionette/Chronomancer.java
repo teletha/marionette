@@ -19,7 +19,7 @@ public class Chronomancer extends Mesmer {
      */
     @Override
     protected void professionSpesific() {
-        whenUseSkill1().merge(whenUseSkill2(), whenUseSkill3(), whenUseSkill4(), whenUseSkill5()).take(this::hasClone3).to(() -> {
+        whenUseSkill1().merge(whenUseSkill2(), whenUseSkill3(), whenUseSkill4(), whenUseSkill5()).take(v -> hasClone3()).to(() -> {
             useShtterSkill();
         });
 
