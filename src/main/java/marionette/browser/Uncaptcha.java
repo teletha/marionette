@@ -132,7 +132,6 @@ public class Uncaptcha {
     /**
      * @param path
      * @return
-     * @throws IOException
      */
     public Uncaptcha write(String path) {
         Path out = Paths.get(path);

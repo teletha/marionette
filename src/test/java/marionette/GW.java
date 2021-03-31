@@ -281,8 +281,6 @@ public abstract class GW extends AbstractMacro<GW> {
 
     /**
      * Wait by time.
-     * 
-     * @param ms
      */
     protected final void await() {
         await(550);

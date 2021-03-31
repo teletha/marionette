@@ -164,11 +164,8 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     }
 
     /**
-     * <p>
      * Wait client explicitly.
-     * </p>
      * 
-     * @param millSeconds A time to sleep.
      * @return Chainable API.
      */
     public final Self await(int time, TimeUnit unit) {
@@ -355,12 +352,9 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     }
 
     /**
-     * <p>
      * Click the target element.
-     * </p>
      * 
      * @param selector A css selector.
-     * @param retry A list of retry.
      * @return Chainable API.
      */
     public final Self click(String selector) {
@@ -368,12 +362,8 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     }
 
     /**
-     * <p>
      * Click the target element.
-     * </p>
      * 
-     * @param selector A element selector.
-     * @param retry A list of retry.
      * @return Chainable API.
      */
     public final Self click(By elementSelector) {
@@ -383,12 +373,8 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     }
 
     /**
-     * <p>
      * Click the target element.
-     * </p>
      * 
-     * @param selector A element selector.
-     * @param retry A list of retry.
      * @return Chainable API.
      */
     public final Self click(WebElement element) {
@@ -407,11 +393,8 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     }
 
     /**
-     * <p>
      * Clear element by the specified selector.
-     * </p>
      * 
-     * @param string
      */
     public Browser clear(String selector) {
         By cssSelector = By.cssSelector(selector);
@@ -481,7 +464,6 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * </p>
      * 
      * @param selector A css selector.
-     * @param input A option to deselect.
      * @return Chainable API.
      */
     public final Self deselect(String selector) {
@@ -494,7 +476,6 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * </p>
      * 
      * @param selector A element selector.
-     * @param input A option to deselect.
      * @return Chainable API.
      */
     public final Self deselect(By selector) {
@@ -548,7 +529,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * Find elements by selector and process them.
      * </p>
      * 
-     * @param elementSelector A element selector.
+     * @param elements A element selector.
      * @param processor A element processor.
      * @return Chainable API.
      */
@@ -908,12 +889,9 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     }
 
     /**
-     * <p>
      * Select the target option.
-     * </p>
      * 
      * @param selector A css selector.
-     * @param input A option to select.
      * @return Chainable API.
      */
     public final Self select(String selector) {
@@ -921,12 +899,9 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     }
 
     /**
-     * <p>
      * Select the target option.
-     * </p>
      * 
      * @param selector A element selector.
-     * @param input A option to select.
      * @return Chainable API.
      */
     public final Self select(By selector) {
@@ -938,12 +913,9 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     }
 
     /**
-     * <p>
      * Select the target option.
-     * </p>
      * 
      * @param selector A css selector.
-     * @param input A option to select.
      * @return Chainable API.
      */
     public final Self select(String selector, int index) {
@@ -956,7 +928,6 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * </p>
      * 
      * @param selector A element selector.
-     * @param input A option to select.
      * @return Chainable API.
      */
     public final Self select(By selector, int index) {
@@ -967,12 +938,9 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     }
 
     /**
-     * <p>
      * Retrive text.
-     * </p>
      * 
      * @param selector A css selector.
-     * @param retry A list of retry.
      * @return A text contents.
      */
     public final Variable<String> text(String selector) {
@@ -980,12 +948,9 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
     }
 
     /**
-     * <p>
      * Retrieve text.
-     * </p>
      * 
      * @param selector A eleemnt selector.
-     * @param retry A list of retry.
      * @return A text contents.
      */
     public final Variable<String> text(By selector) {

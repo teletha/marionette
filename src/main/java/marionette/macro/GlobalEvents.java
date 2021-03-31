@@ -376,11 +376,7 @@ class GlobalEvents {
     }
 
     /**
-     * <p>
      * Contains information about a low-level mouse input event.
-     * </p>
-     * 
-     * @see https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagmsllhookstruct
      */
     public static class MSLLHOOKSTRUCT extends Structure {
 

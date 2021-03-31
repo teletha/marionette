@@ -204,11 +204,8 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
     }
 
     /**
-     * <p>
      * Emulate press and release event in series.
-     * </p>
      * 
-     * @param keys
      * @return
      */
     protected final Self input(Key key, Runnable subsequence) {
@@ -216,11 +213,8 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
     }
 
     /**
-     * <p>
      * Emulate press and release event in series.
-     * </p>
      * 
-     * @param keys
      * @return
      */
     protected final Self input(Key key1, Key key2, Runnable subsequence) {
@@ -228,11 +222,8 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
     }
 
     /**
-     * <p>
      * Emulate press and release event in series.
-     * </p>
      * 
-     * @param keys
      * @return
      */
     protected final Self input(Key key1, Key key2, Key key3, Runnable subsequence) {
@@ -378,11 +369,7 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
     }
 
     /**
-     * <p>
      * Declare the condition of macro activation.
-     * </p>
-     * 
-     * @param condition
      */
     protected final void requireTitle(String title, Runnable definitions) {
         require(window -> window.title().contains(title), definitions);

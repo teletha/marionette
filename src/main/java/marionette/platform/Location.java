@@ -35,8 +35,6 @@ public class Location {
     /**
      * @param x
      * @param y
-     * @param width
-     * @param height
      */
     Location(int x, int y) {
         this(x, y, x, y, Integer.MAX_VALUE, Integer.MAX_VALUE);
@@ -57,11 +55,8 @@ public class Location {
     }
 
     /**
-     * <p>
      * Create relative range.
-     * </p>
      * 
-     * @param cursor
      * @return
      */
     public Location relative(Location other) {

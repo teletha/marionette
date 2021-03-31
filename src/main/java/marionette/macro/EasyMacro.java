@@ -88,8 +88,6 @@ public class EasyMacro extends View {
 
         /**
          * Create new classloader for macro.
-         * 
-         * @return
          */
         private void loadMacro() {
             if (loader != null) {
