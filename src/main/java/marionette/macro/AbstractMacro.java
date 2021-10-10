@@ -39,7 +39,7 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
     public Variable<Boolean> enable = Variable.of(false);
 
     /** The window condition. */
-    Predicate<Window> windowCondition = I.accept();
+    Predicate<Window> windowCondition = I::accept;
 
     /**
      * 

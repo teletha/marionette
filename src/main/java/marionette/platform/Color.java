@@ -17,11 +17,20 @@ public class Color {
     /** The original color code. */
     public final int code;
 
+    public final int red;
+
+    public final int green;
+
+    public final int blue;
+
     /**
      * @param color
      */
     private Color(int color) {
         this.code = color;
+        this.red = code & 0x000000FF;
+        this.green = (code & 0x0000FF00) >> 8;
+        this.blue = (code & 0x00FF0000) >> 16;
     }
 
     /**
@@ -29,9 +38,6 @@ public class Color {
      */
     @Override
     public String toString() {
-        int red = code & 0x000000FF;
-        int green = (code & 0x0000FF00) >> 8;
-        int blue = (code & 0x00FF0000) >> 16;
         return Color.class
                 .getSimpleName() + " [ " + format(code) + "\t\tR: " + format(red) + "\tG: " + format(green) + "\tB: " + format(blue) + "]";
     }

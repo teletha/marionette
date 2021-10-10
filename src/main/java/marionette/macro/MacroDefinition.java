@@ -72,7 +72,7 @@ class MacroDefinition {
      * @param options
      */
     MacroDefinition(Mouse mouse, Predicate<Window> windowConditon, Variable<Boolean> enable, Set<MacroOption> options) {
-        this(I.accept(), windowConditon, enable, options);
+        this(I::accept, windowConditon, enable, options);
 
         switch (mouse) {
         case Move:
