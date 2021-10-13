@@ -159,7 +159,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * @return
      */
     public final Self action(WiseRunnable operation) {
-        I.signal("").effect(operation).retry(Retry.class).to();
+        I.signal("").effect(operation).retry(e -> e.as(Retry.class)).to();
         return chain(0);
     }
 
@@ -394,7 +394,6 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
 
     /**
      * Clear element by the specified selector.
-     * 
      */
     public Browser clear(String selector) {
         By cssSelector = By.cssSelector(selector);
@@ -577,7 +576,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * @return {@link Signal} stream.
      */
     public final Signal<WebElement> find(By elementSelector) {
-        return I.signal(driver()).flatIterable(d -> d.findElements(elementSelector)).retryWhen(retryError());
+        return I.signal(driver()).flatIterable(d -> d.findElements(elementSelector)).retry(retryError());
     }
 
     /**
@@ -804,7 +803,7 @@ public class Browser<Self extends Browser<Self>> implements Disposable {
      * </p>
      */
     public final Self reload() {
-        I.signal(driver()).effect(d -> d.navigate().refresh()).retryWhen(recoverPageLoadTimeout()).to();
+        I.signal(driver()).effect(d -> d.navigate().refresh()).retry(recoverPageLoadTimeout()).to();
 
         return chain();
     }
