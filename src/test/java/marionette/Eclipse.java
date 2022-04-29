@@ -26,6 +26,10 @@ public class Eclipse extends AbstractMacro<Eclipse> {
             shortcut(Key.L, Key.Left);
             shortcut(Key.SemiColon, Key.Down);
             shortcut(Key.Colon, Key.Right);
+
+            whenPress(Key.Return).to(e -> {
+                System.out.println(e);
+            });
         });
     }
 

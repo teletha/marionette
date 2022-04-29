@@ -158,9 +158,16 @@ class GlobalEvents {
         /** The key mapper. */
         private final Key[] keys = new Key[256];
 
+        /** The key mapper. */
+        private final Key[] extendedKeys = new Key[256];
+
         {
             for (Key key : Key.values()) {
-                keys[key.virtualCode] = key;
+                if (key.extend) {
+                    extendedKeys[key.virtualCode] = key;
+                } else {
+                    keys[key.virtualCode] = key;
+                }
             }
         }
 
@@ -183,7 +190,7 @@ class GlobalEvents {
             boolean consumed = false;
             boolean userInput = (info.flags & InjectedEvent) == 0;
             if (0 <= nCode && userInput) {
-                Key key = keys[info.vkCode];
+                Key key = (info.flags & 1) == 0 ? keys[info.vkCode] : extendedKeys[info.vkCode];
 
                 switch (wParam.intValue()) {
                 case WinUser.WM_KEYDOWN:

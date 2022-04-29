@@ -36,6 +36,8 @@ public enum Key {
 
     Return(13),
 
+    ReturnMin(13, true),
+
     Command(15),
 
     Shift(16),
