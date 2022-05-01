@@ -239,6 +239,7 @@ class WindowsAPI implements marionette.platform.Native<HWND> {
      */
     @Override
     public void imeHiragana() {
+        imeOn();
         MSCTF.SetInputScope(activeWindow(), 44);
     }
 
@@ -247,7 +248,15 @@ class WindowsAPI implements marionette.platform.Native<HWND> {
      */
     @Override
     public void imeKatakana() {
+        imeOn();
         MSCTF.SetInputScope(activeWindow(), 46);
+    }
+
+    private void imeOn() {
+        HWND hwnd = activeWindow();
+        Pointer context = Imm.ImmGetContext(hwnd);
+        Imm.ImmSetOpenStatus(context, true);
+        Imm.ImmReleaseContext(hwnd, context);
     }
 
     /**
