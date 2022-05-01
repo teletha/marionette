@@ -41,6 +41,7 @@ import kiss.I;
 import kiss.Observer;
 import kiss.Signal;
 import kiss.Variable;
+import kiss.WiseTriFunction;
 import marionette.macro.Key;
 
 class WindowsAPI implements marionette.platform.Native<HWND> {
@@ -219,7 +220,7 @@ class WindowsAPI implements marionette.platform.Native<HWND> {
      * @param consumer
      * @return
      */
-    private static <T> String text(T id, TriFunction<T, char[], Integer, Integer> consumer) {
+    private static <T> String text(T id, WiseTriFunction<T, char[], Integer, Integer> consumer) {
         char[] text = new char[512];
         int size = consumer.apply(id, text, text.length);
         return new String(text, 0, size);
@@ -258,14 +259,6 @@ class WindowsAPI implements marionette.platform.Native<HWND> {
         Pointer context = Imm.ImmGetContext(hwnd);
         Imm.ImmSetOpenStatus(context, false);
         Imm.ImmReleaseContext(hwnd, context);
-    }
-
-    /**
-     * @version 2016/08/01 14:43:30
-     */
-    private static interface TriFunction<Param1, Param2, Param3, Return> {
-
-        Return apply(Param1 param1, Param2 param2, Param3 param3);
     }
 
     /**
