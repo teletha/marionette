@@ -30,6 +30,7 @@ import com.sun.jna.platform.win32.WinDef.LPARAM;
 import com.sun.jna.platform.win32.WinDef.POINT;
 import com.sun.jna.platform.win32.WinDef.RECT;
 import com.sun.jna.platform.win32.WinDef.WPARAM;
+import com.sun.jna.platform.win32.WinNT.HRESULT;
 import com.sun.jna.platform.win32.WinUser;
 import com.sun.jna.platform.win32.WinUser.MSG;
 import com.sun.jna.ptr.IntByReference;
@@ -55,6 +56,9 @@ class WindowsAPI implements marionette.platform.Native<HWND> {
 
     /** Instance of USER32.DLL for use in accessing native functions. */
     private static final Kernel Kernel = Native.load("kernel32", Kernel.class, W32APIOptions.DEFAULT_OPTIONS);
+
+    /** Instance of USER32.DLL for use in accessing native functions. */
+    private static final Msctf MSCTF = Native.load("msctf.dll", Msctf.class);
 
     /** The native clipboard manager. */
     private static final Clipboard clipboard = new Clipboard();
@@ -224,6 +228,30 @@ class WindowsAPI implements marionette.platform.Native<HWND> {
     @Override
     public void input(HWND windowID, Key key) {
         User.PostMessage(windowID, WinUser.WM_KEYDOWN, new WPARAM(key.virtualCode), new LPARAM(0));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void imeHiragana() {
+        MSCTF.SetInputScope(activeWindow(), 44);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void imeKatakana() {
+        MSCTF.SetInputScope(activeWindow(), 46);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void imeOff() {
+        MSCTF.SetInputScope(activeWindow(), 0);
     }
 
     /**
@@ -428,6 +456,13 @@ class WindowsAPI implements marionette.platform.Native<HWND> {
          *         return value is zero.
          */
         int GetPixel(HDC hdc, int x, int y);
+    }
+
+    /**
+     * 
+     */
+    private static interface Msctf extends StdCallLibrary {
+        HRESULT SetInputScope(HWND hwnd, int inputScope);
     }
 
     /**

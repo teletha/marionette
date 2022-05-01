@@ -157,4 +157,19 @@ public interface Native<ID> {
      * @param windowID
      */
     void input(ID windowID, Key key);
+
+    /**
+     * Switch IME mode to Hiragana.
+     */
+    void imeHiragana();
+
+    /**
+     * Switch IME mode to Katakana.
+     */
+    void imeKatakana();
+
+    /**
+     * Make off IME mode.
+     */
+    void imeOff();
 }

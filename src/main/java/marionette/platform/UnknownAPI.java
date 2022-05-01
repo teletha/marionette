@@ -132,6 +132,30 @@ class UnknownAPI implements Native {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void imeHiragana() {
+        throw error();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void imeKatakana() {
+        throw error();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void imeOff() {
+        throw error();
+    }
+
+    /**
      * <p>
      * Throw error.
      * </p>
