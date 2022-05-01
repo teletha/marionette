@@ -60,6 +60,9 @@ class WindowsAPI implements marionette.platform.Native<HWND> {
     /** Instance of USER32.DLL for use in accessing native functions. */
     private static final Msctf MSCTF = Native.load("msctf.dll", Msctf.class);
 
+    /** Instance of USER32.DLL for use in accessing native functions. */
+    private static final Imm Imm = Native.load("imm32.dll", Imm.class);
+
     /** The native clipboard manager. */
     private static final Clipboard clipboard = new Clipboard();
 
@@ -251,7 +254,10 @@ class WindowsAPI implements marionette.platform.Native<HWND> {
      */
     @Override
     public void imeOff() {
-        MSCTF.SetInputScope(activeWindow(), 0);
+        HWND hwnd = activeWindow();
+        Pointer context = Imm.ImmGetContext(hwnd);
+        Imm.ImmSetOpenStatus(context, false);
+        Imm.ImmReleaseContext(hwnd, context);
     }
 
     /**
@@ -463,6 +469,17 @@ class WindowsAPI implements marionette.platform.Native<HWND> {
      */
     private static interface Msctf extends StdCallLibrary {
         HRESULT SetInputScope(HWND hwnd, int inputScope);
+    }
+
+    /**
+     * 
+     */
+    private static interface Imm extends StdCallLibrary {
+        Pointer ImmGetContext(HWND hwnd);
+
+        void ImmSetOpenStatus(Pointer context, boolean status);
+
+        void ImmReleaseContext(HWND hwnd, Pointer context);
     }
 
     /**
