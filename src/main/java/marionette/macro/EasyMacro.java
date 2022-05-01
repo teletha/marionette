@@ -59,7 +59,7 @@ public class EasyMacro extends View {
 
         list.items(directories.macros).context(c -> {
             c.menu().text("Restart").when(User.LeftClick, () -> Viewtify.application().reactivate());
-        }).renderByUI(() -> new UICheckBox(this), (check, e) -> check.text(e.name()).sync(e.enable));
+        }).renderByUI(() -> new UICheckBox(this), (check, e, disposer) -> check.text(e.name()).sync(e.enable));
     }
 
     private File selectDirectory() {
