@@ -7,7 +7,7 @@
  *
  *          https://opensource.org/licenses/MIT
  */
-package marionette.macro;
+package marionette;
 
 /**
  * @version 2016/10/04 9:41:24

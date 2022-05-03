@@ -7,7 +7,7 @@
  *
  *          https://opensource.org/licenses/MIT
  */
-package marionette.macro;
+package marionette;
 
 import marionette.platform.Location;
 

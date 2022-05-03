@@ -11,10 +11,6 @@ package marionette;
 
 import kiss.I;
 import kiss.Signal;
-import marionette.macro.AbstractMacro;
-import marionette.macro.Key;
-import marionette.macro.KeyEvent;
-import marionette.macro.Mouse;
 
 public abstract class GW extends AbstractMacro<GW> {
 

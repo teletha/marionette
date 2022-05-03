@@ -7,7 +7,7 @@
  *
  *          https://opensource.org/licenses/MIT
  */
-package marionette.macro;
+package marionette;
 
 import static com.sun.jna.platform.win32.WinUser.KEYBDINPUT.*;
 

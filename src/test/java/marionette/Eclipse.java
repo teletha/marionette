@@ -9,10 +9,7 @@
  */
 package marionette;
 
-import static marionette.macro.MacroOption.IgnoreEvent;
-
-import marionette.macro.AbstractMacro;
-import marionette.macro.Key;
+import static marionette.MacroOption.IgnoreEvent;
 
 public class Eclipse extends AbstractMacro<Eclipse> {
 

@@ -9,10 +9,6 @@
  */
 package marionette;
 
-import marionette.macro.AbstractMacro;
-import marionette.macro.Key;
-import marionette.macro.MacroOption;
-
 public class Picasa extends AbstractMacro<Picasa> {
 
     /**

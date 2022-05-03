@@ -13,9 +13,6 @@ import java.util.concurrent.TimeUnit;
 
 import kiss.Disposable;
 import kiss.I;
-import marionette.macro.AbstractMacro;
-import marionette.macro.Key;
-import marionette.macro.MacroOption;
 import marionette.platform.Native;
 
 public class Clicker extends AbstractMacro<Clicker> {

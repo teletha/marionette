@@ -42,7 +42,7 @@ import kiss.Observer;
 import kiss.Signal;
 import kiss.Variable;
 import kiss.WiseTriFunction;
-import marionette.macro.Key;
+import marionette.Key;
 
 class WindowsAPI implements marionette.platform.Native<HWND> {
 
