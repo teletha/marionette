@@ -9,7 +9,7 @@
  */
 package marionette;
 
-public class GW1 extends AbstractMacro<GW1> {
+public class GW1 extends Macro<GW1> {
 
     /**
      * {@inheritDoc}

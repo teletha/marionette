@@ -12,7 +12,7 @@ package marionette;
 import kiss.I;
 import kiss.Signal;
 
-public abstract class GW extends AbstractMacro<GW> {
+public abstract class GW extends Macro<GW> {
 
     /** The current movemnt state. */
     private State state = State.None;

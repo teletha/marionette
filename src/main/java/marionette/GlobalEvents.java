@@ -9,7 +9,7 @@
  */
 package marionette;
 
-import static java.lang.Boolean.*;
+import static java.lang.Boolean.TRUE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -46,7 +46,7 @@ class GlobalEvents {
     /**
      * Start native hook.
      */
-    public static void initializeNativeHook() {
+    static void initializeNativeHook() {
         keyboardHook.install();
         mouseHook.install();
     }
@@ -54,7 +54,7 @@ class GlobalEvents {
     /**
      * Stop native hook.
      */
-    public static void disposeNativeHook() {
+    static void disposeNativeHook() {
         keyboardHook.uninstall();
         mouseHook.uninstall();
     }

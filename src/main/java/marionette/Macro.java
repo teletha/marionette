@@ -27,7 +27,11 @@ import kiss.Variable;
 import kiss.Ⅱ;
 import marionette.platform.Location;
 
-public abstract class AbstractMacro<Self extends AbstractMacro> implements Extensible {
+public abstract class Macro<Self extends Macro> implements Extensible {
+
+    static {
+        GlobalEvents.initializeNativeHook();
+    }
 
     /** The display scale. */
     private static final long ScaleX = 65536 / User32.INSTANCE.GetSystemMetrics(User32.SM_CXSCREEN);
@@ -44,7 +48,7 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
     /**
      * 
      */
-    protected AbstractMacro() {
+    protected Macro() {
     }
 
     /**
@@ -388,5 +392,12 @@ public abstract class AbstractMacro<Self extends AbstractMacro> implements Exten
     @Override
     public String toString() {
         return name();
+    }
+
+    /**
+     * Stop all macro.
+     */
+    public static void stop() {
+        GlobalEvents.disposeNativeHook();
     }
 }

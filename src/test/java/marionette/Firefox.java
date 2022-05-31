@@ -9,7 +9,7 @@
  */
 package marionette;
 
-public class Firefox extends AbstractMacro<Firefox> {
+public class Firefox extends Macro<Firefox> {
 
     /**
      * {@inheritDoc}

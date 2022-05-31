@@ -11,7 +11,7 @@ package marionette;
 
 import static marionette.MacroOption.IgnoreEvent;
 
-public class Eclipse extends AbstractMacro<Eclipse> {
+public class Eclipse extends Macro<Eclipse> {
 
     /**
      * {@inheritDoc}

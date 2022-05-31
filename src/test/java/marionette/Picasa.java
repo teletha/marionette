@@ -9,7 +9,7 @@
  */
 package marionette;
 
-public class Picasa extends AbstractMacro<Picasa> {
+public class Picasa extends Macro<Picasa> {
 
     /**
      * {@inheritDoc}

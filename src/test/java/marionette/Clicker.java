@@ -15,7 +15,7 @@ import kiss.Disposable;
 import kiss.I;
 import marionette.platform.Native;
 
-public class Clicker extends AbstractMacro<Clicker> {
+public class Clicker extends Macro<Clicker> {
 
     private Disposable autoClick;
 
