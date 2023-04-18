@@ -16,42 +16,11 @@ public class Firefox extends Macro<Firefox> {
      */
     @Override
     public void declare() {
-        whenPress(Key.MouseRight).to(() -> {
-            System.out.println("OK");
-            delay(200);
-            input(Key.D);
-            delay(200);
-            input(Key.Tab);
-            delay(200);
-            input(Key.Return);
-            delay(200);
+        whenPress(Key.F2).to(() -> {
+            Window.find().take(window -> window.title().contains("YouTube")).to(window -> {
+                System.out.println(window);
+                window.input(Key.F12);
+            });
         });
-    }
-
-    private void gesture(String type) {
-        switch (type) {
-        case "R":
-            input(Key.Alt, () -> input(Key.Right));
-            break;
-
-        case "L":
-            input(Key.Alt, () -> input(Key.Left));
-            break;
-
-        case "D":
-            input(Key.Control, Key.Shift, () -> input(Key.T));
-            break;
-
-        case "DU":
-            input(Key.Control, Key.Shift, () -> input(Key.A));
-            break;
-
-        case "DUD":
-            Window.now().restart();
-            break;
-
-        default:
-            break;
-        }
     }
 }

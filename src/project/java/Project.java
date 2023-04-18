@@ -16,6 +16,7 @@ public class Project extends bee.api.Project {
 
         require("com.github.teletha", "sinobu");
         require("com.github.teletha", "antibug").atTest();
+        require("com.github.teletha", "viewtify").atTest();
         require("net.java.dev.jna", "jna");
         require("net.java.dev.jna", "jna-platform");
 
