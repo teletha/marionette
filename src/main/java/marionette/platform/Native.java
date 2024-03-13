@@ -9,7 +9,7 @@
  */
 package marionette.platform;
 
-import static com.sun.jna.Platform.isWindows;
+import static com.sun.jna.Platform.*;
 
 import java.util.function.Consumer;
 
@@ -119,18 +119,14 @@ public interface Native<ID> {
     void enumWindows(Consumer<ID> process);
 
     /**
-     * <p>
      * Execute the command.
-     * </p>
      * 
      * @param command
      */
     void execute(Object... command);
 
     /**
-     * <p>
      * Execute OCR.
-     * </p>
      * 
      * @param x
      * @param y
@@ -141,9 +137,7 @@ public interface Native<ID> {
     String ocr(int x, int y, int width, int height);
 
     /**
-     * <p>
      * Listen the change of clipboard.
-     * </p>
      * 
      * @return
      */
@@ -172,4 +166,33 @@ public interface Native<ID> {
      * Make off IME mode.
      */
     void imeOff();
+
+    /**
+     * Test whether the window is minified or not.
+     * 
+     * @return
+     */
+    boolean isMinified(ID windowID);
+
+    /**
+     * Test whether the window is maxmized or not.
+     * 
+     * @return
+     */
+    boolean isMaximized(ID windowID);
+
+    /**
+     * Minimize the window.
+     */
+    void minimize(ID windowID);
+
+    /**
+     * Maximize the window
+     */
+    void maximize(ID windowID);
+
+    /**
+     * Restore the window
+     */
+    void restore(ID windowID);
 }

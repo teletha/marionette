@@ -119,9 +119,7 @@ public class Window {
     }
 
     /**
-     * <p>
      * Locate the window related position.
-     * </p>
      * 
      * @param locationX
      * @param locationY
@@ -132,23 +130,35 @@ public class Window {
     }
 
     /**
-     * <p>
      * ウインドウの位置及びサイズと取得。
-     * </p>
      */
     public Location windowPosition() {
         return Native.API.getWindowPosition(windowID);
     }
 
     /**
-     * <p>
      * Retrieve the current mouse relative position form this window.
-     * </p>
      * 
      * @return
      */
     public Location mousePosition() {
         return windowPosition().relative(Native.API.getCursorPosition());
+    }
+
+    public boolean isMinified() {
+        return Native.API.isMinified(windowID);
+    }
+
+    public void minimize() {
+        Native.API.minimize(windowID);
+    }
+
+    public void maximize() {
+        Native.API.maximize(windowID);
+    }
+
+    public void restore() {
+        Native.API.restore(windowID);
     }
 
     /**
@@ -199,6 +209,7 @@ public class Window {
             Native.API.enumWindows(id -> {
                 observer.accept(new Window(id));
             });
+            observer.complete();
             return Disposable.empty();
         });
     }

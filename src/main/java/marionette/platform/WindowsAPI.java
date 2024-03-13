@@ -271,6 +271,48 @@ class WindowsAPI implements marionette.platform.Native<HWND> {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isMinified(HWND windowID) {
+        return (User.GetWindowLong(windowID, WinUser.GWL_STYLE) & WinUser.WS_MINIMIZE) != 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isMaximized(HWND windowID) {
+        return (User.GetWindowLong(windowID, WinUser.GWL_STYLE) & WinUser.WS_MAXIMIZE) != 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void minimize(HWND windowID) {
+        User.SendMessage(windowID, WinUser.WM_SYSCOMMAND, new WPARAM(WinUser.SC_MINIMIZE), new LPARAM(0));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void maximize(HWND windowID) {
+        User.SendMessage(windowID, WinUser.WM_SYSCOMMAND, new WPARAM(WinUser.SC_MAXIMIZE), new LPARAM(0));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void restore(HWND windowID) {
+        User.ShowWindow(windowID, WinUser.SW_RESTORE);
+        // User.SendMessage(windowID, WinUser.WM_SYSCOMMAND, new WPARAM(WinUser.SW_RESTORE), new
+        // LPARAM(0));
+    }
+
+    /**
      * @version 2016/10/12 12:34:21
      */
     private static interface Shell extends StdCallLibrary, Shell32 {

@@ -156,9 +156,47 @@ class UnknownAPI implements Native {
     }
 
     /**
-     * <p>
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isMinified(Object windowID) {
+        throw error();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isMaximized(Object windowID) {
+        throw error();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void minimize(Object windowID) {
+        throw error();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void maximize(Object windowID) {
+        throw error();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void restore(Object windowID) {
+        throw error();
+    }
+
+    /**
      * Throw error.
-     * </p>
      * 
      * @return
      */

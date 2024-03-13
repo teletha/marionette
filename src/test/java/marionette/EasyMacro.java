@@ -18,7 +18,6 @@ import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.DirectoryChooser;
-
 import kiss.Disposable;
 import kiss.I;
 import kiss.Managed;
@@ -115,7 +114,6 @@ public class EasyMacro extends View {
         Viewtify.application()
                 .use(ActivationPolicy.Latest)
                 .use(Theme.Dark)
-                .size(70, 150)
                 .onTerminating(GlobalEvents::disposeNativeHook)
                 .activate(EasyMacro.class);
     }
