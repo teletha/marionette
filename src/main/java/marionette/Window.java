@@ -12,6 +12,7 @@ package marionette;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.stream.Stream;
 
 import kiss.Disposable;
 import kiss.I;
@@ -215,21 +216,17 @@ public class Window {
     }
 
     /**
-     * <p>
      * List up all {@link Window} which contains the specified title.
-     * </p>
      * 
-     * @param title A part of title.
+     * @param titles A part of title.
      * @return
      */
-    public static Signal<Window> findByTitle(String title) {
-        return find().take(window -> window.title().contains(title));
+    public static Signal<Window> findByTitle(String... titles) {
+        return find().take(window -> Stream.of(titles).anyMatch(x -> window.title().contains(x)));
     }
 
     /**
-     * <p>
      * List up all {@link Window} which contains the specified title.
-     * </p>
      * 
      * @param title A part of title.
      * @return
