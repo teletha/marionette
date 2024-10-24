@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta content="width=device-width, initial-scale=1" name="viewport"/>
+		<meta content="Explains how to use Marionette and its API. " name="description"/>
+		<link href="https://fonts.googleapis.com" rel="preconnect"/>
+		<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+		<title>Marionette API</title>
+		<base href="../"/>
+		<script src="mimic.js" type="module"></script>
+		<link href="main.css" rel="stylesheet"/>
+	</head>
+	<body class="H">
+		<header class="P">
+			<h1 class="T" date="" ver="1.0.0"><code>Marionette</code></h1>
+			<nav class="Y"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+						<use href="main.svg#package"/>
+					</svg><code>API</code></a><a href="https://github.com/teletha/marionette/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
+						<use href="main.svg#user"/>
+					</svg>Community</a><a href="doc/changelog.html"><svg class="A svg" viewBox="0 0 24 24">
+						<use href="main.svg#activity"/>
+					</svg>Activity</a><a href="https://github.com/teletha/marionette" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
+						<use href="main.svg#github"/>
+					</svg>Repository</a></nav>
+			<div class="X" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
+						<use href="main.svg#sun"/>
+					</svg>
+				</a><a id="dark" title="Change to a darker color scheme"><svg class="A svg" viewBox="0 0 24 24">
+						<use href="main.svg#moon"/>
+					</svg>
+				</a></div>
+		</header>
+		<main class="Q">
+			<nav class="i">
+				<div></div>
+			</nav>
+			<article class="k" id="Article">
+				<section class="j"><code class="h">marionette</code>
+					<h2 class="Interface I"><code class="a">KeyEvent</code></h2>
+					<div class="S"></div>
+				</section>
+				<section class="j" id="x()">
+					<h2 class="g"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="a">x</code><code class="L">()</code><i class="m"><code>int</code></i></h2>
+					<table class="W">
+						<tr class="b">
+							<td><code>int</code></td>
+							<td></td>
+						</tr>
+					</table><span class="B"><p>
+ Compute the mouse location when event was occured.
+ </p>
+					</span></section>
+				<section class="j" id="y()">
+					<h2 class="g"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="a">y</code><code class="L">()</code><i class="m"><code>int</code></i></h2>
+					<table class="W">
+						<tr class="b">
+							<td><code>int</code></td>
+							<td></td>
+						</tr>
+					</table><span class="B"><p>
+ Compute the mouse location when event was occured.
+ </p>
+					</span></section>
+				<section class="j" id="time()">
+					<h2 class="g"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="a">time</code><code class="L">()</code><i class="m"><code>long</code></i></h2>
+					<table class="W">
+						<tr class="b">
+							<td><code>long</code></td>
+							<td></td>
+						</tr>
+					</table><span class="B"><p>
+ Compute the time when event was occured.
+ </p>
+					</span></section>
+				<section class="j" id="delta()">
+					<h2 class="g"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="a">delta</code><code class="L">()</code><i class="m"><code>double</code></i></h2>
+					<table class="W">
+						<tr class="b">
+							<td><code>double</code></td>
+							<td></td>
+						</tr>
+					</table><span class="B"><p>Compute the mouse wheel delta.</p>
+</span></section>
+				<section class="j" id="location()">
+					<h2 class="g"><i class="DEFAULT"><i class="PUBLIC"></i></i><code class="a">location</code><code class="L">()</code><i class="m"><code><a href="api/marionette.platform.Location.html">Location</a></code></i></h2>
+					<table class="W">
+						<tr class="b">
+							<td><code><a href="api/marionette.platform.Location.html">Location</a></code></td>
+							<td></td>
+						</tr>
+					</table>
+				</section>
+				<section class="j" id="of(marionette.Key)">
+					<h2 class="g"><i class="PUBLIC STATIC"></i><code class="a">of</code><code class="L">(<code><a href="api/marionette.Key.html">Key</a></code> <code class="parameterName">key</code>)</code><i class="m"><code><a href="api/marionette.KeyEvent.html">KeyEvent</a></code></i></h2>
+					<table class="W">
+						<tr class="e">
+							<td><code><a href="api/marionette.Key.html">Key</a></code> <code>key</code></td>
+							<td></td>
+						</tr>
+						<tr class="b">
+							<td><code><a href="api/marionette.KeyEvent.html">KeyEvent</a></code></td>
+							<td></td>
+						</tr>
+					</table>
+				</section>
+			</article>
+			<aside class="l" id="SubNavi">
+				<div class="R">
+					<h5 class="V">Static Methods</h5>
+					<ul>
+						<li><i class="PUBLIC STATIC"></i><code><a href="api/marionette.KeyEvent.html#of(marionette.Key)">of</a></code><code class="L">(<code><a href="api/marionette.Key.html">Key</a></code> <code class="parameterName">key</code>)</code><i class="J"><code><a href="api/marionette.KeyEvent.html">KeyEvent</a></code></i></li>
+					</ul>
+					<h5 class="V">Methods</h5>
+					<ul>
+						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.KeyEvent.html#x()">x</a></code><code class="L">()</code><i class="J"><code>int</code></i></li>
+						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.KeyEvent.html#y()">y</a></code><code class="L">()</code><i class="J"><code>int</code></i></li>
+						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.KeyEvent.html#time()">time</a></code><code class="L">()</code><i class="J"><code>long</code></i></li>
+						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.KeyEvent.html#delta()">delta</a></code><code class="L">()</code><i class="J"><code>double</code></i></li>
+						<li><i class="DEFAULT"><i class="PUBLIC"></i></i><code><a href="api/marionette.KeyEvent.html#location()">location</a></code><code class="L">()</code><i class="J"><code><a href="api/marionette.platform.Location.html">Location</a></code></i></li>
+					</ul>
+				</div>
+			</aside>
+		</main>
+		<script src="root.js"></script>
+		<script src="main.js" type="module"></script>
+	</body>
+</html>
