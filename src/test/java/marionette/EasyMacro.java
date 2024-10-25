@@ -70,7 +70,7 @@ public class EasyMacro extends View {
     }
 
     @Managed(value = Singleton.class)
-    private static class MacroManager implements Storable {
+    static class MacroManager implements Storable {
 
         public List<File> directories = new ArrayList();
 
