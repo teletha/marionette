@@ -99,7 +99,7 @@ If you think something might be a bug, but you're not sure, ask on StackOverflow
 Marionette depends on the following products on runtime.
 * [jna-5.15.0](https://mvnrepository.com/artifact/net.java.dev.jna/jna/5.15.0)
 * [jna-platform-5.15.0](https://mvnrepository.com/artifact/net.java.dev.jna/jna-platform/5.15.0)
-* [sinobu-4.2.0](https://mvnrepository.com/artifact/com.github.teletha/sinobu/4.2.0)
+* [sinobu-4.5.0](https://mvnrepository.com/artifact/com.github.teletha/sinobu/4.5.0)
 <p align="right"><a href="#top">back to top</a></p>
 
 
