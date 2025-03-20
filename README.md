@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://docs.oracle.com/en/java/javase/23/"><img src="https://img.shields.io/badge/Java-Release%2023-green"/></a>
+    <a href="https://docs.oracle.com/en/java/javase/24/"><img src="https://img.shields.io/badge/Java-Release%2024-green"/></a>
     <span>&nbsp;</span>
     <a href="https://jitpack.io/#teletha/marionette"><img src="https://img.shields.io/jitpack/v/github/teletha/marionette?label=Repository&color=green"></a>
     <span>&nbsp;</span>
@@ -13,7 +13,7 @@
 
 
 ## Prerequisites
-Marionette runs on all major operating systems and requires only [Java version 23](https://docs.oracle.com/en/java/javase/23/) or later to run.
+Marionette runs on all major operating systems and requires only [Java version 24](https://docs.oracle.com/en/java/javase/24/) or later to run.
 To check, please run `java -version` on your terminal.
 <p align="right"><a href="#top">back to top</a></p>
 
@@ -97,14 +97,14 @@ If you think something might be a bug, but you're not sure, ask on StackOverflow
 
 ## Dependency
 Marionette depends on the following products on runtime.
-* [jna-5.15.0](https://mvnrepository.com/artifact/net.java.dev.jna/jna/5.15.0)
-* [jna-platform-5.15.0](https://mvnrepository.com/artifact/net.java.dev.jna/jna-platform/5.15.0)
-* [sinobu-4.5.0](https://mvnrepository.com/artifact/com.github.teletha/sinobu/4.5.0)
+* [jna-5.17.0](https://mvnrepository.com/artifact/net.java.dev.jna/jna/5.17.0)
+* [jna-platform-5.17.0](https://mvnrepository.com/artifact/net.java.dev.jna/jna-platform/5.17.0)
+* [sinobu-4.6.0](https://mvnrepository.com/artifact/com.github.teletha/sinobu/4.6.0)
 <p align="right"><a href="#top">back to top</a></p>
 
 
 ## License
-Copyright (C) 2024 The MARIONETTE Development Team
+Copyright (C) 2025 The MARIONETTE Development Team
 
 MIT License
 
