@@ -4,327 +4,335 @@
 		<meta charset="UTF-8"/>
 		<meta content="width=device-width, initial-scale=1" name="viewport"/>
 		<meta content="Explains how to use Marionette and its API. " name="description"/>
-		<link href="https://fonts.googleapis.com" rel="preconnect"/>
 		<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+		<link href="https://fonts.googleapis.com" rel="preconnect"/>
+		<link crossorigin="null" href="https://fonts.gstatic.com" rel="preconnect"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Inter" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Inter" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Material+Icons" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Material+Icons" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
 		<title>Marionette API</title>
 		<base href="../"/>
 		<script src="mimic.js" type="module"></script>
+		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="m">
-		<header class="S">
-			<h1 class="j" date="" ver="1.0.0"><code>Marionette</code></h1>
-			<nav class="c"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+	<body class="o">
+		<header class="p" date="" ver="1.0.0">
+			<h1 class="e"><code>Marionette</code></h1>
+			<nav class="f"><a href="api/" id="API"><svg class="package A svg" viewBox="0 0 24 24">
 						<use href="main.svg#package"/>
-					</svg><code>API</code></a><a href="https://github.com/teletha/marionette/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#user"/>
-					</svg>Community</a><a href="doc/changelog.html"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#activity"/>
-					</svg>Activity</a><a href="https://github.com/teletha/marionette" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#github"/>
-					</svg>Repository</a></nav>
-			<div class="O" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#sun"/>
 					</svg>
-				</a><a id="dark" title="Change to a darker color scheme"><svg class="A svg" viewBox="0 0 24 24">
+				</a><a href="https://github.com/teletha/marionette/discussions" id="Community" target="_blank"><svg class="user A svg" viewBox="0 0 24 24">
+						<use href="main.svg#user"/>
+					</svg>
+				</a><a href="doc/changelog.html" id="Activity"><svg class="activity A svg" viewBox="0 0 24 24">
+						<use href="main.svg#activity"/>
+					</svg>
+				</a><a href="https://github.com/teletha/marionette" id="Repository" target="_blank"><svg class="github A svg" viewBox="0 0 24 24">
+						<use href="main.svg#github"/>
+					</svg>
+				</a></nav>
+			<div class="d"><a aria-label="Change color scheme" id="theme"><svg class="sun A svg" viewBox="0 0 24 24">
+						<use href="main.svg#sun"/>
+					</svg><svg class="moon A svg" viewBox="0 0 24 24">
 						<use href="main.svg#moon"/>
 					</svg>
 				</a></div>
 		</header>
-		<main class="V">
-			<nav class="P">
-				<div></div>
-			</nav>
-			<article class="h" id="Article">
-				<section class="e"><code class="J">marionette.platform</code>
-					<h2 class="Interface b"><code class="K">Native</code><code class="g">&#60;<code>ID</code>&#62;</code></h2>
-					<div class="T">
-						<ul class="C D">
-							<li><code>ID</code></li>
-						</ul>
-					</div>
-				</section>
-				<section class="e" id="API">
-					<h2 class="N"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="K">API</code><i class="H"><code class="return"><a href="api/marionette.platform.Native.html">Native</a></code></i></h2><span class="B"><p>The actual API for the current platform.</p></span></section>
-				<section class="e" id="getCursorPosition()">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">getCursorPosition</code><code class="g">()</code><i class="H"><code><a href="api/marionette.platform.Location.html">Location</a></code></i></h2>
-					<table class="l">
-						<tr class="I">
-							<td><code><a href="api/marionette.platform.Location.html">Location</a></code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Retrieve the absolute cursor position.
- </p>
-					</span></section>
-				<section class="e" id="getColor(int,int)">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">getColor</code><code class="g">(<code>int</code><code class="parameterName">x</code>, <code>int</code><code class="parameterName">y</code>)</code><i class="H"><code><a href="api/marionette.platform.Color.html">Color</a></code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>int</code><code>x</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code>int</code><code>y</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code><a href="api/marionette.platform.Color.html">Color</a></code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Retrieve color in the specified pixel.
- </p>
-					</span></section>
-				<section class="e" id="getColor(marionette.platform.Location)">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">getColor</code><code class="g">(<code><a href="api/marionette.platform.Location.html">Location</a></code><code class="parameterName">location</code>)</code><i class="H"><code><a href="api/marionette.platform.Color.html">Color</a></code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code><a href="api/marionette.platform.Location.html">Location</a></code><code>location</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code><a href="api/marionette.platform.Color.html">Color</a></code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Retrieve the color in the specified pixel.
- </p>
-					</span></section>
-				<section class="e" id="getActiveClientRect()">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">getActiveClientRect</code><code class="g">()</code><i class="H"><code array="fix">int</code></i></h2>
-					<table class="l">
-						<tr class="I">
-							<td><code array="fix">int</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Retrieve the acttive client rect.
- </p>
-					</span></section>
-				<section class="e" id="getWindowPosition(java.lang.Object)">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">getWindowPosition</code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="H"><code><a href="api/marionette.platform.Location.html">Location</a></code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>ID</code><code>windowID</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code><a href="api/marionette.platform.Location.html">Location</a></code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Retrieve the specified window rect.
- </p>
-					</span></section>
-				<section class="e" id="getWindowTitle(java.lang.Object)">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">getWindowTitle</code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="H"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>ID</code><code>windowID</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Retrieve the specified window title.
- </p>
-					</span></section>
-				<section class="e" id="getWindowProcessId(java.lang.Object)">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">getWindowProcessId</code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="H"><code>int</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>ID</code><code>windowID</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>int</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Retrieve the specified window&#39;s process id.
- </p>
-					</span></section>
-				<section class="e" id="closeWindow(java.lang.Object)">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">closeWindow</code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="H"><code>void</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>ID</code><code>windowID</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Close the specified window.
- </p>
-					</span></section>
-				<section class="e" id="activeWindow()">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">activeWindow</code><code class="g">()</code><i class="H"><code>ID</code></i></h2>
-					<table class="l">
-						<tr class="I">
-							<td><code>ID</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Retrieve the active window id.
- </p>
-					</span></section>
-				<section class="e" id="enumWindows(java.util.function.Consumer)">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">enumWindows</code><code class="g">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code>ID</code></code></code><code class="parameterName">process</code>)</code><i class="H"><code>void</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code>ID</code></code></code><code>process</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- List up all windows.
- </p>
-					</span></section>
-				<section class="e" id="execute(java.lang.Object...)">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">execute</code><code class="g">(<code array="var"><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">command</code>)</code><i class="H"><code>void</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code array="var"><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Object.html">Object</a></code><code>command</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Execute the command.</p></span></section>
-				<section class="e" id="ocr(int,int,int,int)">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">ocr</code><code class="g">(<code>int</code><code class="parameterName">x</code>, <code>int</code><code class="parameterName">y</code>, <code>int</code><code class="parameterName">width</code>, <code>int</code><code class="parameterName">height</code>)</code><i class="H"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>int</code><code>x</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code>int</code><code>y</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code>int</code><code>width</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code>int</code><code>height</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Execute OCR.</p></span></section>
-				<section class="e" id="clipboard()">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">clipboard</code><code class="g">()</code><i class="H"><code>kiss.Signal<code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></code></code></i></h2>
-					<table class="l">
-						<tr class="I">
-							<td><code>kiss.Signal<code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></code></code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Listen the change of clipboard.</p></span></section>
-				<section class="e" id="input(java.lang.Object,marionette.Key)">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">input</code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>, <code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>)</code><i class="H"><code>void</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>ID</code><code>windowID</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code><a href="api/marionette.Key.html">Key</a></code><code>key</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Input key sequence to the specified window.
- </p>
-					</span></section>
-				<section class="e" id="imeHiragana()">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">imeHiragana</code><code class="g">()</code><i class="H"><code>void</code></i></h2><span class="B"><p>Switch IME mode to Hiragana.</p></span></section>
-				<section class="e" id="imeKatakana()">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">imeKatakana</code><code class="g">()</code><i class="H"><code>void</code></i></h2><span class="B"><p>Switch IME mode to Katakana.</p></span></section>
-				<section class="e" id="imeOff()">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">imeOff</code><code class="g">()</code><i class="H"><code>void</code></i></h2><span class="B"><p>Make off IME mode.</p></span></section>
-				<section class="e" id="isMinified(java.lang.Object)">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">isMinified</code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="H"><code>boolean</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>ID</code><code>windowID</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>boolean</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Test whether the window is minified or not.</p></span></section>
-				<section class="e" id="isMaximized(java.lang.Object)">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">isMaximized</code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="H"><code>boolean</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>ID</code><code>windowID</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>boolean</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Test whether the window is maxmized or not.</p></span></section>
-				<section class="e" id="minimize(java.lang.Object)">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">minimize</code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="H"><code>void</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>ID</code><code>windowID</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Minimize the window.</p></span></section>
-				<section class="e" id="maximize(java.lang.Object)">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">maximize</code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="H"><code>void</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>ID</code><code>windowID</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Maximize the window</p></span></section>
-				<section class="e" id="restore(java.lang.Object)">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">restore</code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="H"><code>void</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>ID</code><code>windowID</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Restore the window</p></span></section>
-			</article>
-			<aside class="Z" id="SubNavi">
-				<div class="L">
-					<h5 class="Y">Static Fields</h5>
-					<ul>
-						<li><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/marionette.platform.Native.html#API">API</a></code><i class="f"><code class="return"><a href="api/marionette.platform.Native.html">Native</a></code></i></li>
-					</ul>
-					<h5 class="Y">Methods</h5>
-					<ul>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#getCursorPosition()">getCursorPosition</a></code><code class="g">()</code><i class="f"><code><a href="api/marionette.platform.Location.html">Location</a></code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#getColor(int,int)">getColor</a></code><code class="g">(<code>int</code><code class="parameterName">x</code>, <code>int</code><code class="parameterName">y</code>)</code><i class="f"><code><a href="api/marionette.platform.Color.html">Color</a></code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#getColor(marionette.platform.Location)">getColor</a></code><code class="g">(<code><a href="api/marionette.platform.Location.html">Location</a></code><code class="parameterName">location</code>)</code><i class="f"><code><a href="api/marionette.platform.Color.html">Color</a></code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#getActiveClientRect()">getActiveClientRect</a></code><code class="g">()</code><i class="f"><code array="fix">int</code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#getWindowPosition(java.lang.Object)">getWindowPosition</a></code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="f"><code><a href="api/marionette.platform.Location.html">Location</a></code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#getWindowTitle(java.lang.Object)">getWindowTitle</a></code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="f"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#getWindowProcessId(java.lang.Object)">getWindowProcessId</a></code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="f"><code>int</code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#closeWindow(java.lang.Object)">closeWindow</a></code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="f"><code>void</code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#activeWindow()">activeWindow</a></code><code class="g">()</code><i class="f"><code>ID</code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#enumWindows(java.util.function.Consumer)">enumWindows</a></code><code class="g">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code>ID</code></code></code><code class="parameterName">process</code>)</code><i class="f"><code>void</code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#execute(java.lang.Object...)">execute</a></code><code class="g">(<code array="var"><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">command</code>)</code><i class="f"><code>void</code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#ocr(int,int,int,int)">ocr</a></code><code class="g">(<code>int</code><code class="parameterName">x</code>, <code>int</code><code class="parameterName">y</code>, <code>int</code><code class="parameterName">width</code>, <code>int</code><code class="parameterName">height</code>)</code><i class="f"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#clipboard()">clipboard</a></code><code class="g">()</code><i class="f"><code>kiss.Signal<code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></code></code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#input(java.lang.Object,marionette.Key)">input</a></code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>, <code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>)</code><i class="f"><code>void</code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#imeHiragana()">imeHiragana</a></code><code class="g">()</code><i class="f"><code>void</code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#imeKatakana()">imeKatakana</a></code><code class="g">()</code><i class="f"><code>void</code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#imeOff()">imeOff</a></code><code class="g">()</code><i class="f"><code>void</code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#isMinified(java.lang.Object)">isMinified</a></code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="f"><code>boolean</code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#isMaximized(java.lang.Object)">isMaximized</a></code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="f"><code>boolean</code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#minimize(java.lang.Object)">minimize</a></code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="f"><code>void</code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#maximize(java.lang.Object)">maximize</a></code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="f"><code>void</code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#restore(java.lang.Object)">restore</a></code><code class="g">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="f"><code>void</code></i></li>
+		<nav class="i"></nav>
+		<article class="Q" id="Article">
+			<section class="q"><code class="k">marionette.platform</code>
+				<h2 class="Interface n"><code class="r">Native</code><code class="j">&#60;<code>ID</code>&#62;</code></h2>
+				<div class="m">
+					<ul class="C D">
+						<li><code>ID</code></li>
 					</ul>
 				</div>
-			</aside>
-		</main>
-		<script src="root.js"></script>
-		<script src="main.js" type="module"></script>
+			</section>
+			<section class="q" id="API">
+				<h2 class="Y"><i class="FINAL"><i class="STATIC PUBLIC"></i></i><code class="r">API</code><i class="J"><code class="return"><a aria-label="marionette.platform.Native" href="api/marionette.platform.Native.html">Native</a></code></i></h2><span class="B"><p>The actual API for the current platform.</p></span></section>
+			<section class="q" id="getCursorPosition()">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">getCursorPosition</code><code class="j">()</code><i class="J"><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></i></h2>
+				<table class="H">
+					<tr class="a">
+						<td><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Retrieve the absolute cursor position.
+ </p>
+				</span></section>
+			<section class="q" id="getColor(int,int)">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">getColor</code><code class="j">(<code>int</code><code class="parameterName">x</code>, <code>int</code><code class="parameterName">y</code>)</code><i class="J"><code><a aria-label="marionette.platform.Color" href="api/marionette.platform.Color.html">Color</a></code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>int</code><code class="parameterName">x</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code>int</code><code class="parameterName">y</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="marionette.platform.Color" href="api/marionette.platform.Color.html">Color</a></code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Retrieve color in the specified pixel.
+ </p>
+				</span></section>
+			<section class="q" id="getColor(marionette.platform.Location)">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">getColor</code><code class="j">(<code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code><code class="parameterName">location</code>)</code><i class="J"><code><a aria-label="marionette.platform.Color" href="api/marionette.platform.Color.html">Color</a></code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code><code class="parameterName">location</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="marionette.platform.Color" href="api/marionette.platform.Color.html">Color</a></code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Retrieve the color in the specified pixel.
+ </p>
+				</span></section>
+			<section class="q" id="getActiveClientRect()">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">getActiveClientRect</code><code class="j">()</code><i class="J"><code array="fix">int</code></i></h2>
+				<table class="H">
+					<tr class="a">
+						<td><code array="fix">int</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Retrieve the acttive client rect.
+ </p>
+				</span></section>
+			<section class="q" id="getWindowPosition(java.lang.Object)">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">getWindowPosition</code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="J"><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>ID</code><code class="parameterName">windowID</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Retrieve the specified window rect.
+ </p>
+				</span></section>
+			<section class="q" id="getWindowTitle(java.lang.Object)">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">getWindowTitle</code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="J"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>ID</code><code class="parameterName">windowID</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Retrieve the specified window title.
+ </p>
+				</span></section>
+			<section class="q" id="getWindowProcessId(java.lang.Object)">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">getWindowProcessId</code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="J"><code>int</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>ID</code><code class="parameterName">windowID</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>int</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Retrieve the specified window&#39;s process id.
+ </p>
+				</span></section>
+			<section class="q" id="closeWindow(java.lang.Object)">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">closeWindow</code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="J"><code>void</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>ID</code><code class="parameterName">windowID</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Close the specified window.
+ </p>
+				</span></section>
+			<section class="q" id="activeWindow()">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">activeWindow</code><code class="j">()</code><i class="J"><code>ID</code></i></h2>
+				<table class="H">
+					<tr class="a">
+						<td><code>ID</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Retrieve the active window id.
+ </p>
+				</span></section>
+			<section class="q" id="enumWindows(java.util.function.Consumer)">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">enumWindows</code><code class="j">(<code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code>ID</code></code></code><code class="parameterName">process</code>)</code><i class="J"><code>void</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code>ID</code></code></code><code class="parameterName">process</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ List up all windows.
+ </p>
+				</span></section>
+			<section class="q" id="execute(java.lang.Object...)">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">execute</code><code class="j">(<code array="var"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">command</code>)</code><i class="J"><code>void</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code array="var"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">command</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Execute the command.</p></span></section>
+			<section class="q" id="ocr(int,int,int,int)">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">ocr</code><code class="j">(<code>int</code><code class="parameterName">x</code>, <code>int</code><code class="parameterName">y</code>, <code>int</code><code class="parameterName">width</code>, <code>int</code><code class="parameterName">height</code>)</code><i class="J"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>int</code><code class="parameterName">x</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code>int</code><code class="parameterName">y</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code>int</code><code class="parameterName">width</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code>int</code><code class="parameterName">height</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Execute OCR.</p></span></section>
+			<section class="q" id="clipboard()">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">clipboard</code><code class="j">()</code><i class="J"><code>kiss.Signal<code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></code></code></i></h2>
+				<table class="H">
+					<tr class="a">
+						<td><code>kiss.Signal<code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></code></code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Listen the change of clipboard.</p></span></section>
+			<section class="q" id="input(java.lang.Object,marionette.Key)">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">input</code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>, <code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>)</code><i class="J"><code>void</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>ID</code><code class="parameterName">windowID</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Input key sequence to the specified window.
+ </p>
+				</span></section>
+			<section class="q" id="imeHiragana()">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">imeHiragana</code><code class="j">()</code><i class="J"><code>void</code></i></h2><span class="B"><p>Switch IME mode to Hiragana.</p></span></section>
+			<section class="q" id="imeKatakana()">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">imeKatakana</code><code class="j">()</code><i class="J"><code>void</code></i></h2><span class="B"><p>Switch IME mode to Katakana.</p></span></section>
+			<section class="q" id="imeOff()">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">imeOff</code><code class="j">()</code><i class="J"><code>void</code></i></h2><span class="B"><p>Make off IME mode.</p></span></section>
+			<section class="q" id="isMinified(java.lang.Object)">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">isMinified</code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="J"><code>boolean</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>ID</code><code class="parameterName">windowID</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>boolean</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Test whether the window is minified or not.</p></span></section>
+			<section class="q" id="isMaximized(java.lang.Object)">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">isMaximized</code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="J"><code>boolean</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>ID</code><code class="parameterName">windowID</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>boolean</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Test whether the window is maxmized or not.</p></span></section>
+			<section class="q" id="minimize(java.lang.Object)">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">minimize</code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="J"><code>void</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>ID</code><code class="parameterName">windowID</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Minimize the window.</p></span></section>
+			<section class="q" id="maximize(java.lang.Object)">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">maximize</code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="J"><code>void</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>ID</code><code class="parameterName">windowID</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Maximize the window</p></span></section>
+			<section class="q" id="restore(java.lang.Object)">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">restore</code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="J"><code>void</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>ID</code><code class="parameterName">windowID</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Restore the window</p></span></section>
+		</article>
+		<aside class="h">
+			<div class="Z">
+				<h5 class="L">Static Fields</h5>
+				<ul>
+					<li class="X"><i class="FINAL"><i class="STATIC PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#API">API</a></code><i class="M"><code class="return"><a aria-label="marionette.platform.Native" href="api/marionette.platform.Native.html">Native</a></code></i></li>
+				</ul>
+				<h5 class="L">Methods</h5>
+				<ul>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#getCursorPosition()">getCursorPosition</a></code><code class="j">()</code><i class="M"><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#getColor(int,int)">getColor</a></code><code class="j">(<code>int</code><code class="parameterName">x</code>, <code>int</code><code class="parameterName">y</code>)</code><i class="M"><code><a aria-label="marionette.platform.Color" href="api/marionette.platform.Color.html">Color</a></code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#getColor(marionette.platform.Location)">getColor</a></code><code class="j">(<code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code><code class="parameterName">location</code>)</code><i class="M"><code><a aria-label="marionette.platform.Color" href="api/marionette.platform.Color.html">Color</a></code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#getActiveClientRect()">getActiveClientRect</a></code><code class="j">()</code><i class="M"><code array="fix">int</code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#getWindowPosition(java.lang.Object)">getWindowPosition</a></code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="M"><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#getWindowTitle(java.lang.Object)">getWindowTitle</a></code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="M"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#getWindowProcessId(java.lang.Object)">getWindowProcessId</a></code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="M"><code>int</code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#closeWindow(java.lang.Object)">closeWindow</a></code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="M"><code>void</code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#activeWindow()">activeWindow</a></code><code class="j">()</code><i class="M"><code>ID</code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#enumWindows(java.util.function.Consumer)">enumWindows</a></code><code class="j">(<code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code>ID</code></code></code><code class="parameterName">process</code>)</code><i class="M"><code>void</code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#execute(java.lang.Object...)">execute</a></code><code class="j">(<code array="var"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">command</code>)</code><i class="M"><code>void</code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#ocr(int,int,int,int)">ocr</a></code><code class="j">(<code>int</code><code class="parameterName">x</code>, <code>int</code><code class="parameterName">y</code>, <code>int</code><code class="parameterName">width</code>, <code>int</code><code class="parameterName">height</code>)</code><i class="M"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#clipboard()">clipboard</a></code><code class="j">()</code><i class="M"><code>kiss.Signal<code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></code></code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#input(java.lang.Object,marionette.Key)">input</a></code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>, <code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>)</code><i class="M"><code>void</code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#imeHiragana()">imeHiragana</a></code><code class="j">()</code><i class="M"><code>void</code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#imeKatakana()">imeKatakana</a></code><code class="j">()</code><i class="M"><code>void</code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#imeOff()">imeOff</a></code><code class="j">()</code><i class="M"><code>void</code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#isMinified(java.lang.Object)">isMinified</a></code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="M"><code>boolean</code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#isMaximized(java.lang.Object)">isMaximized</a></code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="M"><code>boolean</code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#minimize(java.lang.Object)">minimize</a></code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="M"><code>void</code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#maximize(java.lang.Object)">maximize</a></code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="M"><code>void</code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Native.html#restore(java.lang.Object)">restore</a></code><code class="j">(<code>ID</code><code class="parameterName">windowID</code>)</code><i class="M"><code>void</code></i></li>
+				</ul>
+			</div>
+		</aside>
+		<footer class="l"/>
 	</body>
+	<script src="root.js"></script>
+	<script src="main.js" type="module"></script>
 </html>

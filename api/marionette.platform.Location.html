@@ -4,218 +4,226 @@
 		<meta charset="UTF-8"/>
 		<meta content="width=device-width, initial-scale=1" name="viewport"/>
 		<meta content="Explains how to use Marionette and its API. " name="description"/>
-		<link href="https://fonts.googleapis.com" rel="preconnect"/>
 		<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+		<link href="https://fonts.googleapis.com" rel="preconnect"/>
+		<link crossorigin="null" href="https://fonts.gstatic.com" rel="preconnect"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Inter" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Inter" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Material+Icons" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Material+Icons" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
 		<title>Marionette API</title>
 		<base href="../"/>
 		<script src="mimic.js" type="module"></script>
+		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="m">
-		<header class="S">
-			<h1 class="j" date="" ver="1.0.0"><code>Marionette</code></h1>
-			<nav class="c"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+	<body class="o">
+		<header class="p" date="" ver="1.0.0">
+			<h1 class="e"><code>Marionette</code></h1>
+			<nav class="f"><a href="api/" id="API"><svg class="package A svg" viewBox="0 0 24 24">
 						<use href="main.svg#package"/>
-					</svg><code>API</code></a><a href="https://github.com/teletha/marionette/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#user"/>
-					</svg>Community</a><a href="doc/changelog.html"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#activity"/>
-					</svg>Activity</a><a href="https://github.com/teletha/marionette" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#github"/>
-					</svg>Repository</a></nav>
-			<div class="O" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#sun"/>
 					</svg>
-				</a><a id="dark" title="Change to a darker color scheme"><svg class="A svg" viewBox="0 0 24 24">
+				</a><a href="https://github.com/teletha/marionette/discussions" id="Community" target="_blank"><svg class="user A svg" viewBox="0 0 24 24">
+						<use href="main.svg#user"/>
+					</svg>
+				</a><a href="doc/changelog.html" id="Activity"><svg class="activity A svg" viewBox="0 0 24 24">
+						<use href="main.svg#activity"/>
+					</svg>
+				</a><a href="https://github.com/teletha/marionette" id="Repository" target="_blank"><svg class="github A svg" viewBox="0 0 24 24">
+						<use href="main.svg#github"/>
+					</svg>
+				</a></nav>
+			<div class="d"><a aria-label="Change color scheme" id="theme"><svg class="sun A svg" viewBox="0 0 24 24">
+						<use href="main.svg#sun"/>
+					</svg><svg class="moon A svg" viewBox="0 0 24 24">
 						<use href="main.svg#moon"/>
 					</svg>
 				</a></div>
 		</header>
-		<main class="V">
-			<nav class="P">
-				<div></div>
-			</nav>
-			<article class="h" id="Article">
-				<section class="e"><code class="J">marionette.platform</code>
-					<h2 class="Class b"><code class="K">Location</code></h2>
-					<div class="T"></div>
-				</section>
-				<section class="e" id="relative(marionette.platform.Location)">
-					<h2 class="N"><i class="PUBLIC"></i><code class="K">relative</code><code class="g">(<code><a href="api/marionette.platform.Location.html">Location</a></code><code class="parameterName">other</code>)</code><i class="H"><code><a href="api/marionette.platform.Location.html">Location</a></code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code><a href="api/marionette.platform.Location.html">Location</a></code><code>other</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code><a href="api/marionette.platform.Location.html">Location</a></code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Create relative range.</p></span></section>
-				<section class="e" id="x()">
-					<h2 class="N"><i class="PUBLIC"></i><code class="K">x</code><code class="g">()</code><i class="H"><code>int</code></i></h2>
-					<table class="l">
-						<tr class="I">
-							<td><code>int</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
+		<nav class="i"></nav>
+		<article class="Q" id="Article">
+			<section class="q"><code class="k">marionette.platform</code>
+				<h2 class="Class n"><code class="r">Location</code></h2>
+				<div class="m"></div>
+			</section>
+			<section class="q" id="relative(marionette.platform.Location)">
+				<h2 class="Y"><i class="PUBLIC"></i><code class="r">relative</code><code class="j">(<code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code><code class="parameterName">other</code>)</code><i class="J"><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code><code class="parameterName">other</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Create relative range.</p></span></section>
+			<section class="q" id="x()">
+				<h2 class="Y"><i class="PUBLIC"></i><code class="r">x</code><code class="j">()</code><i class="J"><code>int</code></i></h2>
+				<table class="H">
+					<tr class="a">
+						<td><code>int</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
  Compute x position.
  </p>
-					</span></section>
-				<section class="e" id="y()">
-					<h2 class="N"><i class="PUBLIC"></i><code class="K">y</code><code class="g">()</code><i class="H"><code>int</code></i></h2>
-					<table class="l">
-						<tr class="I">
-							<td><code>int</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
+				</span></section>
+			<section class="q" id="y()">
+				<h2 class="Y"><i class="PUBLIC"></i><code class="r">y</code><code class="j">()</code><i class="J"><code>int</code></i></h2>
+				<table class="H">
+					<tr class="a">
+						<td><code>int</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
  Compute y position.
  </p>
-					</span></section>
-				<section class="e" id="X()">
-					<h2 class="N"><i class="PUBLIC"></i><code class="K">X</code><code class="g">()</code><i class="H"><code>int</code></i></h2>
-					<table class="l">
-						<tr class="I">
-							<td><code>int</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
+				</span></section>
+			<section class="q" id="X()">
+				<h2 class="Y"><i class="PUBLIC"></i><code class="r">X</code><code class="j">()</code><i class="J"><code>int</code></i></h2>
+				<table class="H">
+					<tr class="a">
+						<td><code>int</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
  Compute x position.
  </p>
-					</span></section>
-				<section class="e" id="Y()">
-					<h2 class="N"><i class="PUBLIC"></i><code class="K">Y</code><code class="g">()</code><i class="H"><code>int</code></i></h2>
-					<table class="l">
-						<tr class="I">
-							<td><code>int</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
+				</span></section>
+			<section class="q" id="Y()">
+				<h2 class="Y"><i class="PUBLIC"></i><code class="r">Y</code><code class="j">()</code><i class="J"><code>int</code></i></h2>
+				<table class="H">
+					<tr class="a">
+						<td><code>int</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
  Compute y position.
  </p>
-					</span></section>
-				<section class="e" id="width()">
-					<h2 class="N"><i class="PUBLIC"></i><code class="K">width</code><code class="g">()</code><i class="H"><code>int</code></i></h2>
-					<table class="l">
-						<tr class="I">
-							<td><code>int</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
+				</span></section>
+			<section class="q" id="width()">
+				<h2 class="Y"><i class="PUBLIC"></i><code class="r">width</code><code class="j">()</code><i class="J"><code>int</code></i></h2>
+				<table class="H">
+					<tr class="a">
+						<td><code>int</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
  Compute x position.
  </p>
-					</span></section>
-				<section class="e" id="height()">
-					<h2 class="N"><i class="PUBLIC"></i><code class="K">height</code><code class="g">()</code><i class="H"><code>int</code></i></h2>
-					<table class="l">
-						<tr class="I">
-							<td><code>int</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
+				</span></section>
+			<section class="q" id="height()">
+				<h2 class="Y"><i class="PUBLIC"></i><code class="r">height</code><code class="j">()</code><i class="J"><code>int</code></i></h2>
+				<table class="H">
+					<tr class="a">
+						<td><code>int</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
  Compute y position.
  </p>
-					</span></section>
-				<section class="e" id="slide(int,int)">
-					<h2 class="N"><i class="PUBLIC"></i><code class="K">slide</code><code class="g">(<code>int</code><code class="parameterName">locationX</code>, <code>int</code><code class="parameterName">locationY</code>)</code><i class="H"><code><a href="api/marionette.platform.Location.html">Location</a></code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>int</code><code>locationX</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code>int</code><code>locationY</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code><a href="api/marionette.platform.Location.html">Location</a></code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="e" id="slideX(int)">
-					<h2 class="N"><i class="PUBLIC"></i><code class="K">slideX</code><code class="g">(<code>int</code><code class="parameterName">locationX</code>)</code><i class="H"><code><a href="api/marionette.platform.Location.html">Location</a></code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>int</code><code>locationX</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code><a href="api/marionette.platform.Location.html">Location</a></code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
+				</span></section>
+			<section class="q" id="slide(int,int)">
+				<h2 class="Y"><i class="PUBLIC"></i><code class="r">slide</code><code class="j">(<code>int</code><code class="parameterName">locationX</code>, <code>int</code><code class="parameterName">locationY</code>)</code><i class="J"><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>int</code><code class="parameterName">locationX</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code>int</code><code class="parameterName">locationY</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="q" id="slideX(int)">
+				<h2 class="Y"><i class="PUBLIC"></i><code class="r">slideX</code><code class="j">(<code>int</code><code class="parameterName">locationX</code>)</code><i class="J"><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>int</code><code class="parameterName">locationX</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
  Slide x-location slighty.
  </p>
-					</span></section>
-				<section class="e" id="slideY(int)">
-					<h2 class="N"><i class="PUBLIC"></i><code class="K">slideY</code><code class="g">(<code>int</code><code class="parameterName">locationY</code>)</code><i class="H"><code><a href="api/marionette.platform.Location.html">Location</a></code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>int</code><code>locationY</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code><a href="api/marionette.platform.Location.html">Location</a></code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
+				</span></section>
+			<section class="q" id="slideY(int)">
+				<h2 class="Y"><i class="PUBLIC"></i><code class="r">slideY</code><code class="j">(<code>int</code><code class="parameterName">locationY</code>)</code><i class="J"><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>int</code><code class="parameterName">locationY</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
  Slide y-location slighty.
  </p>
-					</span></section>
-				<section class="e" id="toString()">
-					<h2 class="N"><i class="OVERRIDE PUBLIC"></i><code class="K">toString</code><code class="g">()</code><i class="H"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
-					<table class="l">
-						<tr class="I">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="e" id="of(int,int)">
-					<h2 class="N"><i class="PUBLIC STATIC"></i><code class="K">of</code><code class="g">(<code>int</code><code class="parameterName">locationX</code>, <code>int</code><code class="parameterName">locationY</code>)</code><i class="H"><code><a href="api/marionette.platform.Location.html">Location</a></code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>int</code><code>locationX</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code>int</code><code>locationY</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code><a href="api/marionette.platform.Location.html">Location</a></code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-			</article>
-			<aside class="Z" id="SubNavi">
-				<div class="L">
-					<h5 class="Y">Static Methods</h5>
-					<ul>
-						<li><i class="PUBLIC STATIC"></i><code><a href="api/marionette.platform.Location.html#of(int,int)">of</a></code><code class="g">(<code>int</code><code class="parameterName">locationX</code>, <code>int</code><code class="parameterName">locationY</code>)</code><i class="f"><code><a href="api/marionette.platform.Location.html">Location</a></code></i></li>
-					</ul>
-					<h5 class="Y">Methods</h5>
-					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#relative(marionette.platform.Location)">relative</a></code><code class="g">(<code><a href="api/marionette.platform.Location.html">Location</a></code><code class="parameterName">other</code>)</code><i class="f"><code><a href="api/marionette.platform.Location.html">Location</a></code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#x()">x</a></code><code class="g">()</code><i class="f"><code>int</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#y()">y</a></code><code class="g">()</code><i class="f"><code>int</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#X()">X</a></code><code class="g">()</code><i class="f"><code>int</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#Y()">Y</a></code><code class="g">()</code><i class="f"><code>int</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#width()">width</a></code><code class="g">()</code><i class="f"><code>int</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#height()">height</a></code><code class="g">()</code><i class="f"><code>int</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#slide(int,int)">slide</a></code><code class="g">(<code>int</code><code class="parameterName">locationX</code>, <code>int</code><code class="parameterName">locationY</code>)</code><i class="f"><code><a href="api/marionette.platform.Location.html">Location</a></code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#slideX(int)">slideX</a></code><code class="g">(<code>int</code><code class="parameterName">locationX</code>)</code><i class="f"><code><a href="api/marionette.platform.Location.html">Location</a></code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#slideY(int)">slideY</a></code><code class="g">(<code>int</code><code class="parameterName">locationY</code>)</code><i class="f"><code><a href="api/marionette.platform.Location.html">Location</a></code></i></li>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/marionette.platform.Location.html#toString()">toString</a></code><code class="g">()</code><i class="f"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
-					</ul>
-				</div>
-			</aside>
-		</main>
-		<script src="root.js"></script>
-		<script src="main.js" type="module"></script>
+				</span></section>
+			<section class="q" id="toString()">
+				<h2 class="Y"><i class="OVERRIDE PUBLIC"></i><code class="r">toString</code><code class="j">()</code><i class="J"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
+				<table class="H">
+					<tr class="a">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="q" id="of(int,int)">
+				<h2 class="Y"><i class="STATIC PUBLIC"></i><code class="r">of</code><code class="j">(<code>int</code><code class="parameterName">locationX</code>, <code>int</code><code class="parameterName">locationY</code>)</code><i class="J"><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>int</code><code class="parameterName">locationX</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code>int</code><code class="parameterName">locationY</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+		</article>
+		<aside class="h">
+			<div class="Z">
+				<h5 class="L">Static Methods</h5>
+				<ul>
+					<li class="X"><i class="STATIC PUBLIC"></i><code><a href="api/marionette.platform.Location.html#of(int,int)">of</a></code><code class="j">(<code>int</code><code class="parameterName">locationX</code>, <code>int</code><code class="parameterName">locationY</code>)</code><i class="M"><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></i></li>
+				</ul>
+				<h5 class="L">Methods</h5>
+				<ul>
+					<li class="X"><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#relative(marionette.platform.Location)">relative</a></code><code class="j">(<code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code><code class="parameterName">other</code>)</code><i class="M"><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></i></li>
+					<li class="X"><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#x()">x</a></code><code class="j">()</code><i class="M"><code>int</code></i></li>
+					<li class="X"><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#y()">y</a></code><code class="j">()</code><i class="M"><code>int</code></i></li>
+					<li class="X"><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#X()">X</a></code><code class="j">()</code><i class="M"><code>int</code></i></li>
+					<li class="X"><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#Y()">Y</a></code><code class="j">()</code><i class="M"><code>int</code></i></li>
+					<li class="X"><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#width()">width</a></code><code class="j">()</code><i class="M"><code>int</code></i></li>
+					<li class="X"><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#height()">height</a></code><code class="j">()</code><i class="M"><code>int</code></i></li>
+					<li class="X"><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#slide(int,int)">slide</a></code><code class="j">(<code>int</code><code class="parameterName">locationX</code>, <code>int</code><code class="parameterName">locationY</code>)</code><i class="M"><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></i></li>
+					<li class="X"><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#slideX(int)">slideX</a></code><code class="j">(<code>int</code><code class="parameterName">locationX</code>)</code><i class="M"><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></i></li>
+					<li class="X"><i class="PUBLIC"></i><code><a href="api/marionette.platform.Location.html#slideY(int)">slideY</a></code><code class="j">(<code>int</code><code class="parameterName">locationY</code>)</code><i class="M"><code><a aria-label="marionette.platform.Location" href="api/marionette.platform.Location.html">Location</a></code></i></li>
+					<li class="X"><i class="OVERRIDE PUBLIC"></i><code><a href="api/marionette.platform.Location.html#toString()">toString</a></code><code class="j">()</code><i class="M"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+				</ul>
+			</div>
+		</aside>
+		<footer class="l"/>
 	</body>
+	<script src="root.js"></script>
+	<script src="main.js" type="module"></script>
 </html>

@@ -4,419 +4,427 @@
 		<meta charset="UTF-8"/>
 		<meta content="width=device-width, initial-scale=1" name="viewport"/>
 		<meta content="Explains how to use Marionette and its API. " name="description"/>
-		<link href="https://fonts.googleapis.com" rel="preconnect"/>
 		<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+		<link href="https://fonts.googleapis.com" rel="preconnect"/>
+		<link crossorigin="null" href="https://fonts.gstatic.com" rel="preconnect"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Inter" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Inter" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Material+Icons" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Material+Icons" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
 		<title>Marionette API</title>
 		<base href="../"/>
 		<script src="mimic.js" type="module"></script>
+		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="m">
-		<header class="S">
-			<h1 class="j" date="" ver="1.0.0"><code>Marionette</code></h1>
-			<nav class="c"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+	<body class="o">
+		<header class="p" date="" ver="1.0.0">
+			<h1 class="e"><code>Marionette</code></h1>
+			<nav class="f"><a href="api/" id="API"><svg class="package A svg" viewBox="0 0 24 24">
 						<use href="main.svg#package"/>
-					</svg><code>API</code></a><a href="https://github.com/teletha/marionette/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#user"/>
-					</svg>Community</a><a href="doc/changelog.html"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#activity"/>
-					</svg>Activity</a><a href="https://github.com/teletha/marionette" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#github"/>
-					</svg>Repository</a></nav>
-			<div class="O" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#sun"/>
 					</svg>
-				</a><a id="dark" title="Change to a darker color scheme"><svg class="A svg" viewBox="0 0 24 24">
+				</a><a href="https://github.com/teletha/marionette/discussions" id="Community" target="_blank"><svg class="user A svg" viewBox="0 0 24 24">
+						<use href="main.svg#user"/>
+					</svg>
+				</a><a href="doc/changelog.html" id="Activity"><svg class="activity A svg" viewBox="0 0 24 24">
+						<use href="main.svg#activity"/>
+					</svg>
+				</a><a href="https://github.com/teletha/marionette" id="Repository" target="_blank"><svg class="github A svg" viewBox="0 0 24 24">
+						<use href="main.svg#github"/>
+					</svg>
+				</a></nav>
+			<div class="d"><a aria-label="Change color scheme" id="theme"><svg class="sun A svg" viewBox="0 0 24 24">
+						<use href="main.svg#sun"/>
+					</svg><svg class="moon A svg" viewBox="0 0 24 24">
 						<use href="main.svg#moon"/>
 					</svg>
 				</a></div>
 		</header>
-		<main class="V">
-			<nav class="P">
-				<div></div>
-			</nav>
-			<article class="h" id="Article">
-				<section class="e"><code class="J">marionette</code>
-					<h2 class="AbstractClass b"><code class="K">Macro</code><code class="g">&#60;<code>Self</code>&#62;</code></h2>
-					<div class="T">
-						<ul class="C D">
-							<li><code>Self</code><code class="extends"><code><a href="api/marionette.Macro.html">Macro</a></code></code></li>
-						</ul>
-						<ul class="C F">
-							<li><code>kiss.Extensible</code></li>
-						</ul>
-					</div>
-				</section>
-				<section class="e" id="enable">
-					<h2 class="N"><i class="PUBLIC"></i><code class="K">enable</code><i class="H"><code class="return">kiss.Variable<code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Boolean.html">Boolean</a></code></code></code></i></h2><span class="B"><p>The activation state.</p></span></section>
-				<section class="e" id="Macro()">
-					<h2 class="N"><i class="PROTECTED"></i><code class="K">Macro</code><code class="g">()</code></h2>
-				</section>
-				<section class="e" id="name()">
-					<h2 class="N"><i class="PUBLIC"></i><code class="K">name</code><code class="g">()</code><i class="H"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
-					<table class="l">
-						<tr class="I">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Get the name of this macro.</p></span></section>
-				<section class="e" id="declare()">
-					<h2 class="N"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="K">declare</code><code class="g">()</code><i class="H"><code>void</code></i></h2><span class="B"><p>Declare your macros.</p></span></section>
-				<section class="e" id="with(marionette.Key)">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">with</code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>)</code><i class="H"><code>kiss.Signal<code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Boolean.html">Boolean</a></code></code></code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code><a href="api/marionette.Key.html">Key</a></code><code>key</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>kiss.Signal<code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Boolean.html">Boolean</a></code></code></code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Declare modifier key.</p></span></section>
-				<section class="e" id="whenPress(marionette.Key,marionette.MacroOption...)">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">whenPress</code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>, <code array="var"><a href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code>)</code><i class="H"><code>kiss.Signal<code class="parameters"><code><a href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code><a href="api/marionette.Key.html">Key</a></code><code>key</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code array="var"><a href="api/marionette.MacroOption.html">MacroOption</a></code><code>options</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>kiss.Signal<code class="parameters"><code><a href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Declare key related event.
- </p>
-					</span></section>
-				<section class="e" id="whenRelease(marionette.Key,marionette.MacroOption...)">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">whenRelease</code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>, <code array="var"><a href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code>)</code><i class="H"><code>kiss.Signal<code class="parameters"><code><a href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code><a href="api/marionette.Key.html">Key</a></code><code>key</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code array="var"><a href="api/marionette.MacroOption.html">MacroOption</a></code><code>options</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>kiss.Signal<code class="parameters"><code><a href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Declare key related event.
- </p>
-					</span></section>
-				<section class="e" id="whenGesture(marionette.Key,marionette.MacroOption...)">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">whenGesture</code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>, <code array="var"><a href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code>)</code><i class="H"><code>kiss.Signal<code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></code></code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code><a href="api/marionette.Key.html">Key</a></code><code>key</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code array="var"><a href="api/marionette.MacroOption.html">MacroOption</a></code><code>options</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>kiss.Signal<code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></code></code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Declare key related event.
- </p>
-					</span></section>
-				<section class="e" id="when(marionette.Mouse,marionette.MacroOption...)">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">when</code><code class="g">(<code><a href="api/marionette.Mouse.html">Mouse</a></code><code class="parameterName">mouse</code>, <code array="var"><a href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code>)</code><i class="H"><code>kiss.Signal<code class="parameters"><code><a href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code><a href="api/marionette.Mouse.html">Mouse</a></code><code>mouse</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code array="var"><a href="api/marionette.MacroOption.html">MacroOption</a></code><code>options</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>kiss.Signal<code class="parameters"><code><a href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Declare mouse related event.
- </p>
-					</span></section>
-				<section class="e" id="press(marionette.Key)">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">press</code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>)</code><i class="H"><code>Self</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code><a href="api/marionette.Key.html">Key</a></code><code>key</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>Self</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Emulate press event.
- </p>
-					</span></section>
-				<section class="e" id="release(marionette.Key)">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">release</code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>)</code><i class="H"><code>Self</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code><a href="api/marionette.Key.html">Key</a></code><code>key</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>Self</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Emulate release event.
- </p>
-					</span></section>
-				<section class="e" id="input(marionette.Key...)">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">input</code><code class="g">(<code array="var"><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">keys</code>)</code><i class="H"><code>Self</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code array="var"><a href="api/marionette.Key.html">Key</a></code><code>keys</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>Self</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Emulate press and release event in series.
- </p>
-					</span></section>
-				<section class="e" id="input(marionette.Key,java.lang.Runnable)">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">input</code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code>)</code><i class="H"><code>Self</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code><a href="api/marionette.Key.html">Key</a></code><code>key</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code>subsequence</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>Self</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Emulate press and release event in series.</p></span></section>
-				<section class="e" id="input(marionette.Key,marionette.Key,java.lang.Runnable)">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">input</code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key1</code>, <code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key2</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code>)</code><i class="H"><code>Self</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code><a href="api/marionette.Key.html">Key</a></code><code>key1</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code><a href="api/marionette.Key.html">Key</a></code><code>key2</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code>subsequence</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>Self</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Emulate press and release event in series.</p></span></section>
-				<section class="e" id="input(marionette.Key,marionette.Key,marionette.Key,java.lang.Runnable)">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">input</code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key1</code>, <code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key2</code>, <code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key3</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code>)</code><i class="H"><code>Self</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code><a href="api/marionette.Key.html">Key</a></code><code>key1</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code><a href="api/marionette.Key.html">Key</a></code><code>key2</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code><a href="api/marionette.Key.html">Key</a></code><code>key3</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code>subsequence</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>Self</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Emulate press and release event in series.</p></span></section>
-				<section class="e" id="input(marionette.Key[],java.lang.Runnable)">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">input</code><code class="g">(<code array="fix"><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">keys</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code>)</code><i class="H"><code>Self</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code array="fix"><a href="api/marionette.Key.html">Key</a></code><code>keys</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code>subsequence</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>Self</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Emulate press and release event in series.
- </p>
-					</span></section>
-				<section class="e" id="inputParallel(marionette.Key...)">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">inputParallel</code><code class="g">(<code array="var"><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">keys</code>)</code><i class="H"><code>Self</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code array="var"><a href="api/marionette.Key.html">Key</a></code><code>keys</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>Self</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Emulate press and release event in parallel.
- </p>
-					</span></section>
-				<section class="e" id="window()">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">window</code><code class="g">()</code><i class="H"><code><a href="api/marionette.Window.html">Window</a></code></i></h2>
-					<table class="l">
-						<tr class="I">
-							<td><code><a href="api/marionette.Window.html">Window</a></code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Retrieve the active window.
- </p>
-					</span></section>
-				<section class="e" id="mouseMoveTo(int,int)">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">mouseMoveTo</code><code class="g">(<code>int</code><code class="parameterName">x</code>, <code>int</code><code class="parameterName">y</code>)</code><i class="H"><code>Self</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>int</code><code>x</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code>int</code><code>y</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>Self</code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="e" id="delay(int)">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">delay</code><code class="g">(<code>int</code><code class="parameterName">ms</code>)</code><i class="H"><code>Self</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>int</code><code>ms</code></td>
-							<td><span><p>A time to stop.</p></span></td>
-						</tr>
-						<tr class="I">
-							<td><code>Self</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Stop macro temporary.
- </p>
-					</span></section>
-				<section class="e" id="require(java.util.function.Predicate,java.lang.Runnable)">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">require</code><code class="g">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Predicate.html">Predicate</a><code class="parameters"><code><a href="api/marionette.Window.html">Window</a></code></code></code><code class="parameterName">condition</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">definitions</code>)</code><i class="H"><code>void</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Predicate.html">Predicate</a><code class="parameters"><code><a href="api/marionette.Window.html">Window</a></code></code></code><code>condition</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code>definitions</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>
- Declare the condition of macro activation.
- </p>
-					</span></section>
-				<section class="e" id="requireTitle(java.lang.String,java.lang.Runnable)">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">requireTitle</code><code class="g">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">title</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">definitions</code>)</code><i class="H"><code>void</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code>title</code></td>
-							<td></td>
-						</tr>
-						<tr class="d">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code>definitions</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Declare the condition of macro activation.</p></span></section>
-				<section class="e" id="debugByMouse()">
-					<h2 class="N"><i class="FINAL"><i class="PROTECTED"></i></i><code class="K">debugByMouse</code><code class="g">()</code><i class="H"><code>void</code></i></h2>
-				</section>
-				<section class="e" id="toString()">
-					<h2 class="N"><i class="OVERRIDE PUBLIC"></i><code class="K">toString</code><code class="g">()</code><i class="H"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
-					<table class="l">
-						<tr class="I">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="e" id="stop()">
-					<h2 class="N"><i class="PUBLIC STATIC"></i><code class="K">stop</code><code class="g">()</code><i class="H"><code>void</code></i></h2><span class="B"><p>Stop all macro.</p></span></section>
-			</article>
-			<aside class="Z" id="SubNavi">
-				<div class="L">
-					<h5 class="Y">Constructors</h5>
-					<ul>
-						<li><i class="PROTECTED"></i><code><a href="api/marionette.Macro.html#Macro()">Macro</a></code><code class="g">()</code></li>
+		<nav class="i"></nav>
+		<article class="Q" id="Article">
+			<section class="q"><code class="k">marionette</code>
+				<h2 class="AbstractClass n"><code class="r">Macro</code><code class="j">&#60;<code>Self</code>&#62;</code></h2>
+				<div class="m">
+					<ul class="C D">
+						<li><code>Self</code><code class="extends"><code><a aria-label="marionette.Macro" href="api/marionette.Macro.html">Macro</a></code></code></li>
 					</ul>
-					<h5 class="Y">Fields</h5>
-					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/marionette.Macro.html#enable">enable</a></code><i class="f"><code class="return">kiss.Variable<code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Boolean.html">Boolean</a></code></code></code></i></li>
-					</ul>
-					<h5 class="Y">Static Methods</h5>
-					<ul>
-						<li><i class="PUBLIC STATIC"></i><code><a href="api/marionette.Macro.html#stop()">stop</a></code><code class="g">()</code><i class="f"><code>void</code></i></li>
-					</ul>
-					<h5 class="Y">Methods</h5>
-					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/marionette.Macro.html#name()">name</a></code><code class="g">()</code><i class="f"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.Macro.html#declare()">declare</a></code><code class="g">()</code><i class="f"><code>void</code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#with(marionette.Key)">with</a></code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>)</code><i class="f"><code>kiss.Signal<code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Boolean.html">Boolean</a></code></code></code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#whenPress(marionette.Key,marionette.MacroOption...)">whenPress</a></code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>, <code array="var"><a href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code>)</code><i class="f"><code>kiss.Signal<code class="parameters"><code><a href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#whenRelease(marionette.Key,marionette.MacroOption...)">whenRelease</a></code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>, <code array="var"><a href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code>)</code><i class="f"><code>kiss.Signal<code class="parameters"><code><a href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#whenGesture(marionette.Key,marionette.MacroOption...)">whenGesture</a></code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>, <code array="var"><a href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code>)</code><i class="f"><code>kiss.Signal<code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></code></code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#when(marionette.Mouse,marionette.MacroOption...)">when</a></code><code class="g">(<code><a href="api/marionette.Mouse.html">Mouse</a></code><code class="parameterName">mouse</code>, <code array="var"><a href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code>)</code><i class="f"><code>kiss.Signal<code class="parameters"><code><a href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#press(marionette.Key)">press</a></code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>)</code><i class="f"><code>Self</code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#release(marionette.Key)">release</a></code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>)</code><i class="f"><code>Self</code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#input(marionette.Key...)">input</a></code><code class="g">(<code array="var"><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">keys</code>)</code><i class="f"><code>Self</code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#input(marionette.Key,java.lang.Runnable)">input</a></code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code>)</code><i class="f"><code>Self</code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#input(marionette.Key,marionette.Key,java.lang.Runnable)">input</a></code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key1</code>, <code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key2</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code>)</code><i class="f"><code>Self</code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#input(marionette.Key,marionette.Key,marionette.Key,java.lang.Runnable)">input</a></code><code class="g">(<code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key1</code>, <code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key2</code>, <code><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">key3</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code>)</code><i class="f"><code>Self</code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#input(marionette.Key[],java.lang.Runnable)">input</a></code><code class="g">(<code array="fix"><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">keys</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code>)</code><i class="f"><code>Self</code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#inputParallel(marionette.Key...)">inputParallel</a></code><code class="g">(<code array="var"><a href="api/marionette.Key.html">Key</a></code><code class="parameterName">keys</code>)</code><i class="f"><code>Self</code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#window()">window</a></code><code class="g">()</code><i class="f"><code><a href="api/marionette.Window.html">Window</a></code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#mouseMoveTo(int,int)">mouseMoveTo</a></code><code class="g">(<code>int</code><code class="parameterName">x</code>, <code>int</code><code class="parameterName">y</code>)</code><i class="f"><code>Self</code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#delay(int)">delay</a></code><code class="g">(<code>int</code><code class="parameterName">ms</code>)</code><i class="f"><code>Self</code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#require(java.util.function.Predicate,java.lang.Runnable)">require</a></code><code class="g">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Predicate.html">Predicate</a><code class="parameters"><code><a href="api/marionette.Window.html">Window</a></code></code></code><code class="parameterName">condition</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">definitions</code>)</code><i class="f"><code>void</code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#requireTitle(java.lang.String,java.lang.Runnable)">requireTitle</a></code><code class="g">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">title</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">definitions</code>)</code><i class="f"><code>void</code></i></li>
-						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#debugByMouse()">debugByMouse</a></code><code class="g">()</code><i class="f"><code>void</code></i></li>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/marionette.Macro.html#toString()">toString</a></code><code class="g">()</code><i class="f"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+					<ul class="C F">
+						<li><code>kiss.Extensible</code></li>
 					</ul>
 				</div>
-			</aside>
-		</main>
-		<script src="root.js"></script>
-		<script src="main.js" type="module"></script>
+			</section>
+			<section class="q" id="enable">
+				<h2 class="Y"><i class="PUBLIC"></i><code class="r">enable</code><i class="J"><code class="return">kiss.Variable<code class="parameters"><code><a aria-label="java.lang.Boolean 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Boolean.html">Boolean</a></code></code></code></i></h2><span class="B"><p>The activation state.</p></span></section>
+			<section class="q" id="Macro()">
+				<h2 class="Y"><i class="PROTECTED"></i><code class="r">Macro</code><code class="j">()</code></h2>
+			</section>
+			<section class="q" id="name()">
+				<h2 class="Y"><i class="PUBLIC"></i><code class="r">name</code><code class="j">()</code><i class="J"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
+				<table class="H">
+					<tr class="a">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Get the name of this macro.</p></span></section>
+			<section class="q" id="declare()">
+				<h2 class="Y"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="r">declare</code><code class="j">()</code><i class="J"><code>void</code></i></h2><span class="B"><p>Declare your macros.</p></span></section>
+			<section class="q" id="with(marionette.Key)">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">with</code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>)</code><i class="J"><code>kiss.Signal<code class="parameters"><code><a aria-label="java.lang.Boolean 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Boolean.html">Boolean</a></code></code></code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>kiss.Signal<code class="parameters"><code><a aria-label="java.lang.Boolean 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Boolean.html">Boolean</a></code></code></code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Declare modifier key.</p></span></section>
+			<section class="q" id="whenPress(marionette.Key,marionette.MacroOption...)">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">whenPress</code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>, <code array="var"><a aria-label="marionette.MacroOption" href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code>)</code><i class="J"><code>kiss.Signal<code class="parameters"><code><a aria-label="marionette.KeyEvent" href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code array="var"><a aria-label="marionette.MacroOption" href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>kiss.Signal<code class="parameters"><code><a aria-label="marionette.KeyEvent" href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Declare key related event.
+ </p>
+				</span></section>
+			<section class="q" id="whenRelease(marionette.Key,marionette.MacroOption...)">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">whenRelease</code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>, <code array="var"><a aria-label="marionette.MacroOption" href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code>)</code><i class="J"><code>kiss.Signal<code class="parameters"><code><a aria-label="marionette.KeyEvent" href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code array="var"><a aria-label="marionette.MacroOption" href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>kiss.Signal<code class="parameters"><code><a aria-label="marionette.KeyEvent" href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Declare key related event.
+ </p>
+				</span></section>
+			<section class="q" id="whenGesture(marionette.Key,marionette.MacroOption...)">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">whenGesture</code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>, <code array="var"><a aria-label="marionette.MacroOption" href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code>)</code><i class="J"><code>kiss.Signal<code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></code></code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code array="var"><a aria-label="marionette.MacroOption" href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>kiss.Signal<code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></code></code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Declare key related event.
+ </p>
+				</span></section>
+			<section class="q" id="when(marionette.Mouse,marionette.MacroOption...)">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">when</code><code class="j">(<code><a aria-label="marionette.Mouse" href="api/marionette.Mouse.html">Mouse</a></code><code class="parameterName">mouse</code>, <code array="var"><a aria-label="marionette.MacroOption" href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code>)</code><i class="J"><code>kiss.Signal<code class="parameters"><code><a aria-label="marionette.KeyEvent" href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code><a aria-label="marionette.Mouse" href="api/marionette.Mouse.html">Mouse</a></code><code class="parameterName">mouse</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code array="var"><a aria-label="marionette.MacroOption" href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>kiss.Signal<code class="parameters"><code><a aria-label="marionette.KeyEvent" href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Declare mouse related event.
+ </p>
+				</span></section>
+			<section class="q" id="press(marionette.Key)">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">press</code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>)</code><i class="J"><code>Self</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>Self</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Emulate press event.
+ </p>
+				</span></section>
+			<section class="q" id="release(marionette.Key)">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">release</code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>)</code><i class="J"><code>Self</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>Self</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Emulate release event.
+ </p>
+				</span></section>
+			<section class="q" id="input(marionette.Key...)">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">input</code><code class="j">(<code array="var"><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">keys</code>)</code><i class="J"><code>Self</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code array="var"><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">keys</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>Self</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Emulate press and release event in series.
+ </p>
+				</span></section>
+			<section class="q" id="input(marionette.Key,java.lang.Runnable)">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">input</code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code>)</code><i class="J"><code>Self</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>Self</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Emulate press and release event in series.</p></span></section>
+			<section class="q" id="input(marionette.Key,marionette.Key,java.lang.Runnable)">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">input</code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key1</code>, <code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key2</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code>)</code><i class="J"><code>Self</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key1</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key2</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>Self</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Emulate press and release event in series.</p></span></section>
+			<section class="q" id="input(marionette.Key,marionette.Key,marionette.Key,java.lang.Runnable)">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">input</code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key1</code>, <code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key2</code>, <code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key3</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code>)</code><i class="J"><code>Self</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key1</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key2</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key3</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>Self</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Emulate press and release event in series.</p></span></section>
+			<section class="q" id="input(marionette.Key[],java.lang.Runnable)">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">input</code><code class="j">(<code array="fix"><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">keys</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code>)</code><i class="J"><code>Self</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code array="fix"><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">keys</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>Self</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Emulate press and release event in series.
+ </p>
+				</span></section>
+			<section class="q" id="inputParallel(marionette.Key...)">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">inputParallel</code><code class="j">(<code array="var"><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">keys</code>)</code><i class="J"><code>Self</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code array="var"><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">keys</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>Self</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Emulate press and release event in parallel.
+ </p>
+				</span></section>
+			<section class="q" id="window()">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">window</code><code class="j">()</code><i class="J"><code><a aria-label="marionette.Window" href="api/marionette.Window.html">Window</a></code></i></h2>
+				<table class="H">
+					<tr class="a">
+						<td><code><a aria-label="marionette.Window" href="api/marionette.Window.html">Window</a></code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Retrieve the active window.
+ </p>
+				</span></section>
+			<section class="q" id="mouseMoveTo(int,int)">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">mouseMoveTo</code><code class="j">(<code>int</code><code class="parameterName">x</code>, <code>int</code><code class="parameterName">y</code>)</code><i class="J"><code>Self</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>int</code><code class="parameterName">x</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code>int</code><code class="parameterName">y</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>Self</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="q" id="delay(int)">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">delay</code><code class="j">(<code>int</code><code class="parameterName">ms</code>)</code><i class="J"><code>Self</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>int</code><code class="parameterName">ms</code></td>
+						<td><span><p>A time to stop.</p></span></td>
+					</tr>
+					<tr class="a">
+						<td><code>Self</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Stop macro temporary.
+ </p>
+				</span></section>
+			<section class="q" id="require(java.util.function.Predicate,java.lang.Runnable)">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">require</code><code class="j">(<code><a aria-label="java.util.function.Predicate 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Predicate.html">Predicate</a><code class="parameters"><code><a aria-label="marionette.Window" href="api/marionette.Window.html">Window</a></code></code></code><code class="parameterName">condition</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">definitions</code>)</code><i class="J"><code>void</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code><a aria-label="java.util.function.Predicate 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Predicate.html">Predicate</a><code class="parameters"><code><a aria-label="marionette.Window" href="api/marionette.Window.html">Window</a></code></code></code><code class="parameterName">condition</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">definitions</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>
+ Declare the condition of macro activation.
+ </p>
+				</span></section>
+			<section class="q" id="requireTitle(java.lang.String,java.lang.Runnable)">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">requireTitle</code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">title</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">definitions</code>)</code><i class="J"><code>void</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">title</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">definitions</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Declare the condition of macro activation.</p></span></section>
+			<section class="q" id="debugByMouse()">
+				<h2 class="Y"><i class="FINAL"><i class="PROTECTED"></i></i><code class="r">debugByMouse</code><code class="j">()</code><i class="J"><code>void</code></i></h2>
+			</section>
+			<section class="q" id="toString()">
+				<h2 class="Y"><i class="OVERRIDE PUBLIC"></i><code class="r">toString</code><code class="j">()</code><i class="J"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
+				<table class="H">
+					<tr class="a">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="q" id="stop()">
+				<h2 class="Y"><i class="STATIC PUBLIC"></i><code class="r">stop</code><code class="j">()</code><i class="J"><code>void</code></i></h2><span class="B"><p>Stop all macro.</p></span></section>
+		</article>
+		<aside class="h">
+			<div class="Z">
+				<h5 class="L">Constructors</h5>
+				<ul>
+					<li class="X"><i class="PROTECTED"></i><code><a href="api/marionette.Macro.html#Macro()">Macro</a></code><code class="j">()</code></li>
+				</ul>
+				<h5 class="L">Fields</h5>
+				<ul>
+					<li class="X"><i class="PUBLIC"></i><code><a href="api/marionette.Macro.html#enable">enable</a></code><i class="M"><code class="return">kiss.Variable<code class="parameters"><code><a aria-label="java.lang.Boolean 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Boolean.html">Boolean</a></code></code></code></i></li>
+				</ul>
+				<h5 class="L">Static Methods</h5>
+				<ul>
+					<li class="X"><i class="STATIC PUBLIC"></i><code><a href="api/marionette.Macro.html#stop()">stop</a></code><code class="j">()</code><i class="M"><code>void</code></i></li>
+				</ul>
+				<h5 class="L">Methods</h5>
+				<ul>
+					<li class="X"><i class="PUBLIC"></i><code><a href="api/marionette.Macro.html#name()">name</a></code><code class="j">()</code><i class="M"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+					<li class="X"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/marionette.Macro.html#declare()">declare</a></code><code class="j">()</code><i class="M"><code>void</code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#with(marionette.Key)">with</a></code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>)</code><i class="M"><code>kiss.Signal<code class="parameters"><code><a aria-label="java.lang.Boolean 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Boolean.html">Boolean</a></code></code></code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#whenPress(marionette.Key,marionette.MacroOption...)">whenPress</a></code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>, <code array="var"><a aria-label="marionette.MacroOption" href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code>)</code><i class="M"><code>kiss.Signal<code class="parameters"><code><a aria-label="marionette.KeyEvent" href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#whenRelease(marionette.Key,marionette.MacroOption...)">whenRelease</a></code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>, <code array="var"><a aria-label="marionette.MacroOption" href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code>)</code><i class="M"><code>kiss.Signal<code class="parameters"><code><a aria-label="marionette.KeyEvent" href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#whenGesture(marionette.Key,marionette.MacroOption...)">whenGesture</a></code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>, <code array="var"><a aria-label="marionette.MacroOption" href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code>)</code><i class="M"><code>kiss.Signal<code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></code></code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#when(marionette.Mouse,marionette.MacroOption...)">when</a></code><code class="j">(<code><a aria-label="marionette.Mouse" href="api/marionette.Mouse.html">Mouse</a></code><code class="parameterName">mouse</code>, <code array="var"><a aria-label="marionette.MacroOption" href="api/marionette.MacroOption.html">MacroOption</a></code><code class="parameterName">options</code>)</code><i class="M"><code>kiss.Signal<code class="parameters"><code><a aria-label="marionette.KeyEvent" href="api/marionette.KeyEvent.html">KeyEvent</a></code></code></code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#press(marionette.Key)">press</a></code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>)</code><i class="M"><code>Self</code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#release(marionette.Key)">release</a></code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>)</code><i class="M"><code>Self</code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#input(marionette.Key...)">input</a></code><code class="j">(<code array="var"><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">keys</code>)</code><i class="M"><code>Self</code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#input(marionette.Key,java.lang.Runnable)">input</a></code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code>)</code><i class="M"><code>Self</code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#input(marionette.Key,marionette.Key,java.lang.Runnable)">input</a></code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key1</code>, <code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key2</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code>)</code><i class="M"><code>Self</code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#input(marionette.Key,marionette.Key,marionette.Key,java.lang.Runnable)">input</a></code><code class="j">(<code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key1</code>, <code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key2</code>, <code><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">key3</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code>)</code><i class="M"><code>Self</code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#input(marionette.Key[],java.lang.Runnable)">input</a></code><code class="j">(<code array="fix"><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">keys</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">subsequence</code>)</code><i class="M"><code>Self</code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#inputParallel(marionette.Key...)">inputParallel</a></code><code class="j">(<code array="var"><a aria-label="marionette.Key" href="api/marionette.Key.html">Key</a></code><code class="parameterName">keys</code>)</code><i class="M"><code>Self</code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#window()">window</a></code><code class="j">()</code><i class="M"><code><a aria-label="marionette.Window" href="api/marionette.Window.html">Window</a></code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#mouseMoveTo(int,int)">mouseMoveTo</a></code><code class="j">(<code>int</code><code class="parameterName">x</code>, <code>int</code><code class="parameterName">y</code>)</code><i class="M"><code>Self</code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#delay(int)">delay</a></code><code class="j">(<code>int</code><code class="parameterName">ms</code>)</code><i class="M"><code>Self</code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#require(java.util.function.Predicate,java.lang.Runnable)">require</a></code><code class="j">(<code><a aria-label="java.util.function.Predicate 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Predicate.html">Predicate</a><code class="parameters"><code><a aria-label="marionette.Window" href="api/marionette.Window.html">Window</a></code></code></code><code class="parameterName">condition</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">definitions</code>)</code><i class="M"><code>void</code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#requireTitle(java.lang.String,java.lang.Runnable)">requireTitle</a></code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">title</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">definitions</code>)</code><i class="M"><code>void</code></i></li>
+					<li class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/marionette.Macro.html#debugByMouse()">debugByMouse</a></code><code class="j">()</code><i class="M"><code>void</code></i></li>
+					<li class="X"><i class="OVERRIDE PUBLIC"></i><code><a href="api/marionette.Macro.html#toString()">toString</a></code><code class="j">()</code><i class="M"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+				</ul>
+			</div>
+		</aside>
+		<footer class="l"/>
 	</body>
+	<script src="root.js"></script>
+	<script src="main.js" type="module"></script>
 </html>

@@ -4,93 +4,101 @@
 		<meta charset="UTF-8"/>
 		<meta content="width=device-width, initial-scale=1" name="viewport"/>
 		<meta content="Explains how to use Marionette and its API. " name="description"/>
-		<link href="https://fonts.googleapis.com" rel="preconnect"/>
 		<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+		<link href="https://fonts.googleapis.com" rel="preconnect"/>
+		<link crossorigin="null" href="https://fonts.gstatic.com" rel="preconnect"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Inter" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Inter" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Material+Icons" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Material+Icons" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
 		<title>Marionette API</title>
 		<base href="../"/>
 		<script src="mimic.js" type="module"></script>
+		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="m">
-		<header class="S">
-			<h1 class="j" date="" ver="1.0.0"><code>Marionette</code></h1>
-			<nav class="c"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+	<body class="o">
+		<header class="p" date="" ver="1.0.0">
+			<h1 class="e"><code>Marionette</code></h1>
+			<nav class="f"><a href="api/" id="API"><svg class="package A svg" viewBox="0 0 24 24">
 						<use href="main.svg#package"/>
-					</svg><code>API</code></a><a href="https://github.com/teletha/marionette/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#user"/>
-					</svg>Community</a><a href="doc/changelog.html"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#activity"/>
-					</svg>Activity</a><a href="https://github.com/teletha/marionette" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#github"/>
-					</svg>Repository</a></nav>
-			<div class="O" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#sun"/>
 					</svg>
-				</a><a id="dark" title="Change to a darker color scheme"><svg class="A svg" viewBox="0 0 24 24">
+				</a><a href="https://github.com/teletha/marionette/discussions" id="Community" target="_blank"><svg class="user A svg" viewBox="0 0 24 24">
+						<use href="main.svg#user"/>
+					</svg>
+				</a><a href="doc/changelog.html" id="Activity"><svg class="activity A svg" viewBox="0 0 24 24">
+						<use href="main.svg#activity"/>
+					</svg>
+				</a><a href="https://github.com/teletha/marionette" id="Repository" target="_blank"><svg class="github A svg" viewBox="0 0 24 24">
+						<use href="main.svg#github"/>
+					</svg>
+				</a></nav>
+			<div class="d"><a aria-label="Change color scheme" id="theme"><svg class="sun A svg" viewBox="0 0 24 24">
+						<use href="main.svg#sun"/>
+					</svg><svg class="moon A svg" viewBox="0 0 24 24">
 						<use href="main.svg#moon"/>
 					</svg>
 				</a></div>
 		</header>
-		<main class="V">
-			<nav class="P">
-				<div></div>
-			</nav>
-			<article class="h" id="Article">
-				<section class="e"><code class="J">marionette.platform</code>
-					<h2 class="Class b"><code class="K">Color</code></h2>
-					<div class="T"></div>
-				</section>
-				<section class="e" id="code">
-					<h2 class="N"><i class="FINAL"><i class="PUBLIC"></i></i><code class="K">code</code><i class="H"><code class="return">int</code></i></h2><span class="B"><p>The original color code.</p></span></section>
-				<section class="e" id="red">
-					<h2 class="N"><i class="FINAL"><i class="PUBLIC"></i></i><code class="K">red</code><i class="H"><code class="return">int</code></i></h2>
-				</section>
-				<section class="e" id="green">
-					<h2 class="N"><i class="FINAL"><i class="PUBLIC"></i></i><code class="K">green</code><i class="H"><code class="return">int</code></i></h2>
-				</section>
-				<section class="e" id="blue">
-					<h2 class="N"><i class="FINAL"><i class="PUBLIC"></i></i><code class="K">blue</code><i class="H"><code class="return">int</code></i></h2>
-				</section>
-				<section class="e" id="toString()">
-					<h2 class="N"><i class="OVERRIDE PUBLIC"></i><code class="K">toString</code><code class="g">()</code><i class="H"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
-					<table class="l">
-						<tr class="I">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="e" id="is(int)">
-					<h2 class="N"><i class="PUBLIC"></i><code class="K">is</code><code class="g">(<code>int</code><code class="parameterName">code</code>)</code><i class="H"><code>boolean</code></i></h2>
-					<table class="l">
-						<tr class="d">
-							<td><code>int</code><code>code</code></td>
-							<td></td>
-						</tr>
-						<tr class="I">
-							<td><code>boolean</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Test color code.</p></span></section>
-			</article>
-			<aside class="Z" id="SubNavi">
-				<div class="L">
-					<h5 class="Y">Fields</h5>
-					<ul>
-						<li><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Color.html#code">code</a></code><i class="f"><code class="return">int</code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Color.html#red">red</a></code><i class="f"><code class="return">int</code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Color.html#green">green</a></code><i class="f"><code class="return">int</code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Color.html#blue">blue</a></code><i class="f"><code class="return">int</code></i></li>
-					</ul>
-					<h5 class="Y">Methods</h5>
-					<ul>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/marionette.platform.Color.html#toString()">toString</a></code><code class="g">()</code><i class="f"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/marionette.platform.Color.html#is(int)">is</a></code><code class="g">(<code>int</code><code class="parameterName">code</code>)</code><i class="f"><code>boolean</code></i></li>
-					</ul>
-				</div>
-			</aside>
-		</main>
-		<script src="root.js"></script>
-		<script src="main.js" type="module"></script>
+		<nav class="i"></nav>
+		<article class="Q" id="Article">
+			<section class="q"><code class="k">marionette.platform</code>
+				<h2 class="Class n"><code class="r">Color</code></h2>
+				<div class="m"></div>
+			</section>
+			<section class="q" id="code">
+				<h2 class="Y"><i class="FINAL"><i class="PUBLIC"></i></i><code class="r">code</code><i class="J"><code class="return">int</code></i></h2><span class="B"><p>The original color code.</p></span></section>
+			<section class="q" id="red">
+				<h2 class="Y"><i class="FINAL"><i class="PUBLIC"></i></i><code class="r">red</code><i class="J"><code class="return">int</code></i></h2>
+			</section>
+			<section class="q" id="green">
+				<h2 class="Y"><i class="FINAL"><i class="PUBLIC"></i></i><code class="r">green</code><i class="J"><code class="return">int</code></i></h2>
+			</section>
+			<section class="q" id="blue">
+				<h2 class="Y"><i class="FINAL"><i class="PUBLIC"></i></i><code class="r">blue</code><i class="J"><code class="return">int</code></i></h2>
+			</section>
+			<section class="q" id="toString()">
+				<h2 class="Y"><i class="OVERRIDE PUBLIC"></i><code class="r">toString</code><code class="j">()</code><i class="J"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
+				<table class="H">
+					<tr class="a">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="q" id="is(int)">
+				<h2 class="Y"><i class="PUBLIC"></i><code class="r">is</code><code class="j">(<code>int</code><code class="parameterName">code</code>)</code><i class="J"><code>boolean</code></i></h2>
+				<table class="H">
+					<tr class="U">
+						<td><code>int</code><code class="parameterName">code</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>boolean</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Test color code.</p></span></section>
+		</article>
+		<aside class="h">
+			<div class="Z">
+				<h5 class="L">Fields</h5>
+				<ul>
+					<li class="X"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Color.html#code">code</a></code><i class="M"><code class="return">int</code></i></li>
+					<li class="X"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Color.html#red">red</a></code><i class="M"><code class="return">int</code></i></li>
+					<li class="X"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Color.html#green">green</a></code><i class="M"><code class="return">int</code></i></li>
+					<li class="X"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/marionette.platform.Color.html#blue">blue</a></code><i class="M"><code class="return">int</code></i></li>
+				</ul>
+				<h5 class="L">Methods</h5>
+				<ul>
+					<li class="X"><i class="OVERRIDE PUBLIC"></i><code><a href="api/marionette.platform.Color.html#toString()">toString</a></code><code class="j">()</code><i class="M"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+					<li class="X"><i class="PUBLIC"></i><code><a href="api/marionette.platform.Color.html#is(int)">is</a></code><code class="j">(<code>int</code><code class="parameterName">code</code>)</code><i class="M"><code>boolean</code></i></li>
+				</ul>
+			</div>
+		</aside>
+		<footer class="l"/>
 	</body>
+	<script src="root.js"></script>
+	<script src="main.js" type="module"></script>
 </html>
